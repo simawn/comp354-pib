@@ -29,7 +29,7 @@ public class KeyHandler implements EventHandler<KeyEvent> {
             int x;
             do {
                 x = rand.nextInt(cards.length);
-            } while (cards[x].isOpened());
+            } while (cards[x].isOpen());
             cards[x].open();
 
         }
