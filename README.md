@@ -11,3 +11,10 @@ Completed the basic GUI look. While writing the code, I realized that the object
 
 -Rani
 
+
+Jan 27, 2019 - 7:29pm:
+
+Completed the GUI. There are several dummy codes written to test the functionality. These will be erased during final production, which forces some to be revamped for other functionality.
+
+
+![image](https://drive.google.com/uc?export=view&id=1iULsCRsBDgCbQs45UTBxQallmXX1vwEA)
