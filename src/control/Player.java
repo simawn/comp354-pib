@@ -5,17 +5,23 @@
  */
 package control;
 import model.Card;
-/**
- *
- * @author Anthony
- */
+
 public class Player {
     private int id;
     private String name;
     private int score;
+
+    public int getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
     
-    
-    /*public int getScore(int player){
-        if(player == )
-    }*/
+    public int getScore(){
+       return score;
+       //if (player == card.type && card.isOpen())
+                //return 1 else return 0
+    }
 }
