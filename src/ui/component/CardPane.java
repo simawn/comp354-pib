@@ -23,10 +23,12 @@ class CardPane extends StackPane implements Listener {
     private Card card;
 
     private CardPane(Card c) {
+        System.out.println("Working Directory = " +
+            System.getProperty("user.dir"));
         this.card = c;
         c.bind(this);
         text = new Text(c.getWord());
-        image = new ImageView("/resources/CardTemplate.png");
+        image = new ImageView("resources/CardTemplate.png");
         getChildren().addAll(image, text);
         setMargin(text, new Insets(15, 15, 15, 15));
         setAlignment(text, Pos.BOTTOM_CENTER);
@@ -39,7 +41,7 @@ class CardPane extends StackPane implements Listener {
         }
 
         if (card.isOpen()) {
-            temp = "/resources/";
+            temp = "resources/";
             if (card.getType() == CardType.ASSASSIN) {
                 temp += "Assassin";
             } else {
