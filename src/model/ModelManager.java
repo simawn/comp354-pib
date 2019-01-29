@@ -88,6 +88,7 @@ public class ModelManager {
             System.out.println("Creating card: " + copyAllWords.get(i) + " of color " + keycard.colorAt(i));
             board[i] = new Card(copyAllWords.get(i), keycard.colorAt(i));
         }
+        
    }
    
 }

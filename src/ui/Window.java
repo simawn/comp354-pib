@@ -14,10 +14,9 @@ public class Window extends Application {
     Entry Point of the program
     */
     public static void main(String[] args) {   
-        System.out.println("Working Directory = " +
-            System.getProperty("user.dir"));
-
+        System.out.println("Working dir: "+ System.getProperty("user.dir"));
         launch(args);
+        
     }
 
     @Override
