@@ -32,7 +32,7 @@ public class KeyHandler implements EventHandler<KeyEvent> {
             } while (cards[x].isOpen());
             cards[x].open();
 
-        }
+        } 
         //todo end of erase
     }
 }

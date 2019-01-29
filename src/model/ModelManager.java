@@ -30,19 +30,11 @@ public class ModelManager {
    * CONSTRUCTOR
    */
    public ModelManager() {
-    File folder = new File(".");
-    File[] listOfFiles = folder.listFiles();
+ 
 
-    for (int i = 0; i < listOfFiles.length; i++) {
-      if (listOfFiles[i].isFile()) {
-        System.out.println("File " + listOfFiles[i].getName());
-      } else if (listOfFiles[i].isDirectory()) {
-        System.out.println("Directory " + listOfFiles[i].getName());
-      }
-    }
        board = new Card[25];   
-       keycard = new KeyCard(getRandomKeyCardFromFile("src/resources/keyCards.txt"));
-       setBoardFromFile("src/resources/words.txt");       
+       keycard = new KeyCard(getRandomKeyCardFromFile("C:\\Users\\Anthony\\Documents\\GitHub\\comp354-pib\\src\\resources\\keyCards.txt"));
+       setBoardFromFile("C:\\Users\\Anthony\\Documents\\GitHub\\comp354-pib\\src\\resources\\words.txt");  
    }
    
    /*
@@ -98,6 +90,7 @@ public class ModelManager {
             System.out.println("Creating card: " + copyAllWords.get(i) + " of color " + keycard.colorAt(i));
             board[i] = new Card(copyAllWords.get(i), keycard.colorAt(i));
         }
+        
    }
    
 }
