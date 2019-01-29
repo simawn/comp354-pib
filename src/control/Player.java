@@ -4,13 +4,23 @@
  * and open the template in the editor.
  */
 package control;
+import Strategy.PlayerStrategy;
 import model.Card;
 
 public class Player {
     private int id;
     private String name;
     private int score;
+    private PlayerStrategy strategy;
 
+    public Player(PlayerStrategy strategy){
+        this.strategy = strategy;
+    }
+    
+    public void executeStrategy(Card[] card){
+        strategy.makeMove(card);
+    }
+    
     public int getId() {
         return id;
     }
