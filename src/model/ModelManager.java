@@ -1,8 +1,8 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+* To change this license header, choose License Headers in Project Properties.
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
+*/
 package model;
 
 import java.io.File;
@@ -11,41 +11,62 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
 import java.util.Scanner;
+import model.constant.CardType;
+import model.constant.TurnState;
 
 public class ModelManager {
-   // Data Members
+    // Data Members
     private ArrayList<String> allWords;
     private Card[] board;
     private KeyCard keycard;
+    private TurnState currentTurn;
     private String currentClue;
     private int currentClueNum;
     
-   // keycard
-   // blue spymaster
-   // blue operative
-   // red spymaster
-   // red operative
-   
-   /*
-   * CONSTRUCTOR
-   */
-   public ModelManager() {
-    board = new Card[25];  
-    keycard = new KeyCard(getRandomKeyCardFromFile("./resources/keyCards.txt"));
-    setBoardFromFile("./resources/words.txt");       
-   }
-   
-   /*
+    /*
+    * CONSTRUCTOR
+    */
+    public ModelManager() {
+        board = new Card[25];
+        keycard = new KeyCard(getRandomKeyCardFromFile("./resources/keyCards.txt"));
+        setBoardFromFile("./resources/words.txt");
+        if(keycard.whoGoesFirst() == CardType.BLUE){
+            currentTurn = TurnState.BlueSpy;
+        } else {
+            currentTurn = TurnState.RedSpy;
+        }
+    }
+    
+    /*
     * METHODS
     */
-   public Card[] getBoard() {
-       return board;
-   }
-   
-   // Open file at fName, read all lines, and pick a random one.
-   private static String getRandomKeyCardFromFile(String fName){
-       File file = new File(fName);
-       ArrayList<String> keyCardStrings = new ArrayList<String>();
+    public void giveClue(String clueWord, int clueNum) {
+        if((currentTurn != TurnState.BlueSpy) && (currentTurn != TurnState.RedSpy)) {
+            System.out.println("A clue was given when it wasn't a spymasters turn -- this should never happen -- ignoring clue");
+            return;
+        }
+        currentClue = clueWord;
+        currentClueNum = clueNum;
+        if(currentTurn == TurnState.BlueSpy) { 
+            currentTurn = TurnState.BlueOp;
+        } else {
+            currentTurn = TurnState.RedOp;
+        }
+        // TODO: Alert the view that the clue has changed and the TurnState has changed
+    }
+    
+    public TurnState getCurrentTurn() {
+        return currentTurn;
+    }
+    
+    public Card[] getBoard() {
+        return board;
+    }
+    
+    // Open file at fName, read all lines, and pick a random one.
+    private static String getRandomKeyCardFromFile(String fName){
+        File file = new File(fName);
+        ArrayList<String> keyCardStrings = new ArrayList<String>();
         try {
             Scanner input = new Scanner(file);
             while (input.hasNextLine()) {
@@ -64,13 +85,13 @@ public class ModelManager {
             System.out.println("No keyCardStrings found in file, using default keycard");
             return "BBBBBBBBBYYYYYYYARRRRRRRR";
         }
-   }
-   
-   // Open file fName, save all codenames from the file, and pick 25 of them at random to populate the board.
-   private void setBoardFromFile(String fName) {
-       File file = new File(fName);
-       allWords = new ArrayList<String>();
-       Scanner input;
+    }
+    
+    // Open file fName, save all codenames from the file, and pick 25 of them at random to populate the board.
+    private void setBoardFromFile(String fName) {
+        File file = new File(fName);
+        allWords = new ArrayList<String>();
+        Scanner input;
         try {
             input = new Scanner(file);
         } catch (FileNotFoundException ex) {
@@ -89,7 +110,7 @@ public class ModelManager {
             board[i] = new Card(copyAllWords.get(i), keycard.colorAt(i));
         }
         
-   }
-   
+    }
+    
 }
 

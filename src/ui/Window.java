@@ -16,7 +16,6 @@ public class Window extends Application {
     public static void main(String[] args) {   
         System.out.println("Working dir: "+ System.getProperty("user.dir"));
         launch(args);
-        
     }
 
     @Override
