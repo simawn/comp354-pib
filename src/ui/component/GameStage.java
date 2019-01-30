@@ -1,15 +1,15 @@
 package ui.component;
 
+import control.DeckControl;
 import javafx.stage.Stage;
-import model.Card;
 
 /*
     Holds the application's properties with respect to the kernel's virtual screen
  */
 public class GameStage extends Stage {
-    public GameStage(Card[] cards) {
+    public GameStage(DeckControl deckcontrol) {
         setTitle("Codenames Game");
         setResizable(false);
-        setScene(BoardScene.build(cards));
+        setScene(BoardScene.build(deckcontrol));
     }
 }

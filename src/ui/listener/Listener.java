@@ -4,5 +4,5 @@ package ui.listener;
     Interface connecting model and view together
  */
 public interface Listener {
-    void update();
+    void update(int code, String message);
 }

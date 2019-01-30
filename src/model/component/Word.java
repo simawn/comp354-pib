@@ -12,7 +12,7 @@ public class Word implements Component {
 
     @Override
     public String[] build() throws IOException {
-        if (Files.exists(PATH)) {
+        if (!Files.exists(PATH)) {
             throw new IOException("Error: Missing " + PATH);
         }
 

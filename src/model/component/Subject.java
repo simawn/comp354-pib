@@ -12,9 +12,9 @@ public class Subject {
         listeners.add(listener);
     }
 
-    public void push() {
+    public void push(int code, String message) {
         for (Listener in : listeners) {
-            in.update();
+            in.update(code, message);
         }
     }
 }

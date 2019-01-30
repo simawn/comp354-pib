@@ -1,8 +1,8 @@
 package ui;
 
+import control.DeckControl;
 import javafx.application.Application;
 import javafx.stage.Stage;
-import model.ModelManager;
 import ui.component.GameStage;
 
 
@@ -18,9 +18,9 @@ public class Window extends Application {
     @Override
     public void start(Stage root) {
 
-        ModelManager model = new ModelManager();
+        DeckControl deckcontrol = new DeckControl();
 
-        root = new GameStage(model.getBoard()); //points the root stage to the GameStage
+        root = new GameStage(deckcontrol); //points the root stage to the GameStage
 
         root.show(); // Shows the final Stage based on the scene
     }

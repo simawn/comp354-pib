@@ -14,7 +14,7 @@ public class KeyCard implements Component {
 
     @Override
     public CardType[] build() throws IOException {
-        if (Files.exists(PATH)) {
+        if (!Files.exists(PATH)) {
             throw new IOException("Error: Missing " + PATH);
         }
 

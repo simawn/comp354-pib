@@ -27,3 +27,18 @@ public class Turn {
         return 0;
     }
 }
+
+/*
+ *   // returns the TurnState corresponding to what turn should be next.
+ *     private TurnState nextTurn() {
+ *             if (currentTurn == TurnState.BlueSpy) {
+ *                 return TurnState.BlueOp;
+ *             } else if (currentTurn == TurnState.BlueOp) {
+ *                 return TurnState.RedSpy;
+ *             } else if (currentTurn == TurnState.RedSpy) {
+ *                 return TurnState.RedOp;
+ *             } else {
+ *                 return TurnState.BlueSpy;
+ *             }
+ *     }
+ */

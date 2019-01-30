@@ -1,9 +1,9 @@
 package ui.component;
 
+import control.DeckControl;
+import control.KeyHandler;
 import javafx.scene.Scene;
 import javafx.scene.paint.Paint;
-import model.Card;
-import ui.listener.KeyHandler;
 
 /*
     Sets the inner scene within the application view
@@ -11,13 +11,13 @@ import ui.listener.KeyHandler;
  */
 class BoardScene extends Scene {
 
-    private BoardScene(Card[] cards) {
-        super(DeckPane.build(cards));
+    private BoardScene(DeckControl deckcontrol) {
+        super(DeckPane.build(deckcontrol));
         setFill(Paint.valueOf("877567"));
-        setOnKeyPressed(new KeyHandler(cards)); //todo rever the parameter of KeyHandler to default
+        setOnKeyPressed(new KeyHandler(deckcontrol)); //todo rever the parameter of KeyHandler to default
     }
 
-    static Scene build(Card[] cards) {
-        return new BoardScene(cards);
+    static BoardScene build(DeckControl deckcontrol) {
+        return new BoardScene(deckcontrol);
     }
 }

@@ -1,11 +1,8 @@
-package ui.listener;
+package control;
 
 import javafx.event.EventHandler;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import model.Card;
-
-import java.util.Random;
 
 /*
     Handles all KeyEvents pressed by the user
@@ -13,12 +10,10 @@ import java.util.Random;
 public class KeyHandler implements EventHandler<KeyEvent> {
 
     //todo erase all this after
-    private Card[] cards;
-    private Random rand;
+    private DeckControl deckcontrol;
 
-    public KeyHandler(Card[] cards) {
-        rand = new Random();
-        this.cards = cards;
+    public KeyHandler(DeckControl deckcontrol) {
+        this.deckcontrol = deckcontrol;
     }
     //todo end of erase
 
@@ -26,11 +21,11 @@ public class KeyHandler implements EventHandler<KeyEvent> {
     public void handle(KeyEvent keyEvent) {
         //todo this is NOT the intended function. Simply a test
         if (keyEvent.getCode() == KeyCode.ENTER) {
-            int x;
-            do {
-                x = rand.nextInt(cards.length);
-            } while (cards[x].isOpen());
-            cards[x].open();
+            try {
+                deckcontrol.pick();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
 
         } 
         //todo end of erase
