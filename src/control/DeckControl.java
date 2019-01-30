@@ -6,6 +6,7 @@ import model.constant.CardType;
 import ui.listener.Listener;
 
 import java.io.IOException;
+import java.util.Collections;
 import java.util.EmptyStackException;
 
 public class DeckControl {
@@ -28,7 +29,8 @@ public class DeckControl {
         nextSubscription++;
     }
 
-    CardType pick() {
+    public CardType pick() {
+        Collections.shuffle(deck.toList());
         try {
             return deck.draw();
         } catch (EmptyStackException e) {
@@ -36,4 +38,5 @@ public class DeckControl {
             return null;
         }
     }
+
 }

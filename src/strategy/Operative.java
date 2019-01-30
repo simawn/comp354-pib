@@ -1,16 +1,18 @@
 package strategy;
 
+import control.DeckControl;
 import control.Player;
 import model.Card;
-import model.constant.CardType;
-import model.ModelManager;
+
 import java.util.Random;
+
+//import model.ModelManager;
 
 public class Operative implements PlayerStrategy {
     
     Player player;
     private Random rand;
-    ModelManager m = new ModelManager();
+    DeckControl d; // todo remember, we'll need to have the same reference for both strats
     //make a guess for a card
     @Override
     public void makeMove(Card[] cards){
@@ -20,7 +22,8 @@ public class Operative implements PlayerStrategy {
        
         //do{   
          x = rand.nextInt(cards.length);
-         m.pickCard(x);
+        //m.pickCard(x);
+        d.pick(); //todo that looks easier to do?
         /*}while (cards[x].isOpen());
          cards[x].open();
          
