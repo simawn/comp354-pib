@@ -26,7 +26,7 @@ class CardPane extends StackPane implements Listener {
         this.card = c;
         c.bind(this);
         text = new Text(c.getWord());
-        image = new ImageView("file:./resources/CardTemplate.png");
+        image = new ImageView("file:resources/CardTemplate.png");
         getChildren().addAll(image, text);
         setMargin(text, new Insets(15, 15, 15, 15));
         setAlignment(text, Pos.BOTTOM_CENTER);
@@ -39,16 +39,10 @@ class CardPane extends StackPane implements Listener {
         }
 
         if (card.isOpen()) {
-            temp = "file:./resources/";
+            temp = "file:resources/";
             if (card.getType() == CardType.ASSASSIN) {
                 temp += "Assassin";
             } else {
-                if (sex.nextBoolean()) {
-                    temp += "Male";
-                } else {
-                    temp += "Female";
-                }
-
                 switch (card.getType()) {
                     case BLUE:
                         temp += "Blue";
@@ -60,6 +54,13 @@ class CardPane extends StackPane implements Listener {
                         temp += "Bystander";
                         break;
                 }
+                if (sex.nextBoolean()) {
+                    temp += "Male";
+                } else {
+                    temp += "Female";
+                }
+
+
 
             }
             temp += ".png";
