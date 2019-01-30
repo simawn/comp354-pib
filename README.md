@@ -39,8 +39,9 @@
 
 ## Execution Guide
 
-![#f03c15](Note: Please read the requirements section first before proceeding to any subsection)`#f03c15`
-
+```diff
+- Note: Please read the requirements section first before proceeding to any subsection
+```
 **Compilation instructions are similar in Windows and Linux/GNU**
 
 1. Before proceeding, ensure that cmd prompt / terminal is opened and points to the current path of the project.
