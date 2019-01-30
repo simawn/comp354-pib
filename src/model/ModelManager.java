@@ -118,6 +118,25 @@ public class ModelManager {
             }
     }
     
+    //chooses which team starts the game
+    private TurnState[] pickStartingTeam(){
+        int tmp = (int) ( Math.random() * 2 + 1); // will return either 1 or 2
+        TurnState[] pickOrder = new TurnState[4];
+        if(tmp == 1){ // blue starts
+             pickOrder[0] = TurnState.BlueSpy;
+             pickOrder[1] = TurnState.BlueOp;
+             pickOrder[2] = TurnState.RedSpy;
+             pickOrder[3] = TurnState.RedOp;
+        }
+        else if(tmp == 2){ //red starts
+             pickOrder[0] = TurnState.RedSpy;
+             pickOrder[1] = TurnState.RedOp;
+             pickOrder[2] = TurnState.BlueSpy;
+             pickOrder[3] = TurnState.BlueOp;
+        }
+        return pickOrder;
+    }
+    
     // Open file fName, save all codenames from the file, and pick 25 of them at random to populate the board.
     private void setBoardFromFile(String fName) {
         File file = new File(fName);

@@ -7,9 +7,21 @@ public class Player {
     private int id;
     private String name;
     private int score;
+    private int team;
     private PlayerStrategy strategy;
 
+
+    public int getTeam() {
+        return team;
+    }
+
+    public PlayerStrategy getStrategy() {
+        return strategy;
+    }
+    
+
     public Player(PlayerStrategy strategy) {
+
         this.strategy = strategy;
     }
 

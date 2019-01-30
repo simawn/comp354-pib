@@ -5,11 +5,26 @@
  */
 package strategy;
 
+import java.util.Random;
 import model.Card;
+import model.ModelManager;
+import model.constant.CardType;
 
 public class SpyMaster implements PlayerStrategy {
-
-    public void makeMove(Card[] cards) {
-
-    }
+    ModelManager m = new ModelManager();
+     private Random rand;
+       public void makeMove(Card[] cards){
+       rand = new Random();
+       int x;         
+       x = rand.nextInt(cards.length);
+       m.giveClue("gf", x);
+       
+       /*
+       if(cards[x].getType() == CardType.BLUE){
+           //give clue to blue
+       }
+        if(cards[x].getType() == CardType.RED){
+           //give clue to red
+       } */
+       }
 }
