@@ -22,21 +22,21 @@ public class ModelManager {
     private TurnState currentTurn;
     private String currentClue;
     private int currentClueNum;
-    
+
     /*
     * CONSTRUCTOR
     */
     public ModelManager() {
         board = new Card[25];
-        keycard = new KeyCard(getRandomKeyCardFromFile("./resources/keyCards.txt"));
-        setBoardFromFile("./resources/words.txt");
+        keycard = new KeyCard(getRandomKeyCardFromFile("../resources/keyCards.txt"));
+        setBoardFromFile("../resources/words.txt");
         if(keycard.whoGoesFirst() == CardType.BLUE){
             currentTurn = TurnState.BlueSpy;
         } else {
             currentTurn = TurnState.RedSpy;
         }
     }
-    
+
     /*
     * METHODS
     */
@@ -47,22 +47,22 @@ public class ModelManager {
         }
         currentClue = clueWord;
         currentClueNum = clueNum;
-        if(currentTurn == TurnState.BlueSpy) { 
+        if(currentTurn == TurnState.BlueSpy) {
             currentTurn = TurnState.BlueOp;
         } else {
             currentTurn = TurnState.RedOp;
         }
         // TODO: Alert the view that the clue has changed and the TurnState has changed
     }
-    
+
     public TurnState getCurrentTurn() {
         return currentTurn;
     }
-    
+
     public Card[] getBoard() {
         return board;
     }
-    
+
     // Open file at fName, read all lines, and pick a random one.
     private static String getRandomKeyCardFromFile(String fName){
         File file = new File(fName);
@@ -76,7 +76,7 @@ public class ModelManager {
             System.out.println("KeyCard file not found, using default keycard");
             return "BBBBBBBBBYYYYYYYARRRRRRRR";
         }
-        
+
         if(keyCardStrings.size() > 0) {
             Random rand = new Random();
             int n = rand.nextInt(keyCardStrings.size());
@@ -86,7 +86,7 @@ public class ModelManager {
             return "BBBBBBBBBYYYYYYYARRRRRRRR";
         }
     }
-    
+
     // Open file fName, save all codenames from the file, and pick 25 of them at random to populate the board.
     private void setBoardFromFile(String fName) {
         File file = new File(fName);
@@ -101,16 +101,15 @@ public class ModelManager {
         while (input.hasNextLine()) {
             allWords.add(input.nextLine());
         }
-        
+
         ArrayList<String> copyAllWords = (ArrayList<String>) allWords.clone();
         Collections.shuffle(copyAllWords);
-        
+
         for(int i = 0; i < 25; i++) {
             System.out.println("Creating card: " + copyAllWords.get(i) + " of color " + keycard.colorAt(i));
             board[i] = new Card(copyAllWords.get(i), keycard.colorAt(i));
         }
-        
-    }
-    
-}
 
+    }
+
+}
