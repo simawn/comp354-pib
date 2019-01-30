@@ -1,8 +1,8 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+* To change this license header, choose License Headers in Project Properties.
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
+*/
 package model;
 
 import model.constant.CardType;
@@ -23,10 +23,10 @@ public class ModelManager {
     private TurnState currentTurn;
     private String currentClue;
     private int currentClueNum;
-
+    
     /*
-     * CONSTRUCTOR
-     */
+    * CONSTRUCTOR
+    */
     public ModelManager() {
         board = new Card[25];
         keycard = new KeyCard(getRandomKeyCardFromFile("resources/keyCards.txt"));
@@ -37,7 +37,7 @@ public class ModelManager {
             currentTurn = TurnState.RedSpy;
         }
     }
-
+    
     // Open file at fName, read all lines, and pick a random one.
     private static String getRandomKeyCardFromFile(String fName) {
         File file = new File(fName);
@@ -51,7 +51,7 @@ public class ModelManager {
             System.out.println("KeyCard file not found, using default keycard");
             return "BBBBBBBBBYYYYYYYARRRRRRRR";
         }
-
+        
         if (keyCardStrings.size() > 0) {
             Random rand = new Random();
             int n = rand.nextInt(keyCardStrings.size());
@@ -61,10 +61,10 @@ public class ModelManager {
             return "BBBBBBBBBYYYYYYYARRRRRRRR";
         }
     }
-
+    
     /*
-     * METHODS
-     */
+    * METHODS
+    */
     public void giveClue(String clueWord, int clueNum) {
         if ((currentTurn != TurnState.BlueSpy) && (currentTurn != TurnState.RedSpy)) {
             System.out.println("A clue was given when it wasn't a spymasters turn -- this should never happen -- ignoring clue");
@@ -72,22 +72,52 @@ public class ModelManager {
         }
         currentClue = clueWord;
         currentClueNum = clueNum;
-        if (currentTurn == TurnState.BlueSpy) {
-            currentTurn = TurnState.BlueOp;
-        } else {
-            currentTurn = TurnState.RedOp;
-        }
+        
+        currentTurn = nextTurn();
         // TODO: Alert the view that the clue has changed and the TurnState has changed
     }
-
+    
+    public void pickCard(int i) {
+        if(board[i].isOpen()) {
+            System.out.println("This should never happen, a card was picked twice, ignoring pick.");
+            return;
+        } else {
+            board[i].open();
+        }
+        CardType currentTeamColor;
+        if(currentTurn == TurnState.BlueOp) {
+            currentTeamColor = CardType.BLUE;
+        } else {
+            currentTeamColor = CardType.RED;
+        }
+        
+        if(board[i].getType() != currentTeamColor) {
+            // Turn is over because they chose a card that isn't their color.
+            currentTurn = nextTurn();
+        }
+    }
+    
     public TurnState getCurrentTurn() {
         return currentTurn;
     }
-
+    
     public Card[] getBoard() {
         return board;
     }
-
+    
+    // returns the TurnState corresponding to what turn should be next.
+    private TurnState nextTurn() {
+            if (currentTurn == TurnState.BlueSpy) {
+                return TurnState.BlueOp;
+            } else if (currentTurn == TurnState.BlueOp) {
+                return TurnState.RedSpy;
+            } else if (currentTurn == TurnState.RedSpy) {
+                return TurnState.RedOp;
+            } else {
+                return TurnState.BlueSpy;
+            }
+    }
+    
     // Open file fName, save all codenames from the file, and pick 25 of them at random to populate the board.
     private void setBoardFromFile(String fName) {
         File file = new File(fName);
@@ -102,15 +132,15 @@ public class ModelManager {
         while (input.hasNextLine()) {
             allWords.add(input.nextLine());
         }
-
+        
         ArrayList<String> copyAllWords = (ArrayList<String>) allWords.clone();
         Collections.shuffle(copyAllWords);
-
+        
         for (int i = 0; i < 25; i++) {
             System.out.println("Creating card: " + copyAllWords.get(i) + " of color " + keycard.colorAt(i));
             board[i] = new Card(copyAllWords.get(i), keycard.colorAt(i));
         }
-
+        
     }
-
+    
 }
