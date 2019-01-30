@@ -4,3 +4,5 @@
 /dist/
 build.xml
 manifest.mf
+/.idea
+/out

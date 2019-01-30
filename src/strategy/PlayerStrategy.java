@@ -1,4 +1,4 @@
-package Strategy;
+package strategy;
 
 import model.Card;
 
@@ -10,6 +10,6 @@ import model.Card;
 
 
 public interface PlayerStrategy {
-    
+
     public void makeMove(Card[] cards);
 }

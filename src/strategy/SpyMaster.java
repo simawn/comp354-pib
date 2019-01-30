@@ -3,13 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Strategy;
+package strategy;
 
 import model.Card;
 
 public class SpyMaster implements PlayerStrategy {
-    
-       public void makeMove(Card[] cards){
-        
-       }
+
+    public void makeMove(Card[] cards) {
+
+    }
 }
