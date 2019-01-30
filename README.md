@@ -10,7 +10,7 @@
 	**Note: Compiling source code in Java 9 does not allow Java 8/1.8 users to run the code. They would need to re-compile it. However, Java 9 users may run Java 8/1.8 code**
 
 ## Compilation Guide
-![#f03c15]Note: Please read the requirements section first before proceeding to any subsection `#f03c15`
+![#f03c15](Note: Please read the requirements section first before proceeding to any subsection)`#f03c15`
 
 **Compilation instructions are similar in Windows and Linux/GNU**
 
@@ -39,7 +39,7 @@
 
 ## Execution Guide
 
-![#f03c15]Note: Please read the requirements section first before proceeding to any subsection `#f03c15`
+![#f03c15](Note: Please read the requirements section first before proceeding to any subsection)`#f03c15`
 
 **Compilation instructions are similar in Windows and Linux/GNU**
 
