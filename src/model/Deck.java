@@ -30,6 +30,10 @@ public class Deck {
         c.push(1, CardType.pathOf(c.type));
         return c.type;
     }
+    
+    public boolean draw(Card c) {
+        return cards.remove(c);
+    }
 
     public List<Card> getUnchosenCards() {
         return cards;
