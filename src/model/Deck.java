@@ -8,36 +8,36 @@ import model.constant.CardType;
 import java.io.IOException;
 import java.util.EmptyStackException;
 import java.util.List;
-import java.util.Stack;
+import java.util.ArrayList;
 
 
 public class Deck {
-    private Stack<Card> cards;
+    private ArrayList<Card> cards;
 
     public Deck() throws IOException {
         String[] words = new Word().build();
         CardType[] keycards = new KeyCard().build();
-        cards = new Stack<>();
+        cards = new ArrayList<>();
 
         for (int i = 0; i < Component.SIZE; i++) {
-            cards.push(new Card(words[i], keycards[i]));
+            cards.add(new Card(words[i], keycards[i]));
         }
     }
 
-
-    public CardType draw() throws EmptyStackException {
-        Card c = cards.pop();
+    // draw() will be a random draw.
+    public CardType draw() throws IndexOutOfBoundsException {
+        Card c = cards.remove(0);
         c.push(1, CardType.pathOf(c.type));
         return c.type;
     }
 
-    public List<Card> toList() {
+    public List<Card> getUnchosenCards() {
         return cards;
     }
 
 
     public Card at(int index) {
-        return ((List<Card>) cards).get(index);
+        return cards.get(index);
     }
 
 

@@ -30,10 +30,10 @@ public class DeckControl {
     }
 
     public CardType pick() {
-        Collections.shuffle(deck.toList());
+        Collections.shuffle(deck.getUnchosenCards());
         try {
             return deck.draw();
-        } catch (EmptyStackException e) {
+        } catch (IndexOutOfBoundsException e) {
             System.err.println("Can no longer pick a card.");
             return null;
         }
