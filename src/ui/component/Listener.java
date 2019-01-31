@@ -1,4 +1,4 @@
-package ui.listener;
+package ui.component;
 
 /*
     Interface connecting model and view together

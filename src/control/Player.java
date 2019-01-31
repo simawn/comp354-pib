@@ -1,4 +1,7 @@
 package control;
+/**
+ * Enter -> PlayerControl -> runs Strategy , returned cardtype -> Playercontroller -> command
+ */
 
 import model.Card;
 import strategy.PlayerStrategy;

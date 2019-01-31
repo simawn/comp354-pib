@@ -3,7 +3,7 @@ package control;
 import model.Card;
 import model.Deck;
 import model.constant.CardType;
-import ui.listener.Listener;
+import ui.component.Listener;
 
 import java.io.IOException;
 import java.util.Collections;

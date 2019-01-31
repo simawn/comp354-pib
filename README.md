@@ -1,5 +1,12 @@
 # Codenames
 
+
+![image](https://drive.google.com/uc?export=view&id=1iULsCRsBDgCbQs45UTBxQallmXX1vwEA)
+
+
+![image](https://drive.google.com/uc?export=view&id=1Ny0GUSe5mrKGhEXX9AZ6cm-LiqWQMDCK)
+
+
 ## Requirements
 
 - Java Version 8/1.8 or Java Version 9
@@ -64,5 +71,3 @@
 	```
 	java ui.Window
 	```
-
-![image](https://drive.google.com/uc?export=view&id=1iULsCRsBDgCbQs45UTBxQallmXX1vwEA)

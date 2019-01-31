@@ -7,7 +7,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
-import ui.listener.Listener;
 
 /*
     Binds the concept of the card model to the actual graphical representation
