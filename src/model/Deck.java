@@ -39,6 +39,4 @@ public class Deck {
     public Card at(int index) {
         return ((List<Card>) cards).get(index);
     }
-
-
 }

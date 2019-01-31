@@ -1,0 +1,152 @@
+@startuml
+
+
+together {
+    namespace model {
+
+        namespace component {
+            class Clue
+            interface Component {
+                ~SIZE
+                ~Object[] build()
+            }
+            class KeyCard {
+                -Path PATH
+                +CardType[] build()
+            }
+
+            class Word {
+                -Path PATH
+                +String[] build()
+            }
+
+            class Subject {
+                -List<Listener> listeners
+                +bind()
+                +push()
+            }
+
+            KeyCard ..|> Component
+            Word ..|> Component
+        }
+
+        namespace constant {
+            enum CardType {
+                Red
+                Blue
+                Assassin
+                Bystander
+                -String PATH
+                -String EXT
+                -boolean sex
+                +charOf()
+                +pathOf()
+            }
+            enum Role {
+                OPERATIVE
+                SPYMASTER
+            }
+            enum TurnState {
+                RedSpy
+                RedOp
+                BlueSpy
+                BlueOp
+            }
+        }
+
+        class Card {
+            +String word
+            +CardType type
+            +Card(String,CardType)
+        }
+
+        class Deck {
+            -Stack<Card> cards
+            +Deck()
+            +CardType draw()
+            +List<Card> toList()
+            +Card at(int)
+        }
+
+
+        Card --|> model.component.Subject
+
+    }
+}
+
+together {
+    namespace control {
+        class DeckControl {
+            -Deck deck
+            -int nextSubscription
+            +DeckControl()
+            +addSubscriber(Listener)
+            +CardType pick()
+        }
+        class KeyHandler {
+            -DeckControl deckcontrol
+            +KeyHandler(DeckControl)
+            +void handle(KeyEvent keyEvent)
+        }
+        class Player
+        class Turn
+
+    }
+}
+
+
+
+
+
+together {
+
+    namespace ui {
+        namespace component {
+            class BoardScene {
+                -BoardScene(DeckControl)
+                ~BoardScene build(DeckControl)
+            }
+
+            class CardPane {
+                -Text text
+                -ImageView image
+                -CardPane(DeckControl)
+                ~CardPane build(DeckControl)
+                +void update(int,String)
+            }
+
+            class DeckPane {
+                -DeckPane(DeckControl)
+                ~TilePane build(DeckControl)
+            }
+
+            class GameStage {
+                +GameStage()
+            }
+
+            interface Listener {
+                ~update(int,String)
+            }
+
+
+            CardPane ..|> ui.component.Listener
+
+            DeckPane --|> .TilePane
+            GameStage --|> .Stage
+            BoardScene --|> .Scene
+            CardPane --|> .StackPane
+
+        }
+        class Window {
+            +void main()
+            +void start(Stage root)
+        }
+
+
+        Window --|> .Application
+    }
+}
+
+
+
+@enduml

@@ -1,6 +1,6 @@
 package model.component;
 
-import ui.listener.Listener;
+import ui.component.Listener;
 
 import java.util.ArrayList;
 import java.util.List;
