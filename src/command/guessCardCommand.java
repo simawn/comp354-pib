@@ -23,9 +23,11 @@ public class guessCardCommand implements Command {
     
     public guessCardCommand(Card c, Deck deck) {
         this.c = c;
+        this.deck = deck;
     }
     @Override
     public void execute() {
+        System.out.println("guessCardCommand: removing " + c.word + " from deck " );
         deck.draw(c);
     }
     
