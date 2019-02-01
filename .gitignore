@@ -6,3 +6,6 @@ build.xml
 manifest.mf
 /.idea
 /out
+/bin/
+.classpath
+.project
