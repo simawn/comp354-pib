@@ -1,6 +1,8 @@
 package control;
 import command.guessCardCommand;
 import model.Deck;
+import control.DeckControl;
+import model.constant.CardType;
 import strategy.PlayerStrategy;
 /**
  *
@@ -9,13 +11,19 @@ import strategy.PlayerStrategy;
 public class PlayerControl {
     
     PlayerStrategy[] players;
+    DeckControl deckControl;
     int whosTurn;
 
-    public PlayerControl(Deck deck) {
+    public PlayerControl(DeckControl deckControl) {
         //use deck to determine who goes first. (count how many red cards, if 9, red goes first, else, blue goes first)
         // initialize PlayerStrategies with new [redRandSpy,redRandOp,blueRandSpy,blueRandOp]
         // set turn to 0, or 2 depending on who goes first.
-       
+       this.deckControl = deckControl;
+       for(int i=0;i<deckControl.getBoardAmount();i++){
+           if(deckControl.getBoard()[i] == CardType.Red){
+               
+           }
+       }
     }
     
     //Called by EventHandler on pressing enter

@@ -39,7 +39,7 @@ public class Deck {
         return removed;
     }
 
-    public List<Card> getUnchosenCards() {
+    public ArrayList<Card> getUnchosenCards() {
         return cards;
     }
 

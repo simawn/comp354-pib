@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.util.Collections;
 import command.guessCardCommand;
 import command.CommandManager;
+import java.util.ArrayList;
 
 public class DeckControl {
     private Deck deck;
@@ -38,6 +39,14 @@ public class DeckControl {
         return false;
     }
 
+    public int getBoardAmount(){
+        ArrayList<Card> currentBoard = deck.getUnchosenCards();
+        return currentBoard.size();
+    }
+    
+    public Deck getBoard(){
+        return deck;
+    }
     // Deprecated since DeckControl needs to go through the command pattern
     public CardType pick() {
         Collections.shuffle(deck.getUnchosenCards());

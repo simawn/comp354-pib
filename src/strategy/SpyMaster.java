@@ -11,14 +11,14 @@ import model.component.Clue;
 import java.util.Random;
 
 public class SpyMaster implements PlayerStrategy {
-    //ModelManager m = new ModelManager();
+    
     Clue clue;
      private Random rand;
        public void makeMove(Card[] cards){
        rand = new Random();
        int x;         
        x = rand.nextInt(cards.length);
-           //m.giveClue("gf", x);
+           //m.giveClue(clue.doSomething(), x);
            //todo clue.doSomething();
        /*
        if(cards[x].getType() == CardType.BLUE){
