@@ -17,13 +17,13 @@ import java.util.ArrayList;
     The players use BoardControl to modify the board.
 */
 public class BoardControl {
-    private Board deck;
+    private Board board;
     private int nextSubscription;
     private CommandManager deckCommandManager;
 
     public BoardControl() {
         try {
-            deck = new Board();
+            board = new Board();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -32,49 +32,38 @@ public class BoardControl {
     }
 
     public void addSubscriber(Listener listener) throws IndexOutOfBoundsException {
-        Card c = deck.at(nextSubscription);
+        Card c = board.at(nextSubscription);
         c.bind(listener);
         c.push(0, c.word);
         nextSubscription++;
     }
     
     public boolean pick(Card c) {
-        guessCardCommand pickCmd = new guessCardCommand(c, deck);
+        guessCardCommand pickCmd = new guessCardCommand(c, board);
         deckCommandManager.storeAndExecute(pickCmd);
         return false;
     }
     
     public ArrayList<Card> getCards(){
-        return deck.getCards();
+        return board.getCards();
     }
     
     
-    public int getNumRedCards() {
-        ArrayList<Card> redCards = (ArrayList<Card>) deck.getCards().clone();
-        redCards.removeIf(s -> (s.type == CardType.Blue) || (s.type == CardType.Assassin) || (s.type == CardType.Bystander));
+    public int getNumCardsOfType(CardType type) {
+        ArrayList<Card> redCards = (ArrayList<Card>) board.getCards().clone();
+        redCards.removeIf(s -> (s.type != type));
         return redCards.size();
     }
-   
-    public int getNumBlueCards() {
-        ArrayList<Card> blueCards = (ArrayList<Card>) deck.getCards().clone();
-        blueCards.removeIf(s -> (s.type == CardType.Red) || (s.type == CardType.Assassin) || (s.type == CardType.Bystander));
-        return blueCards.size();
-    }
-    
-    
-    
-    
-    
-    
+
     
     
     
     // Deprecated since DeckControl needs to go through the command pattern
     public CardType pick() {
-        Collections.shuffle(deck.getCards());
+        Collections.shuffle(board.getCards());
         try {
-            CardType ret = deck.getCards().get(0).type;
-            pick(deck.getCards().get(0));
+            CardType ret = board.getCards().get(0).type;
+            pick(board.getCards().get(0));
             return ret;
             //return deck.draw();
         } catch (IndexOutOfBoundsException e) {

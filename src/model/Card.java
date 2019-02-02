@@ -10,7 +10,7 @@ public class Card extends Subject {
     public Card(String word, CardType type) {
         this.word = word;
         this.type = type;
-        System.out.println("Creating a card " + word + type);
+        System.out.println("Creating a card " + word + ": " + type);
     }
     
     @Override
