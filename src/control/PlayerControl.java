@@ -1,39 +1,66 @@
 package control;
-import command.guessCardCommand;
-import model.Deck;
-import control.DeckControl;
+
+import model.Card;
+import model.Clue;
 import model.constant.CardType;
-import strategy.PlayerStrategy;
+import players.Operative;
+import players.Player;
+import players.Spymaster;
+import players.randomOperativeStrategy;
+import players.randomSpyStrategy;
 /**
  *
  * @author david
  */
 public class PlayerControl {
     
-    PlayerStrategy[] players;
+    Player[] players;
     DeckControl deckControl;
     int whosTurn;
-
+    int numOpGuesses;
+    Clue currentClue; // Have to keep track of how many guesses the operative has made.
+    
     public PlayerControl(DeckControl deckControl) {
-        //use deck to determine who goes first. (count how many red cards, if 9, red goes first, else, blue goes first)
-        // initialize PlayerStrategies with new [redRandSpy,redRandOp,blueRandSpy,blueRandOp]
-        // set turn to 0, or 2 depending on who goes first.
-       this.deckControl = deckControl;
-       for(int i=0;i<deckControl.getBoardAmount();i++){
-           if(deckControl.getBoard()[i] == CardType.Red){
-               
-           }
-       }
+        players = new Player[4];
+        players[0] = new Spymaster(CardType.Red, deckControl, new randomSpyStrategy());
+        players[1] = new Operative(CardType.Red, deckControl, new randomOperativeStrategy());
+        players[2] = new Spymaster(CardType.Blue, deckControl, new randomSpyStrategy());
+        players[3] = new Operative(CardType.Blue, deckControl, new randomOperativeStrategy());
+        whosTurn = 0;
+        if(deckControl.getNumBlueCards() == 9) {
+            System.out.println("Blue going first");
+            whosTurn = 2; //blue goes first because there are 9 blue cards
+        }
+        this.numOpGuesses = 0;
+        this.deckControl = deckControl;
     }
     
     //Called by EventHandler on pressing enter
     public void doNextTurn(){
-        // If spy turn, call their function and set hint
-        // 
-        // if operative turn, call their function, passing them the cards, and getting the card they want to pick
-        //  call DeckControl.pick(card) from whatever card the operative picks.
-        
-        // If the card is a different color than the players team, set whosTurn to (whosTurn + 1)%4
+        if((whosTurn % 2) == 0) { //SpyMasters turn
+            currentClue = (Clue)players[whosTurn].makeMove();
+            System.out.println(players[whosTurn].getTeam() + " spymaster gave clue " 
+                    + currentClue.getClueWord() + ": " + currentClue.getClueNum());
+            endTurn();
+        } else {
+            Card guess =  (Card)players[whosTurn].makeMove();
+            System.out.println(players[whosTurn].getTeam() + " operative guessed " + guess.word);
+            deckControl.pick(guess);
+            numOpGuesses += 1;
+            if(guess.type != players[whosTurn].getTeam()){
+                System.out.println("Wrong color! " + players[whosTurn].getTeam() + "'s turn ends.");
+                endTurn();
+            }
+            if(numOpGuesses >= currentClue.getClueNum() + 1) {
+                System.out.println(players[whosTurn].getTeam() + "'s is out of guesses, turn over."); 
+                endTurn();
+            }
+        }
+    }
+    
+    private void endTurn() {
+        whosTurn = (whosTurn + 1) % 4;
+        numOpGuesses = 0;
     }
     
 }

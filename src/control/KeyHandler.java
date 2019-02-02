@@ -11,9 +11,11 @@ public class KeyHandler implements EventHandler<KeyEvent> {
 
     //todo erase all this after
     private DeckControl deckcontrol;
+    private PlayerControl playerControl;
 
     public KeyHandler(DeckControl deckcontrol) {
         this.deckcontrol = deckcontrol;
+        playerControl = new PlayerControl(deckcontrol);
     }
     //todo end of erase
 
@@ -22,7 +24,8 @@ public class KeyHandler implements EventHandler<KeyEvent> {
         //todo this is NOT the intended function. Simply a test
         if (keyEvent.getCode() == KeyCode.ENTER) {
             try {
-                deckcontrol.pick();
+                //deckcontrol.pick();
+                playerControl.doNextTurn();
             } catch (Exception e) {
                 e.printStackTrace();
             }

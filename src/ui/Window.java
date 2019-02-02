@@ -17,9 +17,9 @@ public class Window extends Application {
 
     @Override
     public void start(Stage root) {
-
+        
         DeckControl deckcontrol = new DeckControl();
-
+        
         root = new GameStage(deckcontrol); //points the root stage to the GameStage
 
         root.show(); // Shows the final Stage based on the scene
