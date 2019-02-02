@@ -15,12 +15,12 @@ import players.randomSpyStrategy;
 public class PlayerControl {
     
     Player[] players;
-    DeckControl deckControl;
+    BoardControl deckControl;
     int whosTurn;
     int numOpGuesses;
     Clue currentClue; // Have to keep track of how many guesses the operative has made.
     
-    public PlayerControl(DeckControl deckControl) {
+    public PlayerControl(BoardControl deckControl) {
         players = new Player[4];
         players[0] = new Spymaster(CardType.Red, deckControl, new randomSpyStrategy());
         players[1] = new Operative(CardType.Red, deckControl, new randomOperativeStrategy());

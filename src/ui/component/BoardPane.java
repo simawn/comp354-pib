@@ -1,6 +1,6 @@
 package ui.component;
 
-import control.DeckControl;
+import control.BoardControl;
 import javafx.geometry.Insets;
 import javafx.scene.layout.TilePane;
 import model.component.Component;
@@ -8,9 +8,9 @@ import model.component.Component;
 /*
     Manages the behaviour and representation of all graphical card nodes
  */
-class DeckPane extends TilePane {
+class BoardPane extends TilePane {
 
-    private DeckPane(DeckControl deckcontrol) {
+    private BoardPane(BoardControl deckcontrol) {
         setPadding(new Insets(4, 4, 4, 4));
         setVgap(4);
         setHgap(4);
@@ -20,7 +20,7 @@ class DeckPane extends TilePane {
         }
     }
 
-    static TilePane build(DeckControl deckcontrol) {
-        return new DeckPane(deckcontrol);
+    static TilePane build(BoardControl deckcontrol) {
+        return new BoardPane(deckcontrol);
     }
 }

@@ -1,6 +1,6 @@
 package ui.component;
 
-import control.DeckControl;
+import control.BoardControl;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.image.Image;
@@ -16,7 +16,7 @@ class CardPane extends StackPane implements Listener {
     private Text text;
     private ImageView image;
 
-    private CardPane(DeckControl deckcontrol) {
+    private CardPane(BoardControl deckcontrol) {
         deckcontrol.addSubscriber(this);
         image = new ImageView("file:resources/CardTemplate.png");
         getChildren().addAll(image, text);
@@ -24,7 +24,7 @@ class CardPane extends StackPane implements Listener {
         setAlignment(text, Pos.BOTTOM_CENTER);
     }
 
-    static CardPane build(DeckControl deckcontrol) {
+    static CardPane build(BoardControl deckcontrol) {
         return new CardPane(deckcontrol);
     }
 

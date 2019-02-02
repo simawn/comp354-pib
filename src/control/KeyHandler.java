@@ -10,10 +10,10 @@ import javafx.scene.input.KeyEvent;
 public class KeyHandler implements EventHandler<KeyEvent> {
 
     //todo erase all this after
-    private DeckControl deckcontrol;
+    private BoardControl deckcontrol;
     private PlayerControl playerControl;
 
-    public KeyHandler(DeckControl deckcontrol) {
+    public KeyHandler(BoardControl deckcontrol) {
         this.deckcontrol = deckcontrol;
         playerControl = new PlayerControl(deckcontrol);
     }

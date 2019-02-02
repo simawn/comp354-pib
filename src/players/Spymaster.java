@@ -1,20 +1,20 @@
 package players;
 
-import control.DeckControl;
+import control.BoardControl;
 import model.Clue;
 import model.constant.CardType;
 
 
 public class Spymaster extends Player{
     
-    DeckControl deckController;
+    BoardControl deckController;
     SpyStrategy spyStrat;
 
     public Spymaster(CardType team) {
         super(team);
     }
     
-    public Spymaster(CardType team, DeckControl deckController, SpyStrategy strategy) {
+    public Spymaster(CardType team, BoardControl deckController, SpyStrategy strategy) {
         super(team);
         this.spyStrat = strategy;
         this.deckController = deckController;

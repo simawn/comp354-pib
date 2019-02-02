@@ -2,7 +2,7 @@ package command;
 
 //import control.DeckControl;
 import model.Card;
-import model.Deck;
+import model.Board;
 
 /**
  *
@@ -19,9 +19,9 @@ public class guessCardCommand implements Command {
     *
     * Also note that the invoker of the commands needs to have a List<Command> history object.
     */
-    private Deck deck;
+    private Board deck;
     
-    public guessCardCommand(Card c, Deck deck) {
+    public guessCardCommand(Card c, Board deck) {
         this.c = c;
         this.deck = deck;
     }

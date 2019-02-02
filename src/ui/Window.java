@@ -1,6 +1,6 @@
 package ui;
 
-import control.DeckControl;
+import control.BoardControl;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import ui.component.GameStage;
@@ -18,7 +18,7 @@ public class Window extends Application {
     @Override
     public void start(Stage root) {
         
-        DeckControl deckcontrol = new DeckControl();
+        BoardControl deckcontrol = new BoardControl();
         
         root = new GameStage(deckcontrol); //points the root stage to the GameStage
 

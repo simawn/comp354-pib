@@ -1,7 +1,7 @@
 package control;
 
 import model.Card;
-import model.Deck;
+import model.Board;
 import model.constant.CardType;
 import ui.component.Listener;
 
@@ -16,14 +16,14 @@ import java.util.ArrayList;
     The GUI uses BoardControl to attach itself as an observer to the cards.
     The players use BoardControl to modify the board.
 */
-public class DeckControl {
-    private Deck deck;
+public class BoardControl {
+    private Board deck;
     private int nextSubscription;
     private CommandManager deckCommandManager;
 
-    public DeckControl() {
+    public BoardControl() {
         try {
-            deck = new Deck();
+            deck = new Board();
         } catch (IOException e) {
             e.printStackTrace();
         }

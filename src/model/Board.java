@@ -11,10 +11,10 @@ import java.util.List;
 import java.util.ArrayList;
 
 
-public class Deck {
+public class Board {
     private ArrayList<Card> cards;
 
-    public Deck() throws IOException {
+    public Board() throws IOException {
         String[] words = new Word().build();
         CardType[] keycards = new KeyCard().build();
         cards = new ArrayList<>();

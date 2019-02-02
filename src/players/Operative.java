@@ -1,6 +1,6 @@
 package players;
 
-import control.DeckControl;
+import control.BoardControl;
 import model.Card;
 import model.constant.CardType;
 
@@ -8,14 +8,14 @@ import model.constant.CardType;
 
 public class Operative extends Player{
     
-    DeckControl deckController;
+    BoardControl deckController;
     OperativeStrategy opStrat;
 
     public Operative(CardType team) {
         super(team);
     }
     
-    public Operative(CardType team, DeckControl deckController, OperativeStrategy strategy) {
+    public Operative(CardType team, BoardControl deckController, OperativeStrategy strategy) {
         super(team);
         this.opStrat = strategy;
         this.deckController = deckController;

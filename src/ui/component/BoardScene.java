@@ -1,6 +1,6 @@
 package ui.component;
 
-import control.DeckControl;
+import control.BoardControl;
 import control.KeyHandler;
 import javafx.scene.Scene;
 import javafx.scene.paint.Paint;
@@ -11,13 +11,13 @@ import javafx.scene.paint.Paint;
  */
 class BoardScene extends Scene {
 
-    private BoardScene(DeckControl deckcontrol) {
-        super(DeckPane.build(deckcontrol));
+    private BoardScene(BoardControl deckcontrol) {
+        super(BoardPane.build(deckcontrol));
         setFill(Paint.valueOf("877567"));
         setOnKeyPressed(new KeyHandler(deckcontrol)); //todo rever the parameter of KeyHandler to default
     }
 
-    static BoardScene build(DeckControl deckcontrol) {
+    static BoardScene build(BoardControl deckcontrol) {
         return new BoardScene(deckcontrol);
     }
 }
