@@ -3,9 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package strategy;
+package players;
 
+import control.BoardControl;
 import model.Card;
+import model.constant.CardType;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -51,8 +53,8 @@ public class OperativeTest {
     public void testMakeLegalMove() {
         System.out.println("makeMove");
         Card[] cards = null;
-        Operative instance = new Operative();
-        instance.makeMove(cards);
+        Operative instance = new Operative(CardType.Blue, new BoardControl(), new randomOperativeStrategy());
+        Card c = instance.makeMove();
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
@@ -64,8 +66,8 @@ public class OperativeTest {
     public void testMakeIllegalMove() {
         System.out.println("makeMove");
         Card[] cards = null;
-        Operative instance = new Operative();
-        instance.makeMove(cards);
+        Operative instance = new Operative(CardType.Blue, new BoardControl(), new randomOperativeStrategy());
+        Card c = instance.makeMove();
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
@@ -77,8 +79,8 @@ public class OperativeTest {
     public void testMakeAssasinMove() {
         System.out.println("makeMove");
         Card[] cards = null;
-        Operative instance = new Operative();
-        instance.makeMove(cards);
+        Operative instance = new Operative(CardType.Blue, new BoardControl(), new randomOperativeStrategy());
+        Card c = instance.makeMove();
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
@@ -89,8 +91,8 @@ public class OperativeTest {
     public void testMakeBystanderMove() {
         System.out.println("makeMove");
         Card[] cards = null;
-        Operative instance = new Operative();
-        instance.makeMove(cards);
+        Operative instance = new Operative(CardType.Blue, new BoardControl(), new randomOperativeStrategy());
+        Card c = instance.makeMove();
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
@@ -101,8 +103,8 @@ public class OperativeTest {
     public void testMakeOppositeColourMove() {
         System.out.println("makeMove");
         Card[] cards = null;
-        Operative instance = new Operative();
-        instance.makeMove(cards);
+        Operative instance = new Operative(CardType.Blue, new BoardControl(), new randomOperativeStrategy());
+        Card c = instance.makeMove();
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
