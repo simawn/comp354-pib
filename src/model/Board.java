@@ -11,14 +11,14 @@ import java.util.List;
 import java.util.ArrayList;
 
 
-public class Deck {
+public class Board {
     private ArrayList<Card> cards;
 
-    public Deck() throws IOException {
+    public Board() throws IOException {
         String[] words = new Word().build();
         CardType[] keycards = new KeyCard().build();
         cards = new ArrayList<>();
-
+        
         for (int i = 0; i < Component.SIZE; i++) {
             cards.add(new Card(words[i], keycards[i]));
         }
@@ -39,10 +39,9 @@ public class Deck {
         return removed;
     }
 
-    public List<Card> getUnchosenCards() {
+    public ArrayList<Card> getCards() {
         return cards;
     }
-
 
     public Card at(int index) {
         return cards.get(index);

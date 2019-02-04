@@ -9,6 +9,10 @@ import java.nio.file.Paths;
 import java.util.Collections;
 import java.util.List;
 
+/*
+    The purpose of this Class is to pick a random keycard from keyCards.txt file,
+    and turn it into an array of CardTypes which will then be used to initialize the boards Card array.
+*/
 public class KeyCard implements Component {
     private final Path PATH = Paths.get("resources/keyCards.txt");
 
