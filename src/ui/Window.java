@@ -24,5 +24,4 @@ public class Window extends Application {
 
         root.show(); // Shows the final Stage based on the scene
     }
-
 }
