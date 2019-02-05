@@ -12,4 +12,5 @@ public class GameStage extends Stage {
         setResizable(false);
         setScene(BoardScene.build(deckcontrol));
     }
+    
 }
