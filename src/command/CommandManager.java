@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author david
+ * Command manager that contains storeAndExecute(cmd) to execute and store commands
  */
 public class CommandManager {
     private ArrayList<Command> history = new ArrayList<>();
