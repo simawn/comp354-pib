@@ -6,6 +6,7 @@
 package players;
 
 import control.BoardControl;
+import java.util.ArrayList;
 import model.Card;
 import model.constant.CardType;
 import org.junit.After;
@@ -20,6 +21,7 @@ import static org.junit.Assert.*;
  * @author Max Page-Slowik
  */
 public class OperativeTest {
+    BoardControl boardControl;
     
     public OperativeTest() {
     }
@@ -37,7 +39,7 @@ public class OperativeTest {
     
     @Before
     public void setUp() {
-        //what needs to be done before invoking each test case
+        boardControl = new BoardControl();
     }
     
     @After
@@ -50,63 +52,30 @@ public class OperativeTest {
      * Test of makeMove method, of class Operative.
      */
     @Test
-    public void testMakeLegalMove() {
+    public void testMakeMove() {
         System.out.println("makeMove");
-        Card[] cards = null;
-        Operative instance = new Operative(CardType.Blue, new BoardControl(), new randomOperativeStrategy());
-        Card c = instance.makeMove();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        Operative randInstance = new Operative(CardType.Blue, boardControl, new randomOperativeStrategy());
+        Card c = randInstance.makeMove();
+        assertEquals("Checking that the Operative makes a legal selection", boardControl.getCards().contains(c), true);
     }
     
         /**
      * Test of makeMove method, of class Operative.
      */
     @Test
-    public void testMakeIllegalMove() {
-        System.out.println("makeMove");
-        Card[] cards = null;
-        Operative instance = new Operative(CardType.Blue, new BoardControl(), new randomOperativeStrategy());
-        Card c = instance.makeMove();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-    
-        /**
-     * Test of makeMove method, of class Operative.
-     */
-    @Test
-    public void testMakeAssasinMove() {
-        System.out.println("makeMove");
-        Card[] cards = null;
-        Operative instance = new Operative(CardType.Blue, new BoardControl(), new randomOperativeStrategy());
-        Card c = instance.makeMove();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-            /**
-     * Test of makeMove method, of class Operative.
-     */
-    @Test
-    public void testMakeBystanderMove() {
-        System.out.println("makeMove");
-        Card[] cards = null;
-        Operative instance = new Operative(CardType.Blue, new BoardControl(), new randomOperativeStrategy());
-        Card c = instance.makeMove();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-            /**
-     * Test of makeMove method, of class Operative.
-     */
-    @Test
-    public void testMakeOppositeColourMove() {
-        System.out.println("makeMove");
-        Card[] cards = null;
-        Operative instance = new Operative(CardType.Blue, new BoardControl(), new randomOperativeStrategy());
-        Card c = instance.makeMove();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-    
+    public void testMakeRandomMove() {
+        System.out.println("Testing that random operative makes somewhat random selections");
+        ArrayList<Card> picks = new ArrayList<>();
+        Operative randInstance = new Operative(CardType.Blue, boardControl, new randomOperativeStrategy());
+
+        Card firstPick = randInstance.makeMove();
+        System.out.println("firstPick: " + firstPick);
+        for(int i = 0; i < 10; i++) {
+            Card pick = randInstance.makeMove();
+            System.out.println("Pick: " + i + ": " + pick);
+            picks.add(pick);
+        }
+        picks.removeIf(c -> c == firstPick);
+        assertTrue("Verifying that the random Operative didn't pick the same card 10 times in a row", picks.size() > 0);
+    }  
 }
