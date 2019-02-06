@@ -1,14 +1,14 @@
 package model.player;
 
-import model.Board;
-import model.Clue;
-import model.component.CardType;
+import model.board.Board;
+import model.board.CardType;
+import model.board.Clue;
 
 
 public class Spymaster extends Player{
 
-    Board deckController;
-    SpyStrategy spyStrat;
+    private Board deckController;
+    private SpyStrategy spyStrat;
 
     public Spymaster(CardType team) {
         super(team);

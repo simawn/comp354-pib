@@ -1,9 +1,9 @@
-package command;
+package control.command;
 
 //import control.DeckControl;
 
-import model.Board;
-import model.Card;
+import model.board.Board;
+import model.board.Card;
 
 /**
  *

@@ -5,14 +5,14 @@
  */
 package model.player;
 
-import model.Card;
-import model.Clue;
+import model.board.Card;
+import model.board.Clue;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public interface SpyStrategy {
     /**
      * Spymasters will choose a clue based on the cards on the board.
      */
-    Clue giveClue(ArrayList<Card> cards);
+    Clue giveClue(List<Card> cards);
 }

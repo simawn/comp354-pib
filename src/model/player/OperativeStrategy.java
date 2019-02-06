@@ -5,14 +5,14 @@
  */
 package model.player;
 
-import model.Card;
+import model.board.Card;
 
-import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
  * @author david
  */
 public interface OperativeStrategy {
-    Card pickCard(ArrayList<Card> cards);
+    Card pickCard(List<Card> cards);
 }

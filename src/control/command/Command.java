@@ -1,4 +1,4 @@
-package command;
+package control.command;
 /**
 * Defines interface for command
 */

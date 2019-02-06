@@ -5,9 +5,9 @@
  */
 package model.player;
 
-import model.Card;
+import model.board.Card;
 
-import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -18,7 +18,7 @@ public class randomOperativeStrategy implements OperativeStrategy {
 
 
     @Override
-    public Card pickCard(ArrayList<Card> cards) {
+    public Card pickCard(List<Card> cards) {
         Random rand = new Random();
         return cards.get(rand.nextInt(cards.size()));
     }

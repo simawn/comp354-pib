@@ -1,9 +1,9 @@
-package control;
+package control.game;
 
-import model.Board;
-import model.Card;
-import model.Clue;
-import model.component.CardType;
+import model.board.Board;
+import model.board.Card;
+import model.board.CardType;
+import model.board.Clue;
 import model.player.*;
 
 /**
@@ -11,13 +11,13 @@ import model.player.*;
  * @author david
  */
 public class PlayerControl {
-    
-    Player[] players;
-    Board deckControl;
-    int whosTurn;
-    int numOpGuesses;
-    boolean gameOver;
-    Clue currentClue; // Have to keep track of how many guesses the operative has made.
+
+    private Player[] players;
+    private Board deckControl;
+    private int whosTurn;
+    private int numOpGuesses;
+    private boolean gameOver;
+    private Clue currentClue; // Have to keep track of how many guesses the operative has made.
 
     public PlayerControl(Board deckControl) {
         players = new Player[4];
@@ -36,7 +36,7 @@ public class PlayerControl {
     }
     
     //Called by EventHandler on pressing enter
-    public void doNextTurn(){
+    void doNextTurn() {
         if(gameOver) {
             System.out.println("Game over");
             return;

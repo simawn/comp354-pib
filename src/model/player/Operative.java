@@ -1,8 +1,8 @@
 package model.player;
 
-import model.Board;
-import model.Card;
-import model.component.CardType;
+import model.board.Board;
+import model.board.Card;
+import model.board.CardType;
 
 
 
@@ -10,8 +10,8 @@ import model.component.CardType;
 
 public class Operative extends Player{
 
-    Board board;
-    OperativeStrategy opStrat;
+    private Board board;
+    private OperativeStrategy opStrat;
 
     public Operative(CardType team) {
         super(team);

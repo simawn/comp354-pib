@@ -1,4 +1,4 @@
-package model.component;
+package model.board;
 
 public enum CardType {
     Red, Blue, Assassin, Bystander;

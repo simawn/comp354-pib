@@ -5,10 +5,10 @@
  */
 package model.player;
 
-import model.Card;
-import model.Clue;
+import model.board.Card;
+import model.board.Clue;
 
-import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -16,11 +16,11 @@ import java.util.Random;
  * @author david
  */
 public class randomSpyStrategy implements SpyStrategy{
-    String[] possibleClueWords = {"PLANT", "ANIMAL", "FURNITURE",
+    private String[] possibleClueWords = {"PLANT", "ANIMAL", "FURNITURE",
                                         "COUNTRY", "WEAPON", "PROFESSIONAL",
                                         "VEHICLE", "PLANET", "CONCEPT", "WEATHER"};
     @Override
-    public Clue giveClue(ArrayList<Card> cards) {
+    public Clue giveClue(List<Card> cards) {
         Random rand = new Random();
         int clueNum = rand.nextInt(4);
        
