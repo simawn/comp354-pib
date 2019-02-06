@@ -30,14 +30,14 @@ public class BoardControl {
         deckCommandManager = new CommandManager();
         nextSubscription = 0;
     }
-
+    //attach subscriber to listener to get fed information
     public void addSubscriber(Listener listener) throws IndexOutOfBoundsException {
         Card c = board.at(nextSubscription);
         c.bind(listener);
         c.push(0, c.word);
         nextSubscription++;
     }
-    
+
     public boolean pick(Card c) {
         guessCardCommand pickCmd = new guessCardCommand(c, board);
         deckCommandManager.storeAndExecute(pickCmd);
@@ -48,7 +48,7 @@ public class BoardControl {
         return board.getCards();
     }
     
-    
+    //return number of redcards
     public int getNumCardsOfType(CardType type) {
         ArrayList<Card> redCards = (ArrayList<Card>) board.getCards().clone();
         redCards.removeIf(s -> (s.type != type));
@@ -65,7 +65,7 @@ public class BoardControl {
             CardType ret = board.getCards().get(0).type;
             pick(board.getCards().get(0));
             return ret;
-            //return deck.draw();
+           
         } catch (IndexOutOfBoundsException e) {
             System.err.println("Can no longer pick a card.");
             return null;

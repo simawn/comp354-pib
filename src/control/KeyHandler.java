@@ -21,7 +21,7 @@ public class KeyHandler implements EventHandler<KeyEvent> {
 
     @Override
     public void handle(KeyEvent keyEvent) {
-        //todo this is NOT the intended function. Simply a test
+        //todo this is NOT the intended function. Simply a test for iteration 1
         if (keyEvent.getCode() == KeyCode.ENTER) {
             try {
                 //deckcontrol.pick();
