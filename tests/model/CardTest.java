@@ -5,7 +5,7 @@
  */
 package model;
 
-import model.constant.CardType;
+import model.component.CardType;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;

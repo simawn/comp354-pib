@@ -93,9 +93,10 @@ public class Board {
 
 
     // to remove a specific card. Returns true if the card is removed.
-    public void remove(Card c) {
+    public boolean remove(Card c) {
         boolean removed = cards.remove(c);
         c.push(1, CardType.pathOf(c.type));
+        return removed;
     }
 
     public ArrayList<Card> getCards() {
