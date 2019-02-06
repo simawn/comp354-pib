@@ -10,6 +10,6 @@ public class GameStage extends Stage {
     public GameStage(BoardControl deckcontrol) {
         setTitle("Codenames Game");
         setResizable(false);
-        setScene(BoardScene.build(deckcontrol));
     }
+
 }

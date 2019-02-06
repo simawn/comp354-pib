@@ -1,15 +1,15 @@
 package control;
 
-import model.Card;
+import command.CommandManager;
+import command.guessCardCommand;
 import model.Board;
+import model.Card;
 import model.constant.CardType;
 import ui.component.Listener;
 
 import java.io.IOException;
-import java.util.Collections;
-import command.guessCardCommand;
-import command.CommandManager;
 import java.util.ArrayList;
+import java.util.Collections;
 
 /*
     The purpose of this class is to provide an interface to the board.  
@@ -33,7 +33,7 @@ public class BoardControl {
 
     public void addSubscriber(Listener listener) throws IndexOutOfBoundsException {
         Card c = board.at(nextSubscription);
-        c.bind(listener);
+        c.attach(listener);
         c.push(0, c.word);
         nextSubscription++;
     }

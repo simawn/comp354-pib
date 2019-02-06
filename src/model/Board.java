@@ -6,10 +6,7 @@ import model.component.Word;
 import model.constant.CardType;
 
 import java.io.IOException;
-import java.util.EmptyStackException;
-import java.util.List;
 import java.util.ArrayList;
-
 
 public class Board {
     private ArrayList<Card> cards;
@@ -22,14 +19,6 @@ public class Board {
         for (int i = 0; i < Component.SIZE; i++) {
             cards.add(new Card(words[i], keycards[i]));
         }
-    }
-
-    // draw() will be a random draw.
-    // deprecated because we will design strategies to always pick a card in the deck
-    public CardType draw() throws IndexOutOfBoundsException {
-        Card c = cards.remove(0);
-        c.push(1, CardType.pathOf(c.type));
-        return c.type;
     }
     
     // to remove a specific card. Returns true if the card is removed.

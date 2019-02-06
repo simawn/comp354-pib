@@ -1,31 +1,31 @@
 package ui.component;
 
-import control.BoardControl;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
+import model.component.Subject;
 
 /*
     Binds the concept of the card model to the actual graphical representation
     Listens on the model for future updates being pushed
  */
-class CardPane extends StackPane implements Listener {
+public class CardPane extends StackPane implements Listener {
     private Text text;
     private ImageView image;
 
-    private CardPane(BoardControl deckcontrol) {
-        deckcontrol.addSubscriber(this);
+    public CardPane() {
+        text = new Text("NULL");
         image = new ImageView("file:resources/CardTemplate.png");
         getChildren().addAll(image, text);
         setMargin(text, new Insets(15, 15, 15, 15));
         setAlignment(text, Pos.BOTTOM_CENTER);
     }
 
-    static CardPane build(BoardControl deckcontrol) {
-        return new CardPane(deckcontrol);
+    public void bind(Subject c) {
+        c.attach(this);
     }
 
     public void update(int code, String message) {

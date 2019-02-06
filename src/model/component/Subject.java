@@ -8,7 +8,7 @@ import java.util.List;
 public class Subject {
     private List<Listener> listeners = new ArrayList<>();
 
-    public void bind(Listener listener) {
+    public void attach(Listener listener) {
         listeners.add(listener);
     }
 
