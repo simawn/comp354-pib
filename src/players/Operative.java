@@ -1,21 +1,21 @@
 package players;
 
-import control.BoardControl;
+import model.Board;
 import model.Card;
 import model.constant.CardType;
 
 //import model.ModelManager;
 
 public class Operative extends Player{
-    
-    BoardControl deckController;
+
+    Board deckController;
     OperativeStrategy opStrat;
 
     public Operative(CardType team) {
         super(team);
     }
-    
-    public Operative(CardType team, BoardControl deckController, OperativeStrategy strategy) {
+
+    public Operative(CardType team, Board deckController, OperativeStrategy strategy) {
         super(team);
         this.opStrat = strategy;
         this.deckController = deckController;

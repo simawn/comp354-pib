@@ -1,13 +1,10 @@
 package control;
 
+import model.Board;
 import model.Card;
 import model.Clue;
 import model.constant.CardType;
-import players.Operative;
-import players.Player;
-import players.Spymaster;
-import players.randomOperativeStrategy;
-import players.randomSpyStrategy;
+import players.*;
 /**
  *
  * @author david
@@ -15,13 +12,13 @@ import players.randomSpyStrategy;
 public class PlayerControl {
     
     Player[] players;
-    BoardControl deckControl;
+    Board deckControl;
     int whosTurn;
     int numOpGuesses;
     boolean gameOver;
     Clue currentClue; // Have to keep track of how many guesses the operative has made.
-    
-    public PlayerControl(BoardControl deckControl) {
+
+    public PlayerControl(Board deckControl) {
         players = new Player[4];
         players[0] = new Spymaster(CardType.Red, deckControl, new randomSpyStrategy());
         players[1] = new Operative(CardType.Red, deckControl, new randomOperativeStrategy());

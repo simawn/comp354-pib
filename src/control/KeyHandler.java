@@ -3,6 +3,7 @@ package control;
 import javafx.event.EventHandler;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import model.Board;
 
 /*
     Handles all KeyEvents pressed by the user
@@ -13,8 +14,8 @@ public class KeyHandler implements EventHandler<KeyEvent> {
 
     private PlayerControl playerControl;
 
-    public KeyHandler() {
-        // playerControl = new PlayerControl(deckcontrol); //todo what?
+    public KeyHandler(Board board) {
+        playerControl = new PlayerControl(board); //todo what?
     }
     //todo end of erase
 
