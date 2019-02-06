@@ -1,35 +1,34 @@
 package control.command;
-
-//import control.DeckControl;
-
 import model.board.Board;
 import model.board.Card;
 
 /**
+ * A Command to be used in the game when the Operatives guess a card.
  *
- * @author david
+ * @author David Gray
+ * @date 02/05/19
  */
 public class guessCardCommand implements Command {
+    /** The card to be chosen
+     */
     private final Card c;
-    /*
-    * I think we specified that we would be using these commands from PlayerControl (doesn't exist yet)
-    *   to the DeckControl. The way it's written now it would exist between the DeckControl and Deck, because
-    *   DeckControl has the instance of Deck which would be passed to the guessCardCommand constructor.
-    *   Alternatively, we could give this command a DeckControl instance and add a function to DeckControl
-    *   that execute() can call to remove a specified card.
-    *
-    * Also note that the invoker of the commands needs to have a List<Command> history object.
-    */
-    private Board deck;
+    /** The Board object that the card is on.
+     */
+    private final Board board;
     
-    public guessCardCommand(Card c, Board deck) {
+    public guessCardCommand(Card c, Board board) {
         this.c = c;
-        this.deck = deck;
+        this.board = board;
     }
+
+    /** To guess a card, you simply "remove" it from the board. Once guessed, the corresponding color
+     *  from the key card is revealed, and a card can never be guessed again, so it is removed from the set of cards
+     *  on the board available to be removed.
+     */
     @Override
     public void execute() {
         System.out.println("guessCardCommand: removing " + c.word + " from deck " );
-        deck.remove(c);
+        board.remove(c);
     }
     
 }

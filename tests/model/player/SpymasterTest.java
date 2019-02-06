@@ -3,10 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package model;
+package model.player;
 
 import java.io.IOException;
-import java.util.ArrayList;
+import model.Board;
+import model.player.randomSpyStrategy;
+import model.Clue;
+import model.component.CardType;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -19,6 +22,8 @@ import static org.junit.Assert.*;
  * @author david
  */
 public class SpymasterTest {    
+    Board board;
+
     public SpymasterTest() {
     }
     
@@ -32,7 +37,11 @@ public class SpymasterTest {
     
     @Before
     public void setUp() {
-        
+        try {
+            board = new Board();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
     
     @After
@@ -45,20 +54,12 @@ public class SpymasterTest {
     @Test
     public void testClue() {
         System.out.println("clue");
-        int clueNum = rand.nextInt(4);
-        String clueWord = possibleClueWords[rand.nextInt(possibleClueWords.length)];
-        Clue clue = new Clue(clueWord, clueNum);
-        Spymaster instance = new Spymaster(CardType.Blue, new BoardControl(), new randomSpymasterStrategy());
-        try {
-           Card c = instance.makeMove();
-        } catch (IOException e) {
-            e.printStackTrace();
-            fail("Failed to give clue.");
-        }
-        assertNotEquals(clueWord, null);
-        if(clueNum >= 0 && cluenum < 10 ){
-            assertEquals(clueNum, clueNum);
-        }
-        assertNotEquals(clue, null);
 
+        Spymaster instance = new Spymaster(CardType.Blue, board, new randomSpyStrategy());
+        Clue c = instance.makeMove();
+        assertNotEquals(c.getClueWord(), null);
+        assertTrue(c.getClueNum() < 10 && c.getClueNum() >= 0);
+        assertNotEquals(c, null);
     }
+
+}

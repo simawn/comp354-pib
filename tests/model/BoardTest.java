@@ -54,10 +54,10 @@ public class BoardTest {
             fail("Missing keyCards.txt or words.txt to create a Board.");
         }
         
-        Card firstCard = instance.at(0);
-        boolean removedFirstCard = instance.draw(firstCard);
+        Card firstCard = instance.getCards().get(0);
+        boolean removedFirstCard = instance.remove(firstCard);
         assertEquals(removedFirstCard, true);
-        boolean removedFirstCardAgain = instance.draw(firstCard);
+        boolean removedFirstCardAgain = instance.remove(firstCard);
         assertEquals(removedFirstCardAgain, false);
     }
 
@@ -94,12 +94,12 @@ public class BoardTest {
         }
         
         for(int i = 0; i < 25; i++) {
-            Card result = instance.at(i);
-            assertEquals(instance.at(i), result);
+            Card result = instance.getCards().get(i);
+            assertEquals(instance.getCards().get(i), result);
             for(int j = i + 1; j < 25; j++){
-                System.out.println("Verifying that " + i + ": " + instance.at(i) + 
-                        " is different than " + j + ": " + instance.at(j));
-                assertNotEquals(instance.at(j), result);
+                System.out.println("Verifying that " + i + ": " + instance.getCards().get(i) + 
+                        " is different than " + j + ": " + instance.getCards().get(j));
+                assertNotEquals(instance.getCards().get(j), result);
             }
         }
     }
@@ -118,7 +118,7 @@ public class BoardTest {
             fail("Missing keyCards.txt or words.txt to create a Board.");
         }
 
-        Card none = instance.at(25);
+        Card none = instance.getCards().get(25);
     }
     
 }

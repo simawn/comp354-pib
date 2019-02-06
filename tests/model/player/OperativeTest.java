@@ -3,12 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package players;
+package model.player;
 
-import control.BoardControl;
+import java.io.IOException;
 import java.util.ArrayList;
+import model.Board;
 import model.Card;
-import model.constant.CardType;
+import model.component.CardType;
+import model.player.Operative;
+import model.player.randomOperativeStrategy;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -21,7 +24,7 @@ import static org.junit.Assert.*;
  * @author Max Page-Slowik
  */
 public class OperativeTest {
-    BoardControl boardControl;
+    Board board;
     
     public OperativeTest() {
     }
@@ -39,7 +42,11 @@ public class OperativeTest {
     
     @Before
     public void setUp() {
-        boardControl = new BoardControl();
+        try {
+            board = new Board();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
     
     @After
@@ -54,9 +61,9 @@ public class OperativeTest {
     @Test
     public void testMakeMove() {
         System.out.println("makeMove");
-        Operative randInstance = new Operative(CardType.Blue, boardControl, new randomOperativeStrategy());
+        Operative randInstance = new Operative(CardType.Blue, board, new randomOperativeStrategy());
         Card c = randInstance.makeMove();
-        assertEquals("Checking that the Operative makes a legal selection", boardControl.getCards().contains(c), true);
+        assertEquals("Checking that the Operative makes a legal selection", board.getCards().contains(c), true);
     }
     
         /**
@@ -66,7 +73,7 @@ public class OperativeTest {
     public void testMakeRandomMove() {
         System.out.println("Testing that random operative makes somewhat random selections");
         ArrayList<Card> picks = new ArrayList<>();
-        Operative randInstance = new Operative(CardType.Blue, boardControl, new randomOperativeStrategy());
+        Operative randInstance = new Operative(CardType.Blue, board, new randomOperativeStrategy());
 
         Card firstPick = randInstance.makeMove();
         System.out.println("firstPick: " + firstPick);

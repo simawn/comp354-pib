@@ -3,11 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package players;
+package model.player;
 
 import java.util.ArrayList;
 import model.Card;
-import model.constant.CardType;
+import model.component.CardType;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
