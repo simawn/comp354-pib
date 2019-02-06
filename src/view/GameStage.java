@@ -37,7 +37,7 @@ class CardPane extends StackPane implements Observer {
 }
 
 
-public class GameScene {
+public class GameStage {
     public static Stage autoConfig(Subject[] subjects, EventHandler<KeyEvent> handler) {
         TilePane tile = new TilePane();
         tile.setPadding(new Insets(4, 4, 4, 4));
