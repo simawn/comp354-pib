@@ -1,7 +1,7 @@
 package model;
 
+import model.component.CardType;
 import model.component.Subject;
-import model.constant.CardType;
 
 public class Card extends Subject {
     public String word;

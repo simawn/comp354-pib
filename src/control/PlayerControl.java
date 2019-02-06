@@ -3,8 +3,9 @@ package control;
 import model.Board;
 import model.Card;
 import model.Clue;
-import model.constant.CardType;
-import players.*;
+import model.component.CardType;
+import model.player.*;
+
 /**
  *
  * @author david

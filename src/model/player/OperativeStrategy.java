@@ -3,15 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package players;
+package model.player;
+
+import model.Card;
 
 import java.util.ArrayList;
-import model.Card;
 
 /**
  *
  * @author david
  */
 public interface OperativeStrategy {
-    public Card pickCard(ArrayList<Card> cards);
+    Card pickCard(ArrayList<Card> cards);
 }

@@ -1,8 +1,8 @@
-package players;
+package model.player;
 
 import model.Board;
 import model.Clue;
-import model.constant.CardType;
+import model.component.CardType;
 
 
 public class Spymaster extends Player{

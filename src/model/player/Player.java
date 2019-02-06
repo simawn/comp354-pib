@@ -1,9 +1,9 @@
-package players;
+package model.player;
 /**
  * Enter -> PlayerControl -> runs Strategy , returned cardtype -> Playercontroller -> command
  */
 
-import model.constant.CardType;
+import model.component.CardType;
 
 public abstract class Player {
     private CardType team;

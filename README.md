@@ -69,5 +69,5 @@
 
 3. Run the project's main entry class:
 	```
-	java ui.Window
+	java view.Window
 	```

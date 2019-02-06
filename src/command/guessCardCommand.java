@@ -1,8 +1,9 @@
 package command;
 
 //import control.DeckControl;
-import model.Card;
+
 import model.Board;
+import model.Card;
 
 /**
  *
@@ -28,7 +29,7 @@ public class guessCardCommand implements Command {
     @Override
     public void execute() {
         System.out.println("guessCardCommand: removing " + c.word + " from deck " );
-        deck.draw(c);
+        deck.remove(c);
     }
     
 }

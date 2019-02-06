@@ -1,4 +1,4 @@
-package ui.component;
+package view;
 
 /*
     Interface connecting model and view together

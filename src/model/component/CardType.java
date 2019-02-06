@@ -1,4 +1,4 @@
-package model.constant;
+package model.component;
 
 public enum CardType {
     Red, Blue, Assassin, Bystander;

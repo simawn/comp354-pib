@@ -2,14 +2,67 @@ package model;
 
 import command.CommandManager;
 import command.guessCardCommand;
+import model.component.CardType;
 import model.component.Component;
-import model.component.KeyCard;
-import model.component.Word;
-import model.constant.CardType;
-import ui.component.Listener;
+import view.Listener;
 
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+class Extractor {
+    static final int SIZE = 25;
+
+    static List<String> build(Path Path) throws IOException {
+        if (!Files.exists(Path)) {
+            throw new IOException("Error: Missing " + Path);
+        }
+
+        List<String> list = Files.readAllLines(Path);
+        Collections.shuffle(list);
+
+        return list;
+    }
+}
+
+
+class Word {
+
+    private static final Path PATH = Paths.get("resources/words.txt");
+
+    static String[] parse() throws IOException {
+        List<String> temp = Extractor.build(PATH);
+        return temp.toArray(new String[Extractor.SIZE]);
+    }
+
+}
+
+
+class KeyCard {
+    private static final Path PATH = Paths.get("resources/keyCards.txt");
+
+    static CardType[] parse() throws IOException {
+        List<String> list = Extractor.build(PATH);
+
+        String temp = list.remove(0);
+
+        if (temp.length() != Extractor.SIZE) {
+            throw new IllegalArgumentException();
+        }
+
+        CardType[] types = new CardType[Extractor.SIZE];
+        for (int i = 0; i < temp.length(); i++) {
+            types[i] = CardType.charOf(temp.charAt(i));
+        }
+        return types;
+    }
+}
+
+
 
 public class Board {
     private ArrayList<Card> cards;
@@ -18,8 +71,8 @@ public class Board {
 
     public Board() throws IOException {
         deckCommandManager = new CommandManager();
-        String[] words = new Word().build();
-        CardType[] keycards = new KeyCard().build();
+        String[] words = Word.parse();
+        CardType[] keycards = KeyCard.parse();
         cards = new ArrayList<>();
         
         for (int i = 0; i < Component.SIZE; i++) {
@@ -27,25 +80,22 @@ public class Board {
         }
     }
 
-    public boolean pick(Card c) {
+    public void pick(Card c) {
         guessCardCommand pickCmd = new guessCardCommand(c, this);
         deckCommandManager.storeAndExecute(pickCmd);
-        return false;
     }
 
     public void addSubscriber(Listener listener) throws IndexOutOfBoundsException {
-        Card c = at(nextSubscription);
+        Card c = cards.get(nextSubscription++);
         c.attach(listener);
         c.push(0, c.word);
-        nextSubscription++;
     }
 
 
     // to remove a specific card. Returns true if the card is removed.
-    public boolean draw(Card c) {
+    public void remove(Card c) {
         boolean removed = cards.remove(c);
         c.push(1, CardType.pathOf(c.type));
-        return removed;
     }
 
     public ArrayList<Card> getCards() {
@@ -56,9 +106,5 @@ public class Board {
         ArrayList<Card> redCards = (ArrayList<Card>) cards.clone();
         redCards.removeIf(s -> (s.type != type));
         return redCards.size();
-    }
-
-    public Card at(int index) {
-        return cards.get(index);
     }
 }

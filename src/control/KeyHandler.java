@@ -15,7 +15,7 @@ public class KeyHandler implements EventHandler<KeyEvent> {
     private PlayerControl playerControl;
 
     public KeyHandler(Board board) {
-        playerControl = new PlayerControl(board); //todo what?
+        playerControl = new PlayerControl(board);
     }
     //todo end of erase
 
@@ -24,7 +24,6 @@ public class KeyHandler implements EventHandler<KeyEvent> {
         //todo this is NOT the intended function. Simply a test for iteration 1
         if (keyEvent.getCode() == KeyCode.ENTER) {
             try {
-                //deckcontrol.pick();
                 playerControl.doNextTurn();
             } catch (Exception e) {
                 e.printStackTrace();

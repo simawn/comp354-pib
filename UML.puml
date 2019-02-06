@@ -100,7 +100,7 @@ together {
 
 together {
 
-    namespace ui {
+    namespace view {
         namespace component {
             class BoardScene {
                 -BoardScene(DeckControl)
@@ -129,7 +129,7 @@ together {
             }
 
 
-            CardPane ..|> ui.component.Listener
+            CardPane ..|> view.Listener
 
             DeckPane --|> .TilePane
             GameStage --|> .Stage
