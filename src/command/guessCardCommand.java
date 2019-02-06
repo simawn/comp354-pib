@@ -3,7 +3,7 @@ import model.Board;
 import model.Card;
 
 /**
- * A Command to be used by Operatives in the game when they guess a card.
+ * A Command to be used in the game when the Operatives guess a card.
  * 
  * @author David Gray
  * @date 02/05/19
