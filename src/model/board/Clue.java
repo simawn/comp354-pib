@@ -4,6 +4,7 @@ package model.board;
  * Represents a Clue given by a spymaster.
  * 
  * @author David Gray
+ * @date 02/06/19
  */
 public class Clue {
     /**

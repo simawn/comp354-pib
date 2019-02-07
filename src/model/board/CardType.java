@@ -5,6 +5,7 @@ package model.board;
  * It is also used by the view in keeping track of the path to images
  * 
  * @author David Gray, Rani Rafid
+ * @date 02/06/19
  */
 public enum CardType {
     Red, Blue, Assassin, Bystander;

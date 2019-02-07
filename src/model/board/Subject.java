@@ -10,6 +10,7 @@ import java.util.List;
  * who is observing them.
  * 
  * @author David Gray
+ * @Date 02/06/19
  */
 public abstract class Subject {
     private List<Observer> observers = new ArrayList<>();
