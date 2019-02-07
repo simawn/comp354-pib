@@ -14,15 +14,14 @@ public class VerboseView {
 
     private VerboseView() {
         ScrollPane pane = new ScrollPane();
-        pane.setMinHeight(500);
-        pane.setMinWidth(500);
+
         vbox = new VBox();
 
         vbox.getChildren().add(new Text("Game Started"));
         vbox.setFillWidth(true);
         pane.setContent(vbox);
 
-        Scene scene = new Scene(pane);
+        Scene scene = new Scene(pane, 500, 500);
         scene.setOnKeyPressed(keyEvent -> {
             if (keyEvent.getCode() == KeyCode.V) {
                 open();
@@ -41,7 +40,7 @@ public class VerboseView {
     }
 
     public static void open() {
-        if (!viewer.stage.isFocused() || !viewer.stage.isShowing()) {
+        if (!viewer.stage.isShowing()) {
             viewer.stage.show();
         } else {
             viewer.stage.hide();
