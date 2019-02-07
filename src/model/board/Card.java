@@ -1,5 +1,7 @@
 package model.board;
 
+import view.VerboseView;
+
 public class Card extends Subject {
     public String word;
     public CardType type;
@@ -12,7 +14,7 @@ public class Card extends Subject {
     public Card(String word, CardType type) {
         this.word = word;
         this.type = type;
-        System.out.println("Creating a card " + word + ": " + type);
+        VerboseView.log("Creating a card " + word + ": " + type);
     }
 
     public void setType(String word) {

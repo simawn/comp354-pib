@@ -3,6 +3,7 @@ package control.game;
 import javafx.event.EventHandler;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import view.VerboseView;
 
 /**
  * Handles all KeyEvents for when keys are pressed by the user.
@@ -29,7 +30,10 @@ public class GameHandler implements EventHandler<KeyEvent> {
     public void handle(KeyEvent keyEvent) {
         if (keyEvent.getCode() == KeyCode.ENTER) {
             playerControl.doNextTurn();
-
+        } else if (keyEvent.getCode() == KeyCode.V) {
+            VerboseView.open();
         }
     }
+
+
 }

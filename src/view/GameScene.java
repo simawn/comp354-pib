@@ -7,11 +7,9 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.StackPane;
-import javafx.scene.layout.TilePane;
-import javafx.scene.paint.Paint;
+import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
 import model.board.CardType;
 import model.board.Subject;
 
@@ -25,6 +23,7 @@ class CardPane extends StackPane implements Observer {
         image = new ImageView("file:resources/CardTemplate.png");
         Text text = new Text(subject.getStringProperty());
 
+        setBackground(null);
         getChildren().addAll(image, text);
         setMargin(text, new Insets(15, 15, 15, 15));
         setAlignment(text, Pos.BOTTOM_CENTER);
@@ -37,10 +36,13 @@ class CardPane extends StackPane implements Observer {
 }
 
 
-public class GameStage {
-    public static Stage autoConfig(Subject[] subjects, EventHandler<KeyEvent> handler) {
+public class GameScene {
+
+    public static Scene build(Subject[] subjects, EventHandler<KeyEvent> handler) {
         TilePane tile = new TilePane();
-        tile.setPadding(new Insets(4, 4, 4, 4));
+
+        tile.setPadding((new Insets(4, 4, 4, 4)));
+        tile.setBackground(new Background(new BackgroundFill(Color.valueOf("877567"), CornerRadii.EMPTY, Insets.EMPTY)));
         tile.setVgap(4);
         tile.setHgap(4);
         tile.setPrefColumns(5);
@@ -50,15 +52,7 @@ public class GameStage {
         }
 
         Scene scene = new Scene(tile);
-        scene.setFill(Paint.valueOf("877567"));
         scene.setOnKeyPressed(handler);
-
-
-        Stage stage = new Stage();
-        stage.setTitle("Codenames - Game");
-        stage.setResizable(false);
-        stage.setScene(scene);
-
-        return stage;
+        return scene;
     }
 }

@@ -5,6 +5,7 @@ import model.board.Card;
 import model.board.CardType;
 import model.board.Clue;
 import model.player.*;
+import view.VerboseView;
 
 /**
  * PlayerControl keeps track of which players turn it is, and calls them to make their turns.
@@ -53,7 +54,7 @@ public class PlayerControl {
         players[3] = new Operative(CardType.Blue, board, new randomOperativeStrategy());
         whosTurn = 0;
         if(board.getNumCardsOfType(CardType.Blue) == 9) {
-            System.out.println("Blue going first");
+            VerboseView.log("Blue going first");
             whosTurn = 2; //blue goes first because there are 9 blue cards
         }
         this.numOpGuesses = 0;
@@ -66,17 +67,17 @@ public class PlayerControl {
      */
     public void doNextTurn(){
         if(gameOver) {
-            System.out.println("Game over");
+            VerboseView.log("Game over");
             return;
         }
         if((whosTurn % 2) == 0) { //SpyMasters turn
             currentClue = (Clue)players[whosTurn].makeMove();
-            System.out.println(players[whosTurn].getTeam() + " spymaster gave clue "
+            VerboseView.log(players[whosTurn].getTeam() + " spymaster gave clue "
                     + currentClue.getClueWord() + ": " + currentClue.getClueNum());
             endTurn();
         } else { //Operatives turn
             Card guess =  (Card)players[whosTurn].makeMove();
-            System.out.println(players[whosTurn].getTeam() + " operative guessed " + guess.word);
+            VerboseView.log(players[whosTurn].getTeam() + " operative guessed " + guess.word);
             board.pick(guess);
             numOpGuesses += 1;
             checkGameState(guess);
@@ -94,7 +95,7 @@ public class PlayerControl {
         // If current team just choose their last card
         if(board.getNumCardsOfType(players[whosTurn].getTeam()) == 0) {
             gameOver = true;
-            System.out.println("Game Over, " + players[whosTurn].getTeam() + " wins!");
+            VerboseView.log("Game Over, " + players[whosTurn].getTeam() + " wins!");
         }
         
         // If current team chose the wrong card
@@ -104,18 +105,18 @@ public class PlayerControl {
             // If they chose their opponents last card or chose the assassin card
             if ((board.getNumCardsOfType(otherTeamColor) == 0) ||
                     (guess.type == CardType.Assassin)) {
-                System.out.println("Game Over, " + otherTeamColor + " wins!");
+                VerboseView.log("Game Over, " + otherTeamColor + " wins!");
                 gameOver = true;
                 return;
             }
-            
-            System.out.println("Wrong color! " + players[whosTurn].getTeam() + "'s turn ends.");
+
+            VerboseView.log("Wrong color! " + players[whosTurn].getTeam() + "'s turn ends.");
             endTurn();
         }
         
         // If the operatives have used all of their guesses for this turn
         if(numOpGuesses >= currentClue.getClueNum() + 1) { // Choose cluenum + 1 times, turn over.
-            System.out.println(players[whosTurn].getTeam() + "'s is out of guesses, turn over.");
+            VerboseView.log(players[whosTurn].getTeam() + "'s is out of guesses, turn over.");
             endTurn();
         }
     }
