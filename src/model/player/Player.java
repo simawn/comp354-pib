@@ -1,11 +1,17 @@
 package model.player;
-/*
- * Enter -> PlayerControl -> runs Strategy , returned cardtype -> Playercontroller -> command
- */
 
+/**
+ * The abstract class for all players (Spymaster or Strategy)
+ * 
+ * @author Anthony Funiciello, David Gray
+ * @date 02/07/19
+ */
 import model.board.CardType;
 
 public abstract class Player {
+    /**
+     * The players team (Red or Blue)
+     */
     private CardType team;
     
     public Player(CardType team) {
@@ -16,5 +22,11 @@ public abstract class Player {
         return team;
     }
  
+    /**
+     * To be implemented by Operatives and Spymasters. 
+     * Operatives return a Card selection and Spymasters return a Clue.
+     * 
+     * @return 
+     */
     public abstract Object makeMove();
 }
