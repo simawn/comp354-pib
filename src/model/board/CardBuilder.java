@@ -7,7 +7,13 @@ import java.nio.file.Paths;
 import java.util.Collections;
 import java.util.List;
 
-
+/**
+* Extractor is an abstract class for reading lines of a text file doing something
+* with (parsing) them.
+* 
+* @author Rani Rafid
+* @date 02/06/19
+*/
 abstract class Extractor {
     static final int SIZE = 25;
 
@@ -25,10 +31,14 @@ abstract class Extractor {
     abstract Object[] parse() throws IOException;
 }
 
-
+/**
+* Word class is responsible for reading the codename words from a text file,
+* and returning the first 25 of them.
+* 
+* @author David Gray, Rani Rafid
+* @date 02/06/19
+*/
 class Word extends Extractor {
-
-
     private static final Path PATH = Paths.get("resources/words.txt");
 
     String[] parse() throws IOException {
@@ -38,7 +48,13 @@ class Word extends Extractor {
 
 }
 
-
+/**
+* KeyCard parses a random line of the text file containing keycards by 
+* mapping them to an array of enum CardType variables.
+* 
+* @author David Gray, Rani Rafid
+* @date 02/06/19
+*/
 class KeyCard extends Extractor {
     private static final Path PATH = Paths.get("resources/keyCards.txt");
 
@@ -58,9 +74,21 @@ class KeyCard extends Extractor {
         return types;
     }
 }
-
+/**
+* CardBuilder creates an array of Card objects based on a 
+* random selection of 25 words and a key card.
+* 
+* @author David Gray, Rani Rafid
+* @date 02/06/19
+*/
 public class CardBuilder {
 
+    /**
+     * Use the KeyCard and Word classes above to create an array of 25 Cards,
+     * (the core of the board).
+     * 
+     * @return Array of Cards 
+     */
     public static Card[] buildAll() {
         String[] words;
         CardType[] types;
