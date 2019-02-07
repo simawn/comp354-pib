@@ -4,6 +4,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -36,7 +37,13 @@ public class VerboseView {
     }
 
     public static void log(String arg) {
-        viewer.vbox.getChildren().add(new Text(arg));
+        Text t = new Text(arg);
+        if (arg.contains("Blue")) {
+            t.setFill(Color.BLUE);
+        } else if (arg.contains("Red")) {
+            t.setFill(Color.RED);
+        }
+        viewer.vbox.getChildren().add(t);
     }
 
     public static void open() {
