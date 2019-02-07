@@ -16,9 +16,12 @@ import view.VerboseView;
 public class GameHandler implements EventHandler<KeyEvent> {
 
     private PlayerControl playerControl;
+    private VerboseView view;
 
-    public GameHandler(PlayerControl playerControl) {
+    public GameHandler(PlayerControl playerControl, VerboseView view) {
+
         this.playerControl = playerControl;
+        this.view = view;
     }
 
     /**
@@ -30,8 +33,8 @@ public class GameHandler implements EventHandler<KeyEvent> {
     public void handle(KeyEvent keyEvent) {
         if (keyEvent.getCode() == KeyCode.ENTER) {
             playerControl.doNextTurn();
-        } else if (keyEvent.getCode() == KeyCode.V) {
-            VerboseView.open();
+        } else if (keyEvent.getCode() == KeyCode.V && view != null) {
+            view.open();
         }
     }
 

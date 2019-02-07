@@ -1,7 +1,8 @@
 package control.command;
+
 import model.board.Board;
 import model.board.Card;
-import view.VerboseView;
+import model.util.Verbose;
 
 /**
  * A Command to be used in the game when the Operatives guess a card.
@@ -28,7 +29,7 @@ public class guessCardCommand implements Command {
      */
     @Override
     public void execute() {
-        VerboseView.log("guessCardCommand: removing " + c.word + " from deck ");
+        Verbose.log("guessCardCommand: removing " + c.word + " from deck ");
         board.remove(c);
     }
     

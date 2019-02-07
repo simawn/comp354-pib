@@ -1,5 +1,6 @@
 package model.board;
-import view.VerboseView;
+
+import model.util.Verbose;
 
 /**
 * Represents a card on the code names board. Keeps track of the color given to the
@@ -28,7 +29,7 @@ public class Card extends Subject {
     public Card(String word, CardType type) {
         this.word = word;
         this.type = type;
-        VerboseView.log("Creating a card " + word + ": " + type);
+        Verbose.log("Creating a card " + word + ": " + type);
     }
 
     public void setType(String word) {

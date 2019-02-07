@@ -1,6 +1,7 @@
 package model.board;
 
 import view.Observer;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,7 +26,7 @@ public abstract class Subject {
      * When a subject changes state it should call push() to notify its observers
      * to its state change.
      */
-    void push() {
+    public void push() {
         for (Observer in : observers) {
             in.update();
         }

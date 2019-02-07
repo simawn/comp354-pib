@@ -7,13 +7,15 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import model.board.Subject;
 
-public class VerboseView {
-    private static VerboseView viewer = new VerboseView();
+public class VerboseView implements Observer {
     private VBox vbox;
     private Stage stage;
+    private Subject subject;
 
-    private VerboseView() {
+    public VerboseView(Subject s) {
+        this.subject = s;
         ScrollPane pane = new ScrollPane();
 
         vbox = new VBox();
@@ -36,21 +38,26 @@ public class VerboseView {
         stage.setScene(scene);
     }
 
-    public static void log(String arg) {
+    public void log(String arg) {
         Text t = new Text(arg);
         if (arg.contains("Blue")) {
             t.setFill(Color.BLUE);
         } else if (arg.contains("Red")) {
             t.setFill(Color.RED);
         }
-        viewer.vbox.getChildren().add(t);
+        vbox.getChildren().add(t);
     }
 
-    public static void open() {
-        if (!viewer.stage.isShowing()) {
-            viewer.stage.show();
+    public void open() {
+        if (!stage.isShowing()) {
+            stage.show();
         } else {
-            viewer.stage.hide();
+            stage.hide();
         }
+    }
+
+    @Override
+    public void update() {
+        log(subject.getStringProperty());
     }
 }
