@@ -1,16 +1,18 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package model.board;
 
 /**
- *
- * @author david
+ * Represents a Clue given by a spymaster.
+ * 
+ * @author David Gray
  */
 public class Clue {
+    /**
+     * The clue word (a noun)
+     */
     private String clueWord;
+    /**
+     * The number of cards corresponding to the clue word.
+     */
     private int clueNum;
     
     public Clue(String clueWord, int clueNum){
