@@ -13,8 +13,21 @@ import javafx.scene.text.Text;
 import model.board.CardType;
 import model.board.Subject;
 
+/**
+* CardPane represents the GUI of 1 card. Each card pane observes 1 card, and is updated
+* when that card is "covered" by a colored card (revealing the cards true identity).
+* 
+* @author Rani Rafid
+* @date 02/06/19
+*/
 class CardPane extends StackPane implements Observer {
+    /**
+     * A card object to be observed.
+     */
     private Subject subject;
+    /**
+     * The card template image.
+    */
     private ImageView image;
 
     CardPane(Subject subject) {
@@ -30,14 +43,26 @@ class CardPane extends StackPane implements Observer {
     }
 
     @Override
+    /**
+     * When the subject of this class calls update, the image changes to reveal the card color.
+     */
     public void update() {
         image.setImage(new Image(CardType.pathOf(subject.getTypeProperty())));
     }
 }
 
 
+/**
+ * The GameScene is the GUI window with 25 CardPanes.
+ */
 public class GameScene {
 
+    /**
+     * GameScene.build() creates the GameScene given an array of 25 Subjects (Cards), and the EventHandler for user input.
+     * @param subjects
+     * @param handler
+     * @return the GUI Scene.
+     */
     public static Scene build(Subject[] subjects, EventHandler<KeyEvent> handler) {
         TilePane tile = new TilePane();
 

@@ -9,17 +9,26 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import model.board.Subject;
 
+/**
+* VerboseView logs game play information, in an optionally visible window.
+* 
+* @author Rani Rafid
+* @date 02/06/19
+*/
 public class VerboseView implements Observer {
     private VBox vbox;
     private Stage stage;
     private Subject subject;
 
+    /**
+     * Create the VerboseView with a Subject s that it will be bound to.
+     * @param s 
+     */
     public VerboseView(Subject s) {
         this.subject = s;
         ScrollPane pane = new ScrollPane();
 
         vbox = new VBox();
-
         vbox.getChildren().add(new Text("Game Started"));
         vbox.setFillWidth(true);
         pane.setContent(vbox);
@@ -38,6 +47,10 @@ public class VerboseView implements Observer {
         stage.setScene(scene);
     }
 
+    /**
+     * Print a message to the VerboseView.
+     * @param arg 
+     */
     public void log(String arg) {
         Text t = new Text(arg);
         if (arg.contains("Blue")) {
@@ -48,6 +61,9 @@ public class VerboseView implements Observer {
         vbox.getChildren().add(t);
     }
 
+    /**
+     * Open the VerboseView window.
+     */
     public void open() {
         if (!stage.isShowing()) {
             stage.show();
@@ -56,6 +72,9 @@ public class VerboseView implements Observer {
         }
     }
 
+    /**
+     * Get the subjects current string property and log it.
+     */
     @Override
     public void update() {
         log(subject.getStringProperty());
