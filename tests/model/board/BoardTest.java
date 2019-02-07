@@ -43,10 +43,22 @@ public class BoardTest {
     }
 
     /**
-     * Test of draw method, of class Board.
+     * Test of pick method, of class Board. Which uses CommandPattern
      */
     @Test
-    public void testDraw_Card() {
+    public void testPick() {
+        System.out.println("pick");
+        
+        Card firstCard = instance.getCards().get(0);
+        instance.pick(firstCard);
+        assertFalse("Verify that firstCard is no longer in the board", instance.getCards().contains(firstCard));
+    }
+    
+    /**
+     * Test of remove method, of class Board.
+     */
+    @Test
+    public void tesRemove_Card() {
         System.out.println("draw");
         
         Card firstCard = instance.getCards().get(0);
@@ -67,22 +79,25 @@ public class BoardTest {
     }
 
     /**
-     * Test of at method, of class Board.
+     * Test of getNumCardsOfType method, of class Board.
      */
     @Test
-    public void testAt() {
+    public void testGetNumCardsOfType() {
         System.out.println("at");
-        
-        for(int i = 0; i < 25; i++) {
-            Card result = instance.getCards().get(i);
-            assertEquals(instance.getCards().get(i), result);
-            for(int j = i + 1; j < 25; j++){
-                System.out.println("Verifying that " + i + ": " + instance.getCards().get(i) + 
-                        " is different than " + j + ": " + instance.getCards().get(j));
-                assertNotEquals(instance.getCards().get(j), result);
-            }
+        int numRedCards = instance.getNumCardsOfType(CardType.Red);
+        int numBlueCards = instance.getNumCardsOfType(CardType.Blue);
+        int numAssassinCards = instance.getNumCardsOfType(CardType.Assassin);
+        int numBystanderCards = instance.getNumCardsOfType(CardType.Bystander);
+        assertEquals("Just 1 assassin on the board", numAssassinCards, 1);
+        assertEquals("7 Bystanders on the board", numBystanderCards, 7);
+        if(numRedCards == 9) {
+            assertEquals("9 red cards and 8 blue cards", numBlueCards, 8);
+        } else if (numRedCards == 8) {
+            assertEquals("8 red cards and 9 blue cards", numBlueCards, 9);
+        } else {
+            fail("Wrong number of colored cards");
         }
-    }
+    } 
     
     /**
      * Test that at method throws IndexOutOfBoundsException for index 25

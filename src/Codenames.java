@@ -36,7 +36,6 @@ public class Codenames extends Application {
      */
     @Override
     public void start(Stage root) {
-
         Card[] cards = CardBuilder.buildAll();
         Board board = new Board(cards);
         PlayerControl playerControl = new PlayerControl(board);
