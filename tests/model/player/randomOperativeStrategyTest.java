@@ -6,8 +6,8 @@
 package model.player;
 
 import java.util.ArrayList;
-import model.Card;
-import model.component.CardType;
+import model.board.Card;
+import model.board.CardType;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;

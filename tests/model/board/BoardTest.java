@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package model;
+package model.board;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -19,6 +19,8 @@ import static org.junit.Assert.*;
  * @author david
  */
 public class BoardTest {    
+    Board instance;
+    Card[] cards;
     public BoardTest() {
     }
     
@@ -32,7 +34,8 @@ public class BoardTest {
     
     @Before
     public void setUp() {
-        
+        cards = CardBuilder.buildAll();
+        instance = new Board(cards);
     }
     
     @After
@@ -45,20 +48,10 @@ public class BoardTest {
     @Test
     public void testDraw_Card() {
         System.out.println("draw");
-        Card c = null;
-        Board instance = null;
-        try {
-            instance = new Board();
-        } catch (IOException e) {
-            e.printStackTrace();
-            fail("Missing keyCards.txt or words.txt to create a Board.");
-        }
         
         Card firstCard = instance.getCards().get(0);
-        boolean removedFirstCard = instance.remove(firstCard);
-        assertEquals(removedFirstCard, true);
-        boolean removedFirstCardAgain = instance.remove(firstCard);
-        assertEquals(removedFirstCardAgain, false);
+        instance.remove(firstCard);
+        assertFalse("Verify that firstCard is no longer in the board", instance.getCards().contains(firstCard));
     }
 
     /**
@@ -67,14 +60,8 @@ public class BoardTest {
     @Test
     public void testGetCards() {
         System.out.println("getCards");
-        Board instance = null;
-        try {
-            instance = new Board();
-        } catch (IOException e) {
-            e.printStackTrace();
-            fail("Missing keyCards.txt or words.txt to create a Board.");
-        }
-        ArrayList<Card> result = instance.getCards();
+       
+        ArrayList<Card> result = (ArrayList<Card>) instance.getCards();
         assertEquals("New board is 25 cards", 25, result.size()); 
         //Check whether or not elements are unique (by card object and by words)
     }
@@ -85,13 +72,6 @@ public class BoardTest {
     @Test
     public void testAt() {
         System.out.println("at");
-        Board instance = null;
-        try {
-            instance = new Board();
-        } catch (IOException e) {
-            e.printStackTrace();
-            fail("Missing keyCards.txt or words.txt to create a Board.");
-        }
         
         for(int i = 0; i < 25; i++) {
             Card result = instance.getCards().get(i);
@@ -110,13 +90,6 @@ public class BoardTest {
     @Test(expected=IndexOutOfBoundsException.class)
     public void testAtOutOFBounds() {
         System.out.println("at");
-        Board instance = null;
-        try {
-            instance = new Board();
-        } catch (IOException e) {
-            e.printStackTrace();
-            fail("Missing keyCards.txt or words.txt to create a Board.");
-        }
 
         Card none = instance.getCards().get(25);
     }

@@ -6,10 +6,12 @@
 package model.player;
 
 import java.io.IOException;
-import model.Board;
+import model.board.Board;
+import model.board.Card;
+import model.board.CardBuilder;
 import model.player.randomSpyStrategy;
-import model.Clue;
-import model.component.CardType;
+import model.board.Clue;
+import model.board.CardType;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -37,11 +39,8 @@ public class SpymasterTest {
     
     @Before
     public void setUp() {
-        try {
-            board = new Board();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        Card[] cards = CardBuilder.buildAll();
+        board = new Board(cards);
     }
     
     @After

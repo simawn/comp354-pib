@@ -7,9 +7,10 @@ package model.player;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import model.Board;
-import model.Card;
-import model.component.CardType;
+import model.board.Board;
+import model.board.Card;
+import model.board.CardBuilder;
+import model.board.CardType;
 import model.player.Operative;
 import model.player.randomOperativeStrategy;
 import org.junit.After;
@@ -21,7 +22,7 @@ import static org.junit.Assert.*;
 
 /**
  *
- * @author Max Page-Slowik
+ * @author Max Page-Slowik, David Gray
  */
 public class OperativeTest {
     Board board;
@@ -31,27 +32,21 @@ public class OperativeTest {
     
     @BeforeClass
     public static void setUpClass() {
-        //what needs to be done before setting up this test class
-        //something configured for all test cases
+
     }
     
     @AfterClass
     public static void tearDownClass() {
-        //clean up the resources from setUpclass
     }
     
     @Before
     public void setUp() {
-        try {
-            board = new Board();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        Card[] cards = CardBuilder.buildAll();
+        board = new Board(cards);
     }
     
     @After
     public void tearDown() {
-        //what needs to be done after invoking each test case
     }
     
 
@@ -66,7 +61,7 @@ public class OperativeTest {
         assertEquals("Checking that the Operative makes a legal selection", board.getCards().contains(c), true);
     }
     
-        /**
+    /**
      * Test of makeMove method, of class Operative.
      */
     @Test
