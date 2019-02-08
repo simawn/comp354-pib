@@ -9,7 +9,7 @@ import model.util.Verbose;
  * @author David Gray, Rani Rafid
  * @date 02/06/2019
  */
-public class GameManager {
+public class GameManager extends Subject {
 
     /**
      * Game state data. 
@@ -91,7 +91,9 @@ public class GameManager {
         numOpGuesses += 1;
         if(gameIsOver()){
             winningTeam = declareWinner(p, guess);
-            System.out.println(winningTeam + " wins! Game Over.");
+            Verbose.log(winningTeam + " wins! Game Over.");
+            this.push();
+            return;
         }
         if(isTurnOver(p, guess)) {
             Verbose.log(players[whosTurn].getTeam() + " turn ends.");
@@ -114,10 +116,8 @@ public class GameManager {
     
     /**
      * Determines if the game is over. 
-     * The game is over if a team has been declared winner already, or if:
-     *  - the Assassin was chosen
-     *  - All the blue cards have been chosen
-     *  - All the Red cards have been chosen.
+     * The game is over if a team has been declared winner already, or if all of a teams
+     * cards have been chosen, or the assassin has been chosen.
      * @return 
      */
     public boolean gameIsOver() {
@@ -157,4 +157,28 @@ public class GameManager {
         whosTurn = (whosTurn + 1) % 4;
         numOpGuesses = 0;
     }   
+
+
+    /**
+     * The "String" property of this Subject is the current clue,
+     * or a game over message.
+     * @return 
+     */
+    @Override
+    public String getStringProperty() {
+        if(currentClue == null) { return ""; }
+        if(gameIsOver()) { return "Game Over.";}
+        return currentClue.toString();
+    }
+
+    /**
+     * The "TypeProperty" of this Subject is the team who's current turn it is,
+     * or the winner if the game is over.
+     * @return 
+     */
+    @Override
+    public CardType getTypeProperty() {
+        if(gameIsOver()) { return winningTeam ;}
+        return players[whosTurn].getTeam();
+    }
 }
