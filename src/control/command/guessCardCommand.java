@@ -29,7 +29,7 @@ public class guessCardCommand implements Command {
      */
     @Override
     public void execute() {
-        Verbose.log("guessCardCommand: removing " + c.word + " from deck ");
+        Verbose.log("guessCardCommand: choosing " + c.word + ".");
         board.remove(c);
     }
     
