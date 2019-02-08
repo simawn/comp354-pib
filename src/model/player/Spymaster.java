@@ -16,7 +16,7 @@ public class Spymaster extends Player{
      /**
         * The spymaster's board they will use to "look" at.
      */
-    private Board deckController;
+    private Board board;
      /**
      * The spymaster's strategy they will use when they play.
      */
@@ -29,15 +29,15 @@ public class Spymaster extends Player{
     /**
      * Instantiate a spymaster to the team, board and strategy they will use.
      */
-    public Spymaster(CardType team, Board deckController, SpyStrategy strategy) {
+    public Spymaster(CardType team, Board board, SpyStrategy strategy) {
         super(team);
         this.spyStrat = strategy;
-        this.deckController = deckController;
+        this.board = board;
     }
 
     @Override
     public Clue makeMove() {
-        return spyStrat.giveClue(deckController.getCards());
+        return spyStrat.giveClue(board.getCards());
     }
 
 }

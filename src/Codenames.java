@@ -1,5 +1,5 @@
 import control.game.GameHandler;
-import control.game.PlayerControl;
+import model.board.GameManager;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -38,7 +38,7 @@ public class Codenames extends Application {
     public void start(Stage root) {
         Card[] cards = CardBuilder.buildAll();
         Board board = new Board(cards);
-        PlayerControl playerControl = new PlayerControl(board);
+        GameManager playerControl = new GameManager(board);
 
         VerboseView view = new VerboseView(Verbose.get());
         Verbose.bind(view);

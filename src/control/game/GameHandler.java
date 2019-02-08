@@ -1,5 +1,8 @@
 package control.game;
 
+import control.command.CommandManager;
+import control.command.NextTurnCommand;
+import model.board.GameManager;
 import javafx.event.EventHandler;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -13,12 +16,14 @@ import view.VerboseView;
  */
 public class GameHandler implements EventHandler<KeyEvent> {
 
-    private PlayerControl playerControl;
+    private GameManager game;
     private VerboseView view;
+    private CommandManager commandManager;
 
-    public GameHandler(PlayerControl playerControl, VerboseView view) {
-        this.playerControl = playerControl;
+    public GameHandler(GameManager game, VerboseView view) {
+        this.game = game;
         this.view = view;
+        this.commandManager = new CommandManager();
     }
 
     /**
@@ -29,7 +34,7 @@ public class GameHandler implements EventHandler<KeyEvent> {
     @Override
     public void handle(KeyEvent keyEvent) {
         if (keyEvent.getCode() == KeyCode.ENTER) {
-            playerControl.doNextTurn();
+            commandManager.storeAndExecute(new NextTurnCommand(game));
         } else if (keyEvent.getCode() == KeyCode.V && view != null) {
             view.open();
         }
