@@ -1,5 +1,7 @@
 package control.game;
 
+import control.command.CommandManager;
+import control.command.guessCardCommand;
 import model.board.Board;
 import model.board.Card;
 import model.board.CardType;
@@ -14,11 +16,16 @@ import model.util.Verbose;
  * @date 02/06/2019
  */
 public class PlayerControl {
-    
+    /**
+     * Executes and records commands called by the Control to the Board.
+     */
+    private CommandManager boardCommandManager;
+
     /**
      * An array of the players in the game
      */
     Player[] players;
+    
     /**
      * An index into Player[] players to keep track of which players turn it is.
      */
@@ -41,6 +48,7 @@ public class PlayerControl {
      */
     Clue currentClue;
 
+            
     /**
      * Constructor.  Creates the players for the game. Initializes turn state depending on the key card.
      *
@@ -59,6 +67,7 @@ public class PlayerControl {
         }
         this.numOpGuesses = 0;
         this.board = board;
+        this.boardCommandManager = new CommandManager();
         gameOver = false;
     }
     
@@ -78,7 +87,7 @@ public class PlayerControl {
         } else { //Operatives turn
             Card guess =  (Card)players[whosTurn].makeMove();
             Verbose.log(players[whosTurn].getTeam() + " operative guessed " + guess.word);
-            board.pick(guess);
+            boardCommandManager.storeAndExecute(new guessCardCommand(guess, board));
             numOpGuesses += 1;
             checkGameState(guess);
         }

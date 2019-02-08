@@ -11,15 +11,12 @@ import view.VerboseView;
  * @author Rani Rafid
  * @date 02/06/19
  */
-
-
 public class GameHandler implements EventHandler<KeyEvent> {
 
     private PlayerControl playerControl;
     private VerboseView view;
 
     public GameHandler(PlayerControl playerControl, VerboseView view) {
-
         this.playerControl = playerControl;
         this.view = view;
     }

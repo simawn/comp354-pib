@@ -21,12 +21,10 @@ public class Board {
     */
     private List<Card> cards;
     
-    private CommandManager deckCommandManager;
-
     public Board(Card[] cards) {
         this.cards = new ArrayList<>();
         Collections.addAll(this.cards, cards);
-        deckCommandManager = new CommandManager();
+        
     }
     
     /**
@@ -34,10 +32,11 @@ public class Board {
      * May be removed or moved in future iterations if we only use command pattern
      * for communication between control and model.
      * @param c card to remove
+     * @deprecated
      */
-    public void pick(Card c) {
-        guessCardCommand pickCmd = new guessCardCommand(c, this);
-        deckCommandManager.storeAndExecute(pickCmd);
+    public void pick(Card c) {  
+        //guessCardCommand pickCmd = new guessCardCommand(c, this);
+        //deckCommandManager.storeAndExecute(pickCmd);
     }
 
     /**
