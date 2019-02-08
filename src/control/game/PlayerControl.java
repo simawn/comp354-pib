@@ -105,12 +105,12 @@ public class PlayerControl {
             // If they chose their opponents last card or chose the assassin card
             if ((board.getNumCardsOfType(otherTeamColor) == 0) ||
                     (guess.type == CardType.Assassin)) {
-                Verbose.log("Game Over, " + otherTeamColor + " wins!");
+                Verbose.log("Assassin chosen. Game Over, " + otherTeamColor + " wins!");
                 gameOver = true;
                 return;
             }
 
-            Verbose.log("Wrong color! " + players[whosTurn].getTeam() + "'s turn ends.");
+            Verbose.log(guess.type + " chosen. " + players[whosTurn].getTeam() + "'s turn ends.");
             endTurn();
         }
         
