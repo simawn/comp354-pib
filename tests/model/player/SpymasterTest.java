@@ -5,17 +5,12 @@
  */
 package model.player;
 
-import java.io.IOException;
 import model.board.Board;
 import model.board.Card;
 import model.board.CardBuilder;
-import model.player.randomSpyStrategy;
 import model.board.Clue;
 import model.board.CardType;
-import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -29,24 +24,12 @@ public class SpymasterTest {
     public SpymasterTest() {
     }
     
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
-    }
-    
     @Before
     public void setUp() {
         Card[] cards = CardBuilder.buildAll();
         board = new Board(cards);
     }
     
-    @After
-    public void tearDown() {
-    }
-
     /**
      * Test of draw method, of class Board.
      */

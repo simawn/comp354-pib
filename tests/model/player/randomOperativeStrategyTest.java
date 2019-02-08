@@ -1,17 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package model.player;
 
 import java.util.ArrayList;
 import model.board.Card;
 import model.board.CardType;
-import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -26,24 +18,12 @@ public class randomOperativeStrategyTest {
     public randomOperativeStrategyTest() {
     }
     
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
-    }
-    
     @Before
     public void setUp() {
         cards = new ArrayList<>();
         for(int i = 0; i < 10; i++) {
             cards.add(new Card("Card" + i, CardType.Bystander));
         }
-    }
-    
-    @After
-    public void tearDown() {
     }
 
     /**

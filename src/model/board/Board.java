@@ -1,8 +1,5 @@
 package model.board;
 
-import control.command.CommandManager;
-import control.command.guessCardCommand;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -25,18 +22,6 @@ public class Board {
         this.cards = new ArrayList<>();
         Collections.addAll(this.cards, cards);
         
-    }
-    
-    /**
-     * Uses the Command pattern to remove a card from the board. 
-     * May be removed or moved in future iterations if we only use command pattern
-     * for communication between control and model.
-     * @param c card to remove
-     * @deprecated
-     */
-    public void pick(Card c) {  
-        //guessCardCommand pickCmd = new guessCardCommand(c, this);
-        //deckCommandManager.storeAndExecute(pickCmd);
     }
 
     /**

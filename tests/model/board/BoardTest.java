@@ -5,53 +5,27 @@
  */
 package model.board;
 
-import java.io.IOException;
 import java.util.ArrayList;
-import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
 /**
- *
- * @author david
+ * Unit test for Board class.
+ * 
+ * @author David Gray
+ * @date 02/07/2019
  */
 public class BoardTest {    
     Board instance;
     Card[] cards;
     public BoardTest() {
     }
-    
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
-    }
-    
+
     @Before
     public void setUp() {
         cards = CardBuilder.buildAll();
         instance = new Board(cards);
-    }
-    
-    @After
-    public void tearDown() {
-    }
-
-    /**
-     * Test of pick method, of class Board. Which uses CommandPattern
-     */
-    @Test
-    public void testPick() {
-        System.out.println("pick");
-        
-        Card firstCard = instance.getCards().get(0);
-        instance.pick(firstCard);
-        assertFalse("Verify that firstCard is no longer in the board", instance.getCards().contains(firstCard));
     }
     
     /**

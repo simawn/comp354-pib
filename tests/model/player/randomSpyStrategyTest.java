@@ -6,13 +6,8 @@
 package model.player;
 
 import java.util.ArrayList;
-import java.util.List;
 import model.board.Card;
 import model.board.Clue;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -24,22 +19,7 @@ public class randomSpyStrategyTest {
     
     public randomSpyStrategyTest() {
     }
-    
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
-    }
-    
-    @Before
-    public void setUp() {
-    }
-    
-    @After
-    public void tearDown() {
-    }
+
     /**
      * Test of giveClue method, of class randomSpyStrategy.
      */
@@ -52,7 +32,6 @@ public class randomSpyStrategyTest {
         assertTrue("randomSpyStrategy does not give null clue", clue != null);
         assertTrue("randomSpyStrategy gives clue number in range 0 - 9", clue.getClueNum() >=0 && clue.getClueNum() <= 9);
     }
-    
     
     /**
      * Test of giveClue method, of class randomSpyStrategy.

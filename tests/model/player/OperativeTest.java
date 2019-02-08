@@ -1,26 +1,19 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package model.player;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import model.board.Board;
 import model.board.Card;
 import model.board.CardBuilder;
 import model.board.CardType;
-import model.player.Operative;
-import model.player.randomOperativeStrategy;
-import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
 /**
+ * Unit test for CardTest class.
+ * 
+ * @author David Gray
+ * @date 02/07/2019
  *
  * @author Max Page-Slowik, David Gray
  */
@@ -29,26 +22,12 @@ public class OperativeTest {
     
     public OperativeTest() {
     }
-    
-    @BeforeClass
-    public static void setUpClass() {
 
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
-    }
-    
     @Before
     public void setUp() {
         Card[] cards = CardBuilder.buildAll();
         board = new Board(cards);
     }
-    
-    @After
-    public void tearDown() {
-    }
-    
 
     /**
      * Test of makeMove method, of class Operative.
