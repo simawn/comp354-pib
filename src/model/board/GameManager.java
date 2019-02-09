@@ -18,20 +18,20 @@ public class GameManager extends Subject {
      * winningTeam: null until a team wins, then it is their colour.
      * currentClue
      */
-    Player[] players;
-    int whosTurn;
-    CardType winningTeam;
-    Clue currentClue;
+    private Player[] players;
+    private int whosTurn;
+    private CardType winningTeam;
+    private Clue currentClue;
 
     /**
      * Number of guesses the current operative has made so far in their turn.
      */
-    int numOpGuesses;
+    private int numOpGuesses;
 
     /**
      * The instance of the game board.
      */
-    Board board;
+    private Board board;
             
     /**
      * Constructor.  Creates the players for the game. Initializes turn state depending on the key card.
@@ -95,7 +95,7 @@ public class GameManager extends Subject {
             this.push();
             return;
         }
-        if (isTurnOver(p, guess)) {
+        if (isTurnOver(p, guess, currentClue.getClueNum())) {
             Verbose.log(players[whosTurn].getTeam() + " turn ends.");
             endTurn();
         }
@@ -107,11 +107,12 @@ public class GameManager extends Subject {
      *
      * @param p     Player whose turn it is
      * @param guess the Card the player guessed
+     * @param clueNum the number given by the clue.
      * @return whether the turn is over.
      */
-    public boolean isTurnOver(Player p, Card guess) {
-        boolean outOfGuesses = (currentClue.getClueNum() != 0) &&
-                (numOpGuesses >= currentClue.getClueNum() + 1);
+    public boolean isTurnOver(Player p, Card guess, int clueNum) {
+        boolean outOfGuesses = (clueNum != 0) &&
+                (numOpGuesses >= clueNum + 1);
         return (outOfGuesses || (p.getTeam() != guess.type));
     }
     
