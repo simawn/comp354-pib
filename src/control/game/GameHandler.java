@@ -6,6 +6,7 @@ import model.board.GameManager;
 import javafx.event.EventHandler;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import view.ScoreView;
 import view.VerboseView;
 
 /**
@@ -18,11 +19,13 @@ public class GameHandler implements EventHandler<KeyEvent> {
 
     private GameManager game;
     private VerboseView view;
+    private ScoreView score;
     private CommandManager commandManager;
 
-    public GameHandler(GameManager game, VerboseView view) {
+    public GameHandler(GameManager game, VerboseView view, ScoreView score) {
         this.game = game;
         this.view = view;
+        this.score = score;
         this.commandManager = new CommandManager();
     }
 
@@ -37,6 +40,8 @@ public class GameHandler implements EventHandler<KeyEvent> {
             commandManager.storeAndExecute(new NextTurnCommand(game));
         } else if (keyEvent.getCode() == KeyCode.V && view != null) {
             view.open();
+        } else if (keyEvent.getCode() == KeyCode.S && view != null) {
+            score.open();
         }
     }
 

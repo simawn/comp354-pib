@@ -9,6 +9,7 @@ import model.board.CardBuilder;
 import model.util.Verbose;
 import view.GameScene;
 import view.VerboseView;
+import view.ScoreView;
 
 /**
  * This application is a prototype GUI program of the popular board game Codenames. 
@@ -42,8 +43,10 @@ public class Codenames extends Application {
 
         VerboseView view = new VerboseView(Verbose.get());
         Verbose.bind(view);
+        ScoreView score = new ScoreView(Verbose.get());
+        Verbose.bind(score);
 
-        GameHandler handler = new GameHandler(playerControl, view);
+        GameHandler handler = new GameHandler(playerControl, view, score);
         Scene scene = GameScene.build(cards, handler);
         root.setScene(scene);
         root.setResizable(false);
