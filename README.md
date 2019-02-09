@@ -10,9 +10,6 @@
 	java -version
 	```
 	**Note: Compiling source code in Java 9 does not allow Java 8/1.8 users to run the code. They would need to re-compile it. However, Java 9 users may run Java 8/1.8 code**
-
-To run the project in Eclipse, go to File -> New -> Java Project.  Uncheck "Use default location" and set the Location to the directory containing src, resources, and tests.
-Click Next, and go to the Libraries tab and add JUnit 5 (if you want to run the unit tests). Click Finish.
 	
 ## Usage 
 
