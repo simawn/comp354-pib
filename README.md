@@ -15,7 +15,7 @@ To run the project in Eclipse, go to File -> New -> Java Project.  Uncheck "Use 
 Click Next, and go to the Libraries tab and add JUnit 5 (if you want to run the unit tests). Click Finish.
 	
 ## Usage 
-=======
+
 ## Instructions for running
 
 1 - Ensure that the requirements have been met. The project will fail to run on JDK-11+ since the javaFX library has been removed from these versions.
