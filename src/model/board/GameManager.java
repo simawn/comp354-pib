@@ -178,9 +178,20 @@ public class GameManager extends Subject {
     public int getRedScore() {
         return board.getNumCardsOfType((CardType.Red));
     }
-    
+    /**
+     * Get the winning team.
+     * @return 
+     */
     public CardType getWinner() {
         return winningTeam;
+    }
+
+    /**
+     * Get the current clue being given.
+     * @return 
+     */
+    public Clue getCurrentClue() {
+        return currentClue;
     }
 
     /**
