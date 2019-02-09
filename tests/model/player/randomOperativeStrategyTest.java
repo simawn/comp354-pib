@@ -1,11 +1,14 @@
 package model.player;
 
-import java.util.ArrayList;
+import model.board.Board;
 import model.board.Card;
 import model.board.CardType;
 import org.junit.Before;
 import org.junit.Test;
-import static org.junit.Assert.*;
+
+import java.util.ArrayList;
+
+import static org.junit.Assert.assertTrue;
 
 /**
  *
@@ -32,10 +35,16 @@ public class randomOperativeStrategyTest {
     @Test
     public void testPickCard() {
         System.out.println("Testing randomness of RandomOperativeStrategy pickCard");
-        randomOperativeStrategy instance = new randomOperativeStrategy();
+        Card[] cards = new Card[25];
+        for (int i = 0; i < 25; i++) {
+            cards[i] = new Card("Card #" + i, CardType.Red);
+        }
+
+        Board board = new Board(cards);
+        Operative instance = new Operative(board);
         ArrayList<Card> picks = new ArrayList<>();
         for(int i = 0; i < 10; i++) {
-            Card pick = instance.pickCard(cards);
+            Card pick = instance.play(CardType.Red);
             System.out.println("Pick: " + i + ": " + pick);
             picks.add(pick);
         }

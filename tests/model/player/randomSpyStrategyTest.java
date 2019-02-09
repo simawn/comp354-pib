@@ -5,11 +5,14 @@
  */
 package model.player;
 
-import java.util.ArrayList;
 import model.board.Card;
+import model.board.CardType;
 import model.board.Clue;
 import org.junit.Test;
-import static org.junit.Assert.*;
+
+import java.util.ArrayList;
+
+import static org.junit.Assert.assertTrue;
 
 /**
  *
@@ -25,9 +28,9 @@ public class randomSpyStrategyTest {
      */
     @Test
     public void testGiveClue() {
-        randomSpyStrategy instance = new randomSpyStrategy();
+        Strategy instance = new Spymaster();
         ArrayList<Card> cards = new ArrayList<>(); //Empty arraylist since randomSpy doesn't care what the words are.
-        Clue clue = instance.giveClue(cards);
+        Clue clue = (Clue) instance.play(CardType.Red);
 
         assertTrue("randomSpyStrategy does not give null clue", clue != null);
         assertTrue("randomSpyStrategy gives clue number in range 0 - 9", clue.getClueNum() >=0 && clue.getClueNum() <= 9);
@@ -40,12 +43,11 @@ public class randomSpyStrategyTest {
     @Test
     public void testGiveClueRandomly() {
         System.out.println("Testing randomness of RandomSpyStrategy's giveClue()");
-        randomSpyStrategy instance = new randomSpyStrategy();
+        Spymaster instance = new Spymaster();
 
         ArrayList<Clue> clues = new ArrayList<>();
-        ArrayList<Card> cards = new ArrayList<>(); //Empty arraylist since randomSpy doesn't care what the words are.
         for(int i = 0; i < 10; i++) {
-            Clue clue = instance.giveClue(cards);
+            Clue clue = instance.play(CardType.Red);
             System.out.println("Clue: " + i + ": " + clue.getClueWord() + " " + clue.getClueNum());
             clues.add(clue);
         }

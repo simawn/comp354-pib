@@ -4,28 +4,25 @@ import model.board.Board;
 import model.board.Card;
 import model.board.CardType;
 
+import java.util.List;
+import java.util.Random;
 
 
-
-
-public class Operative extends Player{
+public class Operative implements Strategy {
 
     private Board board;
-    private OperativeStrategy opStrat;
+    private Random r;
 
-    public Operative(CardType team) {
-        super(team);
-    }
-
-    public Operative(CardType team, Board board, OperativeStrategy strategy) {
-        super(team);
-        this.opStrat = strategy;
+    public Operative(Board board) {
         this.board = board;
+        r = new Random();
     }
 
     @Override
-    public Card makeMove() {
-        return opStrat.pickCard(board.getCards());
+    public Card play(CardType team) {
+        List<Card> list = board.getCards();
+        int index = r.nextInt(list.size());
+        return list.get(index);
     }
 
 }

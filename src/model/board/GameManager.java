@@ -1,6 +1,9 @@
 package model.board;
 
-import model.player.*;
+import model.player.Operative;
+import model.player.Player;
+import model.player.Spymaster;
+import model.player.Strategy;
 import model.util.Verbose;
 
 /**
@@ -18,7 +21,8 @@ public class GameManager extends Subject {
      * winningTeam: null until a team wins, then it is their colour.
      * currentClue
      */
-    Player[] players;
+    private Player player;
+    private Strategy operative, spymaster;
     int whosTurn;
     CardType winningTeam;
     Clue currentClue;
@@ -39,19 +43,21 @@ public class GameManager extends Subject {
      * @param board
      */
     public GameManager(Board board) {
-        players = new Player[4];
-        players[0] = new Spymaster(CardType.Red, board, new randomSpyStrategy());
-        players[1] = new Operative(CardType.Red, board, new randomOperativeStrategy());
-        players[2] = new Spymaster(CardType.Blue, board, new randomSpyStrategy());
-        players[3] = new Operative(CardType.Blue, board, new randomOperativeStrategy());
-        whosTurn = 0;
+        player = new Player();
+        operative = new Operative(board);
+        spymaster = new Spymaster();
+
         if(board.getNumCardsOfType(CardType.Blue) == 9) {
             Verbose.log("Blue going first");
-            whosTurn = 2; //blue goes first because there are 9 blue cards
+            player.setTeam(CardType.Blue);
+        } else {
+            Verbose.log("Red going first");
+            player.setTeam(CardType.Red);
         }
-        this.numOpGuesses = 0;
+
+        numOpGuesses = 0;
         this.board = board;
-        this.winningTeam = null;
+        winningTeam = null;
     }
     
     /**
@@ -62,42 +68,43 @@ public class GameManager extends Subject {
             Verbose.log("Game Over");
             return;
         }
-        if((whosTurn % 2) == 0) { //SpyMasters turn
-            takeTurn((Spymaster) players[whosTurn]);
+        if (currentClue == null || currentClue.getClueNum() == 0) { //SpyMasters turn
+            spyPlay();
         } else { //Operatives turn
-            takeTurn((Operative) players[whosTurn]);
+            opPlay();
         }
     }
     
     /**
      * Have a Spymaster take their turn
-     * @param p 
      */
-    private void takeTurn(Spymaster p) {
-        currentClue = p.makeMove();
-        Verbose.log(players[whosTurn].getTeam() + " spymaster gave clue "
-                + currentClue.getClueWord() + ": " + currentClue.getClueNum());
-        endTurn();
+    private void spyPlay() {
+        player.setStrategy(spymaster);
+        currentClue = (Clue) player.play();
+        Verbose.log(player.getTeam() + " spymaster gave clue "
+                + currentClue.getClueWord() + ": " + (currentClue.getClueNum() == Integer.MAX_VALUE ? "0" : currentClue.getClueNum()));
+        currentClue.addClueNum();
+        player.setStrategy(operative);
     }
     
     /**
      * Have an Operative take their turn
-     * @param p 
      */
-    private void takeTurn(Operative p) {
-        Card guess = p.makeMove();
-        Verbose.log(players[whosTurn].getTeam() + " operative guessed " + guess.word);
+    private void opPlay() {
+        Card guess = (Card) player.play();
+        Verbose.log(player.getTeam() + " operative guessed " + guess.word);
         board.remove(guess);
-        numOpGuesses += 1;
+        currentClue.consumeClueNum();
         if(gameIsOver()){
-            winningTeam = declareWinner(p, guess);
+            winningTeam = declareWinner(player, guess);
             Verbose.log(winningTeam + " wins! Game Over.");
             this.push();
             return;
         }
-        if(isTurnOver(p, guess)) {
-            Verbose.log(players[whosTurn].getTeam() + " turn ends.");
-            endTurn();
+        if (isTurnOver(player, guess)) {
+            Verbose.log(player.getTeam() + " turn ends.");
+            player.switchTeam();
+            currentClue.setClueNum(0);
         }
     }
     
@@ -123,9 +130,10 @@ public class GameManager extends Subject {
     public boolean gameIsOver() {
         if(winningTeam != null) { return true; }
         if(board.getNumCardsOfType(CardType.Assassin) != 1) { return true; }
-        if(board.getNumCardsOfType(CardType.Blue) == 0) { return true; }        
-        if(board.getNumCardsOfType(CardType.Red) == 0) { return true; }
-        return false;
+        if (board.getNumCardsOfType(CardType.Blue) == 0) {
+            return true;
+        }
+        return board.getNumCardsOfType(CardType.Red) == 0;
     }
     
     /**
@@ -179,6 +187,6 @@ public class GameManager extends Subject {
     @Override
     public CardType getTypeProperty() {
         if(gameIsOver()) { return winningTeam ;}
-        return players[whosTurn].getTeam();
+        return player.getTeam();
     }
 }

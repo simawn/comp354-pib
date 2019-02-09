@@ -1,44 +1,36 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package model.player;
 
-import model.board.Board;
 import model.board.CardType;
 import model.board.Clue;
 
+import java.util.Random;
+
 /**
- * The implemented class for all spymasters.
- * Defines the basic functions and constructor that the spymaster strategies will use.
- * 
- * @author Anthony Funiciello, David Gray
- * @date 02/07/19
+    * The random strategy for spymaster that will choose clues by random as they play the game.
+ * @author david
  */
-public class Spymaster extends Player{
+public class Spymaster implements Strategy {
+    private String[] possibleClueWords = {"PLANT", "ANIMAL", "FURNITURE",
+                                        "COUNTRY", "WEAPON", "PROFESSIONAL",
+                                        "VEHICLE", "PLANET", "CONCEPT", "WEATHER"};
+    private Random r;
 
-     /**
-        * The spymaster's board they will use to "look" at.
-     */
-    private Board board;
-     /**
-     * The spymaster's strategy they will use when they play.
-     */
-    private SpyStrategy spyStrat;
-
-    public Spymaster(CardType team) {
-        super(team);
+    public Spymaster() {
+        r = new Random();
     }
-
     /**
-     * Instantiate a spymaster to the team, board and strategy they will use.
-     */
-    public Spymaster(CardType team, Board board, SpyStrategy strategy) {
-        super(team);
-        this.spyStrat = strategy;
-        this.board = board;
-    }
-
+    * Returns a clue at random according to the amount of cards available.
+    */
     @Override
-    public Clue makeMove() {
-        return spyStrat.giveClue(board.getCards());
+    public Clue play(CardType team) {
+        int clueNum = r.nextInt(4);
+        String clueWord = possibleClueWords[r.nextInt(possibleClueWords.length)];
+        return new Clue(clueWord, clueNum);
     }
-
+    
 }
-

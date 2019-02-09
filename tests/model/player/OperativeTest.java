@@ -1,13 +1,16 @@
 package model.player;
 
-import java.util.ArrayList;
 import model.board.Board;
 import model.board.Card;
 import model.board.CardBuilder;
 import model.board.CardType;
 import org.junit.Before;
 import org.junit.Test;
-import static org.junit.Assert.*;
+
+import java.util.ArrayList;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Unit test for CardTest class.
@@ -30,29 +33,29 @@ public class OperativeTest {
     }
 
     /**
-     * Test of makeMove method, of class Operative.
+     * Test of play method, of class Operative.
      */
     @Test
     public void testMakeMove() {
-        System.out.println("makeMove");
-        Operative randInstance = new Operative(CardType.Blue, board, new randomOperativeStrategy());
-        Card c = randInstance.makeMove();
+        System.out.println("play");
+        Operative randInstance = new Operative(board);
+        Card c = randInstance.play(CardType.Red);
         assertEquals("Checking that the Operative makes a legal selection", board.getCards().contains(c), true);
     }
     
     /**
-     * Test of makeMove method, of class Operative.
+     * Test of play method, of class Operative.
      */
     @Test
     public void testMakeRandomMove() {
         System.out.println("Testing that random operative makes somewhat random selections");
         ArrayList<Card> picks = new ArrayList<>();
-        Operative randInstance = new Operative(CardType.Blue, board, new randomOperativeStrategy());
+        Operative randInstance = new Operative(board);
 
-        Card firstPick = randInstance.makeMove();
+        Card firstPick = randInstance.play(CardType.Blue);
         System.out.println("firstPick: " + firstPick);
         for(int i = 0; i < 10; i++) {
-            Card pick = randInstance.makeMove();
+            Card pick = randInstance.play(CardType.Blue);
             System.out.println("Pick: " + i + ": " + pick);
             picks.add(pick);
         }

@@ -5,14 +5,12 @@
  */
 package model.player;
 
-import model.board.Board;
-import model.board.Card;
-import model.board.CardBuilder;
-import model.board.Clue;
-import model.board.CardType;
+import model.board.*;
 import org.junit.Before;
 import org.junit.Test;
-import static org.junit.Assert.*;
+
+import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.assertTrue;
 
 /**
  *
@@ -37,8 +35,8 @@ public class SpymasterTest {
     public void testClue() {
         System.out.println("clue");
 
-        Spymaster instance = new Spymaster(CardType.Blue, board, new randomSpyStrategy());
-        Clue c = instance.makeMove();
+        Spymaster instance = new Spymaster();
+        Clue c = instance.play(CardType.Red);
         assertNotEquals(c.getClueWord(), null);
         assertTrue(c.getClueNum() < 10 && c.getClueNum() >= 0);
         assertNotEquals(c, null);
