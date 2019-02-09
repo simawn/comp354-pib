@@ -17,15 +17,16 @@ import static org.junit.Assert.*;
  * @date 02/07/2019
  */
 public class BoardTest {    
-    Board instance;
+    Board board;
     Card[] cards;
+    
     public BoardTest() {
     }
 
     @Before
     public void setUp() {
         cards = CardBuilder.buildAll();
-        instance = new Board(cards);
+        board = new Board(cards);
     }
     
     /**
@@ -35,9 +36,9 @@ public class BoardTest {
     public void tesRemove_Card() {
         System.out.println("draw");
         
-        Card firstCard = instance.getCards().get(0);
-        instance.remove(firstCard);
-        assertFalse("Verify that firstCard is no longer in the board", instance.getCards().contains(firstCard));
+        Card firstCard = board.getCards().get(0);
+        board.remove(firstCard);
+        assertFalse("Verify that firstCard is no longer in the board", board.getCards().contains(firstCard));
     }
 
     /**
@@ -47,7 +48,7 @@ public class BoardTest {
     public void testGetCards() {
         System.out.println("getCards");
        
-        ArrayList<Card> result = (ArrayList<Card>) instance.getCards();
+        ArrayList<Card> result = (ArrayList<Card>) board.getCards();
         assertEquals("New board is 25 cards", 25, result.size()); 
         //Check whether or not elements are unique (by card object and by words)
     }
@@ -58,10 +59,10 @@ public class BoardTest {
     @Test
     public void testGetNumCardsOfType() {
         System.out.println("at");
-        int numRedCards = instance.getNumCardsOfType(CardType.Red);
-        int numBlueCards = instance.getNumCardsOfType(CardType.Blue);
-        int numAssassinCards = instance.getNumCardsOfType(CardType.Assassin);
-        int numBystanderCards = instance.getNumCardsOfType(CardType.Bystander);
+        int numRedCards = board.getNumCardsOfType(CardType.Red);
+        int numBlueCards = board.getNumCardsOfType(CardType.Blue);
+        int numAssassinCards = board.getNumCardsOfType(CardType.Assassin);
+        int numBystanderCards = board.getNumCardsOfType(CardType.Bystander);
         assertEquals("Just 1 assassin on the board", numAssassinCards, 1);
         assertEquals("7 Bystanders on the board", numBystanderCards, 7);
         if(numRedCards == 9) {
@@ -80,7 +81,7 @@ public class BoardTest {
     public void testAtOutOFBounds() {
         System.out.println("at");
 
-        Card none = instance.getCards().get(25);
+        Card none = board.getCards().get(25);
     }
     
 }
