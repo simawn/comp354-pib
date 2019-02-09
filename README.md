@@ -21,6 +21,7 @@ Click Next, and go to the Libraries tab and add JUnit 5 (if you want to run the 
 1 - Ensure that the requirements have been met. The project will fail to run on JDK-11+ since the javaFX library has been removed from these versions.
 
 2 - Import the project directory into the IDE of choice. Note that we used NetBeans/IntelliJ in this project. 
+
 2.a To run the project in Eclipse, go to File -> New -> Java Project.  Un-check "Use default location" and set the Location to the directory containing src, resources, and tests.
 Click Next, and go to the Libraries tab and add JUnit 5 (if you want to run the unit tests). Click Finish.
 
