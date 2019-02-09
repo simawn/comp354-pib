@@ -26,11 +26,7 @@ public class GameManager extends Subject {
     int whosTurn;
     CardType winningTeam;
     Clue currentClue;
-    
-    /**
-     * Number of guesses the current operative has made so far in their turn.
-     */
-    int numOpGuesses;
+
 
     /**
      * The instance of the game board.
@@ -55,7 +51,6 @@ public class GameManager extends Subject {
             player.setTeam(CardType.Red);
         }
 
-        numOpGuesses = 0;
         this.board = board;
         winningTeam = null;
     }
@@ -95,30 +90,20 @@ public class GameManager extends Subject {
         Verbose.log(player.getTeam() + " operative guessed " + guess.word);
         board.remove(guess);
         currentClue.consumeClueNum();
-        if(gameIsOver()){
+        if (gameIsOver()) {
             winningTeam = declareWinner(player, guess);
             Verbose.log(winningTeam + " wins! Game Over.");
             this.push();
             return;
         }
-        if (isTurnOver(player, guess)) {
+        /*
+          If they choose a card that isn't their teams, or they are out of guesses, their turn is over.
+         */
+        if (currentClue.getClueNum() == 0 || player.getTeam() != guess.type) {
             Verbose.log(player.getTeam() + " turn ends.");
             player.switchTeam();
             currentClue.setClueNum(0);
         }
-    }
-    
-    /**
-     * Called at the end of an Operatives turn. 
-     * If they choose a card that isn't their teams, or they are out of guesses, their turn is over.
-     * @param p Player whose turn it is
-     * @param guess the Card the player guessed
-     * @return whether the turn is over.
-     */
-    public boolean isTurnOver(Player p, Card guess) {
-        boolean outOfGuesses = (currentClue.getClueNum() != 0 ) &&
-                (numOpGuesses >= currentClue.getClueNum() + 1);
-        return (outOfGuesses || (p.getTeam() != guess.type));
     }
     
     /**
@@ -157,14 +142,6 @@ public class GameManager extends Subject {
             }
         }
     }
-    
-    /**
-     * Circularly increment the turn array index whosTurn, and reset numOpGuesses to 0.
-     */
-    private void endTurn() {
-        whosTurn = (whosTurn + 1) % 4;
-        numOpGuesses = 0;
-    }   
 
 
     /**
