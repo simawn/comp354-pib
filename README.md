@@ -1,11 +1,6 @@
 # Codenames
 
-
-![image](https://drive.google.com/uc?export=view&id=1iULsCRsBDgCbQs45UTBxQallmXX1vwEA)
-
-
-![image](https://drive.google.com/uc?export=view&id=1Ny0GUSe5mrKGhEXX9AZ6cm-LiqWQMDCK)
-
+![image](https://drive.google.com/uc?export=view&id=16011UQ-yv_0t4Q86A45mW_bUYCFVEywY)
 
 ## Requirements
 
@@ -15,59 +10,22 @@
 	java -version
 	```
 	**Note: Compiling source code in Java 9 does not allow Java 8/1.8 users to run the code. They would need to re-compile it. However, Java 9 users may run Java 8/1.8 code**
+## Usage
 
-## Compilation Guide
+### Play Game
+To cycle through the game, simply press *Enter* key. Every invocation of this key allows for either the Operative or the Spymaster to perform an action.
 
-```diff
-- Note: Please read the requirements section first before proceeding to any subsection
-```
-**Compilation instructions are similar in Windows and Linux/GNU**
+### Verbose View
+To have an informative log of the game, press *V* key. This will show a new window with which the logs will be displayed for every phase of the game in the main game window. 
 
-1. Before proceeding, ensure that cmd prompt / terminal is opened and points to the current path of the project.
-	Example:
-	```
-	cd ~/Downloads/comp354-pib
-	```
 
-### Compiling Existing Sources
+## Dependency Tree
 
-2. To compile the code, use:
-	```
-	javac @sources.txt -d ./bin
-	```
-	This will compile the entire project into the bin folder.
+### UML Diagram
 
-### Adding Sources for Compilation
+![image](https://drive.google.com/uc?export=view&id=1omf_et8GsZn5pPZziDwZVTSH6asKY6zl)
 
-2. To add new sources to be prepared for compilation, use:
-	```
-	find -name "*.java" > sources.txt
-	```
 
-	or simply type the name of the new sources by appending to that file.
+### Visual Web
 
-## Execution Guide
-
-```diff
-- Note: Please read the requirements section first before proceeding to any subsection
-```
-**Compilation instructions are similar in Windows and Linux/GNU**
-
-1. Before proceeding, ensure that cmd prompt / terminal is opened and points to the current path of the project.
-
-2. Run the terminal/cmd prompt and change current path to the bin folder (comp354-pib/bin) using the command 'cd'.
-
-	Example:
-	```
-	cd ~/Downloads/comp354-pib/bin
-	```
-
-	Otherwise if the current session is already pointing to the project folder, simply type:
-	```
-	cd ./bin
-	```
-
-3. Run the project's main entry class:
-	```
-	java Codenames
-	```
+![image](https://drive.google.com/uc?export=view&id=1qw0Oeij9mqHS15xMVfIckwBrn_xEoN9I)
