@@ -78,6 +78,7 @@ public class GameManager extends Subject {
         Verbose.log(players[whosTurn].getTeam() + " spymaster gave clue "
                 + currentClue.getClueWord() + ": " + currentClue.getClueNum());
         endTurn();
+        this.push();
     }
     
     /**
@@ -99,6 +100,7 @@ public class GameManager extends Subject {
             Verbose.log(players[whosTurn].getTeam() + " turn ends.");
             endTurn();
         }
+        this.push();
     }
 
     /**
@@ -161,6 +163,25 @@ public class GameManager extends Subject {
         numOpGuesses = 0;
     }   
 
+    /**
+     * Get the number of blue cards left to guess.
+     * @return 
+     */
+    public int getBlueScore() {
+        return board.getNumCardsOfType((CardType.Blue));
+    }
+    
+    /**
+     * Get the number of red cards left to guess.
+     * @return 
+     */
+    public int getRedScore() {
+        return board.getNumCardsOfType((CardType.Red));
+    }
+    
+    public CardType getWinner() {
+        return winningTeam;
+    }
 
     /**
      * The "String" property of this Subject is the current clue,
@@ -171,7 +192,7 @@ public class GameManager extends Subject {
     public String getStringProperty() {
         if(currentClue == null) { return ""; }
         if(gameIsOver()) { return "Game Over.";}
-        return currentClue.toString();
+        return "Current Clue: " + currentClue.toString();
     }
 
     /**

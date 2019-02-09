@@ -32,18 +32,16 @@ public class ScoreView implements Observer {
     private Label blueScore = new Label();
     private GameManager game;
     private CardType winningTeam;
-    private Player player;
-    private Card card;
-    private Board board;
+    // private Player player; can remove
+    // private Card card; can remove
+    // private Board board; can remove
     /**
      * Create the VerboseView with a Subject s that it will be bound to.
-     * @param s 
+     * @param game
      */
-    public ScoreView(Subject s) {
-        this.subject = s;
-
-        
-        
+    public ScoreView(GameManager game) {
+        this.subject = game;
+        this.game = game;
         Scene scene = new Scene(t, 300, 250);
         scene.setOnKeyPressed(keyEvent -> {
             if (keyEvent.getCode() == KeyCode.S) {
@@ -68,24 +66,25 @@ public class ScoreView implements Observer {
      * @param arg 
      */
     public void log(String arg) {
-
-        if (arg.contains("Blue")) {
-             t.setTextFill(Color.BLUE);
-           t.setText("Blue's Turn");
-        } else if (arg.contains("Red")) {
+        if (subject.getTypeProperty() == CardType.Blue) { // CHANGED
+            t.setTextFill(Color.BLUE);
+            t.setText("Blue's Turn");
+        } else if (subject.getTypeProperty() == CardType.Red) { // CHANGED
              t.setTextFill(Color.RED);
              t.setText("Red's Turn");
         }
-        //redScore.setText("Red: ");
-        //blueScore.setText("Blue: ");
-        //blueScore.setText("Blue: " + board.getNumCardsOfType(CardType.Blue));
-        //redScore.setText("Red: " + board.getNumCardsOfType(CardType.Red));
         
-        /*if(game.declareWinner(player, card) == CardType.Red){
-            t.setText("Red wins!");
-        }else{
-            t.setText("Blue wins!");
-        }*/
+        redScore.setText("Red: ");
+        blueScore.setText("Blue: ");
+        blueScore.setText("Blue: " + game.getBlueScore()); // CHANGED
+        redScore.setText("Red: " + game.getRedScore());
+        
+        if(game.getWinner() != null){
+            t.setText(game.getWinner() + " Wins!");
+        }
+        
+        //If you call this, it will return either "Current Clue: Clue: num" OR "Game Over".
+        // game.getStringProperty() but you can also do it the way you had it.
         //hbox.getChildren().add(t);
     }
 

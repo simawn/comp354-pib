@@ -39,14 +39,14 @@ public class Codenames extends Application {
     public void start(Stage root) {
         Card[] cards = CardBuilder.buildAll();
         Board board = new Board(cards);
-        GameManager playerControl = new GameManager(board);
+        GameManager game = new GameManager(board);
 
         VerboseView view = new VerboseView(Verbose.get());
         Verbose.bind(view);
-        ScoreView score = new ScoreView(Verbose.get());
-        Verbose.bind(score);
+        ScoreView score = new ScoreView(game);
+        game.attach(score);
 
-        GameHandler handler = new GameHandler(playerControl, view, score);
+        GameHandler handler = new GameHandler(game, view, score);
         Scene scene = GameScene.build(cards, handler);
         root.setScene(scene);
         root.setResizable(false);
