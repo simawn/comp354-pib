@@ -27,6 +27,7 @@ public class GameHandler implements EventHandler<KeyEvent> {
         this.view = view;
         this.score = score;
         this.commandManager = new CommandManager();
+        score.open();
     }
 
     /**
@@ -40,9 +41,8 @@ public class GameHandler implements EventHandler<KeyEvent> {
             commandManager.storeAndExecute(new NextTurnCommand(game));
         } else if (keyEvent.getCode() == KeyCode.V && view != null) {
             view.open();
-        } else if (keyEvent.getCode() == KeyCode.S && view != null) {
-            score.open();
         }
+        
     }
 
 
