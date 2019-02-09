@@ -16,6 +16,7 @@ import model.board.Subject;
 import model.board.GameManager;
 import model.player.Player;
 import model.board.Card;
+import model.board.Board;
 /**
 * VerboseView logs game play information, in an optionally visible window.
 * 
@@ -33,6 +34,7 @@ public class ScoreView implements Observer {
     private CardType winningTeam;
     private Player player;
     private Card card;
+    private Board board;
     /**
      * Create the VerboseView with a Subject s that it will be bound to.
      * @param s 
@@ -49,6 +51,9 @@ public class ScoreView implements Observer {
             }
         });
         Group root = new Group();
+        
+        redScore.setTranslateY(50);
+        blueScore.setTranslateY(65);
         stage = new Stage();
         stage.setTitle("Codenames - Score");
         root.getChildren().add(t);
@@ -71,6 +76,11 @@ public class ScoreView implements Observer {
              t.setTextFill(Color.RED);
              t.setText("Red's Turn");
         }
+        //redScore.setText("Red: ");
+        //blueScore.setText("Blue: ");
+        //blueScore.setText("Blue: " + board.getNumCardsOfType(CardType.Blue));
+        //redScore.setText("Red: " + board.getNumCardsOfType(CardType.Red));
+        
         /*if(game.declareWinner(player, card) == CardType.Red){
             t.setText("Red wins!");
         }else{
