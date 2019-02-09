@@ -1,13 +1,16 @@
 package model.player;
 
-import java.util.ArrayList;
 import model.board.Board;
 import model.board.Card;
 import model.board.CardBuilder;
 import model.board.CardType;
 import org.junit.Before;
 import org.junit.Test;
-import static org.junit.Assert.*;
+
+import java.util.ArrayList;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Unit test for CardTest class.

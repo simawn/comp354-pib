@@ -13,11 +13,11 @@ public abstract class Player {
      * The players team (Red or Blue)
      */
     private CardType team;
-    
+
     public Player(CardType team) {
         this.team = team;
     }
-    
+
     public CardType getTeam() {
         return team;
     }

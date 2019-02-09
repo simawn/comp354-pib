@@ -1,11 +1,13 @@
 package model.player;
 
-import java.util.ArrayList;
 import model.board.Card;
 import model.board.CardType;
 import org.junit.Before;
 import org.junit.Test;
-import static org.junit.Assert.*;
+
+import java.util.ArrayList;
+
+import static org.junit.Assert.assertTrue;
 
 /**
  *

@@ -7,7 +7,7 @@ import java.util.List;
 
 /**
  * The interface for strategies for Operatives. (Strategy Pattern)
- * 
+ *
  * @author Anthony Funiciello, David Gray
  * @date 02/07/19
  */

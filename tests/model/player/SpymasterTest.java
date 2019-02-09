@@ -5,14 +5,12 @@
  */
 package model.player;
 
-import model.board.Board;
-import model.board.Card;
-import model.board.CardBuilder;
-import model.board.Clue;
-import model.board.CardType;
+import model.board.*;
 import org.junit.Before;
 import org.junit.Test;
-import static org.junit.Assert.*;
+
+import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.assertTrue;
 
 /**
  *

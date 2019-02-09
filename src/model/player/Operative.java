@@ -5,6 +5,7 @@ import model.board.Card;
 import model.board.CardType;
 
 
+<<<<<<< HEAD
 
 
 /**
@@ -15,6 +16,9 @@ import model.board.CardType;
  * @date 02/07/19
  */
 public class Operative extends Player{
+=======
+public class Operative extends Player {
+>>>>>>> 95d6f74b9ef566c17a8c3fa07de8236823b5d4f0
 
      /**
      * The player's board they will play on.

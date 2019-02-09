@@ -11,7 +11,10 @@ import java.util.List;
 import java.util.Random;
 
 /**
+<<<<<<< HEAD
  * The random strategy for operator that will choose cards by random as they play the game.
+=======
+>>>>>>> 95d6f74b9ef566c17a8c3fa07de8236823b5d4f0
  * @author david
  */
 public class randomOperativeStrategy implements OperativeStrategy {
@@ -25,5 +28,5 @@ public class randomOperativeStrategy implements OperativeStrategy {
         Random rand = new Random();
         return cards.get(rand.nextInt(cards.size()));
     }
-    
+
 }

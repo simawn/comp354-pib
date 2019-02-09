@@ -7,17 +7,17 @@ import model.board.Clue;
 /**
  * The implemented class for all spymasters.
  * Defines the basic functions and constructor that the spymaster strategies will use.
- * 
+ *
  * @author Anthony Funiciello, David Gray
  * @date 02/07/19
  */
-public class Spymaster extends Player{
+public class Spymaster extends Player {
 
-     /**
-        * The spymaster's board they will use to "look" at.
+    /**
+     * The spymaster's board they will use to "look" at.
      */
     private Board board;
-     /**
+    /**
      * The spymaster's strategy they will use when they play.
      */
     private SpyStrategy spyStrat;

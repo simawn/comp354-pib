@@ -20,7 +20,7 @@ public class Clue {
         this.clueNum = clueNum;
         this.clueWord = clueWord;
     }
-    
+
     public String getClueWord(){
         return clueWord;
     }

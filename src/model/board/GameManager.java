@@ -18,20 +18,20 @@ public class GameManager extends Subject {
      * winningTeam: null until a team wins, then it is their colour.
      * currentClue
      */
-    Player[] players;
-    int whosTurn;
-    CardType winningTeam;
-    Clue currentClue;
-    
+    private Player[] players;
+    private int whosTurn;
+    private CardType winningTeam;
+    private Clue currentClue;
+
     /**
      * Number of guesses the current operative has made so far in their turn.
      */
-    int numOpGuesses;
+    private int numOpGuesses;
 
     /**
      * The instance of the game board.
      */
-    Board board;
+    private Board board;
             
     /**
      * Constructor.  Creates the players for the game. Initializes turn state depending on the key card.
@@ -62,7 +62,7 @@ public class GameManager extends Subject {
             Verbose.log("Game Over");
             return;
         }
-        if((whosTurn % 2) == 0) { //SpyMasters turn
+        if ((whosTurn % 2) == 0) { //SpyMasters turn
             takeTurn((Spymaster) players[whosTurn]);
         } else { //Operatives turn
             takeTurn((Operative) players[whosTurn]);
@@ -89,28 +89,30 @@ public class GameManager extends Subject {
         Verbose.log(players[whosTurn].getTeam() + " operative guessed " + guess.word);
         board.remove(guess);
         numOpGuesses += 1;
-        if(gameIsOver()){
+        if (gameIsOver()) {
             winningTeam = declareWinner(p, guess);
             Verbose.log(winningTeam + " wins! Game Over.");
             this.push();
             return;
         }
-        if(isTurnOver(p, guess)) {
+        if (isTurnOver(p, guess, currentClue.getClueNum())) {
             Verbose.log(players[whosTurn].getTeam() + " turn ends.");
             endTurn();
         }
     }
-    
+
     /**
-     * Called at the end of an Operatives turn. 
+     * Called at the end of an Operatives turn.
      * If they choose a card that isn't their teams, or they are out of guesses, their turn is over.
-     * @param p Player whose turn it is
+     *
+     * @param p     Player whose turn it is
      * @param guess the Card the player guessed
+     * @param clueNum the number given by the clue.
      * @return whether the turn is over.
      */
-    public boolean isTurnOver(Player p, Card guess) {
-        boolean outOfGuesses = (currentClue.getClueNum() != 0 ) &&
-                (numOpGuesses >= currentClue.getClueNum() + 1);
+    public boolean isTurnOver(Player p, Card guess, int clueNum) {
+        boolean outOfGuesses = (clueNum != 0) &&
+                (numOpGuesses >= clueNum + 1);
         return (outOfGuesses || (p.getTeam() != guess.type));
     }
     
@@ -118,14 +120,15 @@ public class GameManager extends Subject {
      * Determines if the game is over. 
      * The game is over if a team has been declared winner already, or if all of a teams
      * cards have been chosen, or the assassin has been chosen.
-     * @return 
+     * @return
      */
     public boolean gameIsOver() {
         if(winningTeam != null) { return true; }
-        if(board.getNumCardsOfType(CardType.Assassin) != 1) { return true; }
-        if(board.getNumCardsOfType(CardType.Blue) == 0) { return true; }        
-        if(board.getNumCardsOfType(CardType.Red) == 0) { return true; }
-        return false;
+        if(board.getNumCardsOfType(CardType.Assassin) != 1) { return true;
+        }
+        if (board.getNumCardsOfType(CardType.Blue) == 0) {
+            return true; }
+        return board.getNumCardsOfType(CardType.Red) == 0;
     }
     
     /**
@@ -136,11 +139,11 @@ public class GameManager extends Subject {
      * 
      * @param lastPlayer
      * @param lastGuess
-     * @return 
+     * @return
      */
     public CardType declareWinner(Player lastPlayer, Card lastGuess) {
-        if(lastGuess.type == lastPlayer.getTeam()){ 
-            return lastPlayer.getTeam(); 
+        if(lastGuess.type == lastPlayer.getTeam()){
+            return lastPlayer.getTeam();
         } else {
             if(lastPlayer.getTeam() == CardType.Blue) {
                 return CardType.Red;
@@ -149,7 +152,7 @@ public class GameManager extends Subject {
             }
         }
     }
-    
+
     /**
      * Circularly increment the turn array index whosTurn, and reset numOpGuesses to 0.
      */
@@ -178,7 +181,8 @@ public class GameManager extends Subject {
      */
     @Override
     public CardType getTypeProperty() {
-        if(gameIsOver()) { return winningTeam ;}
+        if(gameIsOver()) { return winningTeam;
+        }
         return players[whosTurn].getTeam();
     }
 }
