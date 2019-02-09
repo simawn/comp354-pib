@@ -20,7 +20,8 @@
 3 - Ensure that the working directory is the main project directory, and not a sub-directory of the main project. This avoids path issues relating to the resources folder. 
 
 4 - Compile the project and run the entry class "Codenames.java" within the project directory.
-	4.a - If the project fails to compile due to missing URL/Path issues, copy the resources folder into the out/bin folder and re-run. 
+
+4.a - If the project fails to compile due to missing URL/Path issues, copy the resources folder into the out/bin folder and re-run. 
 
 
 ## Usage
