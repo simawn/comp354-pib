@@ -23,9 +23,8 @@ public class GameManager extends Subject {
      */
     private Player player;
     private Strategy operative, spymaster;
-    int whosTurn;
-    CardType winningTeam;
-    Clue currentClue;
+    private CardType winningTeam;
+    private Clue currentClue;
 
 
     /**
@@ -112,7 +111,7 @@ public class GameManager extends Subject {
      * cards have been chosen, or the assassin has been chosen.
      * @return 
      */
-    public boolean gameIsOver() {
+    private boolean gameIsOver() {
         if(winningTeam != null) { return true; }
         if(board.getNumCardsOfType(CardType.Assassin) != 1) { return true; }
         if (board.getNumCardsOfType(CardType.Blue) == 0) {
@@ -131,7 +130,7 @@ public class GameManager extends Subject {
      * @param lastGuess
      * @return 
      */
-    public CardType declareWinner(Player lastPlayer, Card lastGuess) {
+    private CardType declareWinner(Player lastPlayer, Card lastGuess) {
         if(lastGuess.type == lastPlayer.getTeam()){ 
             return lastPlayer.getTeam(); 
         } else {
