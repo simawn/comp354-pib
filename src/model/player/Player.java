@@ -8,40 +8,18 @@ package model.player;
  */
 import model.board.CardType;
 
-public class Player {
+public abstract class Player {
     /**
      * The players team (Red or Blue)
      */
     private CardType team;
-    private Strategy strat;
 
-    public Player() {
-        team = null;
-        strat = null;
-    }
-
-    public void setTeam(CardType team) {
+    public Player(CardType team) {
         this.team = team;
     }
 
     public CardType getTeam() {
         return team;
-    }
-
-    public void switchTeam() {
-        if (this.team == null) {
-            throw new IllegalStateException();
-        }
-
-        this.team = team == CardType.Red ? CardType.Blue : CardType.Red;
-    }
-
-    public Strategy getStrategy() {
-        return strat;
-    }
-
-    public void setStrategy(Strategy strat) {
-        this.strat = strat;
     }
  
     /**
@@ -50,10 +28,5 @@ public class Player {
      * 
      * @return 
      */
-    public Object play() {
-        if (team == null || strat == null) {
-            throw new IllegalStateException();
-        }
-        return strat.play(team);
-    }
+    public abstract Object makeMove();
 }

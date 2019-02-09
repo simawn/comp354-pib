@@ -35,8 +35,8 @@ public class SpymasterTest {
     public void testClue() {
         System.out.println("clue");
 
-        Spymaster instance = new Spymaster();
-        Clue c = instance.play(CardType.Red);
+        Spymaster instance = new Spymaster(CardType.Blue, board, new randomSpyStrategy());
+        Clue c = instance.makeMove();
         assertNotEquals(c.getClueWord(), null);
         assertTrue(c.getClueNum() < 10 && c.getClueNum() >= 0);
         assertNotEquals(c, null);

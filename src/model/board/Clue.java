@@ -17,26 +17,12 @@ public class Clue {
     private int clueNum;
     
     public Clue(String clueWord, int clueNum){
-        this.clueNum = clueNum == 0 ? Integer.MAX_VALUE : clueNum;
+        this.clueNum = clueNum;
         this.clueWord = clueWord;
     }
 
-    public void setClueNum(int i) {
-        this.clueNum = i;
-    }
     public String getClueWord(){
         return clueWord;
-    }
-
-    public void consumeClueNum() {
-        if (clueNum == 0) {
-            throw new IllegalStateException();
-        }
-        clueNum--;
-    }
-
-    public void addClueNum() {
-        clueNum++;
     }
 
     public int getClueNum(){
