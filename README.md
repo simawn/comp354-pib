@@ -13,7 +13,7 @@
 	
 ## Usage 
 
-## Instructions for running
+### Instructions for running
 
 1 - Ensure that the requirements have been met. The project will fail to run on JDK-11+ since the javaFX library has been removed from these versions.
 
