@@ -6,6 +6,8 @@ import random
 import os
 import time
 
+# C:\Users\Simon\Documents\Code\comp354-pib\resources\words.txt
+
 f = open(input("File path:"), "r")
 n = int(input("How many?"))
 lines = [line.rstrip('\n') for line in f]
