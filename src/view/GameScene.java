@@ -4,6 +4,9 @@ import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Menu;
+import javafx.scene.control.MenuBar;
+import javafx.scene.control.MenuItem;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
@@ -64,7 +67,10 @@ public class GameScene {
      * @return the GUI Scene.
      */
     public static Scene build(Subject[] subjects, EventHandler<KeyEvent> handler) {
+        VBox vb = new VBox();
+        
         TilePane tile = new TilePane();
+        Scene scene = new Scene(vb);
 
         tile.setPadding((new Insets(4, 4, 4, 4)));
         tile.setBackground(new Background(new BackgroundFill(Color.valueOf("877567"), CornerRadii.EMPTY, Insets.EMPTY)));
@@ -76,7 +82,32 @@ public class GameScene {
             tile.getChildren().add(new CardPane(subject));
         }
 
-        Scene scene = new Scene(tile);
+
+                MenuBar menuBar = new MenuBar();
+ 
+        // --- Menu Action for start and quit
+        Menu menuAction = new Menu("Action");
+                MenuItem start = new MenuItem("Start");
+                MenuItem quit = new MenuItem("Quit");
+
+ 
+        menuAction.getItems().addAll(start,quit);
+ 
+        // --- Menu Difficulty
+        Menu menuDiff = new Menu("Difficulty");
+                MenuItem easy = new MenuItem("Easy");
+                MenuItem med = new MenuItem("Medium");
+                MenuItem hard = new MenuItem("Hard");
+         menuDiff.getItems().addAll(easy,med,hard);
+
+        // --- Menu About section
+        Menu menuAbout = new Menu("About");
+ 
+        menuBar.getMenus().addAll(menuAction, menuDiff, menuAbout);
+ 
+        ((VBox) scene.getRoot()).getChildren().addAll(menuBar);
+        ((VBox) scene.getRoot()).getChildren().addAll(tile);
+
         scene.setOnKeyPressed(handler);
         return scene;
     }
