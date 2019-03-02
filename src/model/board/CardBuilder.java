@@ -36,8 +36,7 @@ abstract class Extractor {
         }
 
         List<String> list = Files.readAllLines(Path);
-        Collections.shuffle(list); //WARNING: The provided .json is a single line. Shuffle won't work here.
-
+        
         return list;
     }
 
@@ -65,7 +64,7 @@ class Word extends Extractor {
         
         //Start .jsonParse
         JSONParser parser = new JSONParser();
-        Object obj = parser.parse(sb.toString()); //Read .json file
+        Object obj = parser.parse(sb.toString()); //Read .json data
         
         JSONObject jsonObj = (JSONObject) obj;
         
@@ -73,11 +72,11 @@ class Word extends Extractor {
         
         for(Iterator it = jsonObj.keySet().iterator(); it.hasNext();) { //Loop through keys
         	String key = (String) it.next();
-        	System.out.println(key);
+        	//System.out.println(key);
         	jsonList.add(key);
         }
         
-        Collections.shuffle(jsonList); //Needed since it won't shuffle on build. .json file is a single line.
+        Collections.shuffle(jsonList); //Shuffle words
         
         return jsonList.toArray(new String[SIZE]);
     }
@@ -96,7 +95,9 @@ class KeyCard extends Extractor {
 
     CardType[] parse() throws IOException, ParseException {
         List<String> list = build(PATH);
-
+        
+        Collections.shuffle(list); //Moved shuffle from build to here
+        
         String temp = list.remove(0);
 
         if (temp.length() != SIZE) {
