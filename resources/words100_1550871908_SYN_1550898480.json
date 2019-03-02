@@ -12,13 +12,13 @@
           "Wonder Woman",
           "river",
           "kindle",
-          "orinoco"
+          "rainforest"
        ]
     },
     "ANTARCTICA":{
        "syn":[
           "South",
-          "nunatak",
+          "snow",
           "glacier",
           "meridian"
        ]
@@ -50,9 +50,9 @@
     "BEIJING":{
        "syn":[
           "peking",
-          "peiping",
-          "peking",
-          "shanghai"
+          "china",
+          "capital",
+          "city"
        ]
     },
     "BELL":{
@@ -67,8 +67,8 @@
        "syn":[
           "span",
           "nosepiece",
-          "Troitsky",
-          "truss"
+          "overpass",
+          "arch"
        ]
     },
     "BUCK":{
@@ -90,7 +90,7 @@
     "CAP":{
        "syn":[
           "America",
-          "crest",
+          "hat",
           "ceiling",
           "detonator"
        ]
@@ -100,20 +100,20 @@
           "machine",
           "auto",
           "automobile",
-          "gondola"
+          "motor"
        ]
     },
     "CARROT":{
        "syn":[
-          "parsnip",
-          "beetroot",
+          "rabbit",
+          "vegetable",
           "orange",
           "radish"
        ]
     },
     "CASINO":{
        "syn":[
-          "Ocean",
+          "gamble",
           "royale",
           "craps",
           "blackjack"
@@ -130,9 +130,9 @@
     "CHARGE":{
        "syn":[
           "point",
-          "care",
+          "accusation",
           "level",
-          "tear"
+          "battery"
        ]
     },
     "CHECK":{
@@ -155,7 +155,7 @@
        "syn":[
           "christianity",
           "agnostic",
-          "deanery",
+          "building",
           "atheist"
        ]
     },
@@ -164,7 +164,7 @@
           "drop-off",
           "hanger",
           "overlooking",
-          "ewing"
+          "mountain"
        ]
     },
     "CLUB":{
@@ -188,22 +188,22 @@
           "complex",
           "combine",
           "conjugate",
-          "cleft"
+          "alloy"
        ]
     },
     "CONDUCTOR":{
        "syn":[
           "director",
-          "toscanini",
-          "philharmonic",
+          "manager",
+          "train",
           "symphony"
        ]
     },
     "CONTRACT":{
        "syn":[
-          "get",
-          "take",
-          "cut",
+          "legal",
+          "pledge",
+          "pact",
           "sign"
        ]
     },
@@ -211,15 +211,15 @@
        "syn":[
           "cycle",
           "time",
-          "parade",
-          "holiday"
+          "week",
+          "sun"
        ]
     },
     "DEATH":{
        "syn":[
           "end",
           "last",
-          "demise",
+          "loss",
           "reaper"
        ]
     },
@@ -233,8 +233,8 @@
     },
     "DRAGON":{
        "syn":[
-          "tartar",
-          "firedrake",
+          "monster",
+          "dracarys",
           "quest",
           "slayer"
        ]
@@ -243,8 +243,8 @@
        "syn":[
           "practice",
           "exercise",
-          "bore",
-          "practise"
+          "hole",
+          "tool"
        ]
     },
     "FALL":{
@@ -257,16 +257,16 @@
     },
     "FAN":{
        "syn":[
-          "buff",
-          "winnow",
+          "windmill",
+          "propeller",
           "lover",
-          "afficionado"
+          "wind"
        ]
     },
     "FENCE":{
        "syn":[
           "wall",
-          "contend",
+          "block",
           "argue",
           "debate"
        ]
@@ -290,14 +290,14 @@
     "FIRE":{
        "syn":[
           "burn",
-          "elicit",
-          "can",
+          "terminate",
+          "fly",
           "raise"
        ]
     },
     "FLUTE":{
        "syn":[
-          "high",
+          "instrument",
           "bassoon",
           "oboe",
           "contrabass"
@@ -316,13 +316,13 @@
           "glaze",
           "pint",
           "see-through",
-          "menagerie"
+          "transparent"
        ]
     },
     "GLOVE":{
        "syn":[
           "mitt",
-          "condom",
+          "hand",
           "slugger",
           "mitten"
        ]
@@ -345,10 +345,10 @@
     },
     "HAM":{
        "syn":[
-          "gammon",
+          "burger",
           "overact",
-          "overplay",
-          "Iberico"
+          "hot-dog",
+          "pig"
        ]
     },
     "HOOK":{
@@ -403,7 +403,7 @@
        "syn":[
           "horse",
           "dub",
-          "kcmg",
+          "white",
           "garter"
        ]
     },
@@ -722,8 +722,8 @@
     "TEACHER":{
        "syn":[
           "instructor",
-          "optimize",
-          "salary",
+          "prof",
+          "student",
           "ratio"
        ]
     },
@@ -788,7 +788,7 @@
           "giant",
           "hulk",
           "heavyweight",
-          "minke"
+          "mammal"
        ]
     },
     "WORM":{
