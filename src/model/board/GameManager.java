@@ -68,7 +68,20 @@ public class GameManager extends Subject {
             takeTurn((Operative) players[whosTurn]);
         }
     }
-    
+    /**
+     * Have a Spymaster make a logical hint based on wordnet
+     * @param p the spymaster making that move
+     */
+    private void takeSmartTurn(Spymaster p){
+        
+    }
+    /**
+     * Have the operative make a smart guess based on the clue
+     * @param p the operative making that move
+     */
+    private void takeSmartTurn(Operative p){
+        
+    }
     /**
      * Have a Spymaster take their turn
      * @param p 

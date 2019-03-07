@@ -1,5 +1,7 @@
 package view;
 
+import control.game.Difficulty;
+import control.game.GameControls;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -11,6 +13,8 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.*;
+import static javafx.scene.layout.StackPane.setAlignment;
+import static javafx.scene.layout.StackPane.setMargin;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import model.board.CardType;
@@ -23,7 +27,7 @@ import model.board.Subject;
 * @author Rani Rafid
 * @date 02/06/19
 */
-class CardPane extends StackPane implements Observer {
+    class CardPane extends StackPane implements Observer {
     /**
      * A card object to be observed.
      */
@@ -33,6 +37,7 @@ class CardPane extends StackPane implements Observer {
     */
     private ImageView image;
 
+  
     CardPane(Subject subject) {
         this.subject = subject;
         subject.attach(this);
@@ -45,7 +50,7 @@ class CardPane extends StackPane implements Observer {
         setAlignment(text, Pos.BOTTOM_CENTER);
     }
 
-    @Override
+        @Override
     /**
      * When the subject of this class calls update, the image changes to reveal the card color.
      */
@@ -66,47 +71,48 @@ public class GameScene {
      * @param handler
      * @return the GUI Scene.
      */
-    public static Scene build(Subject[] subjects, EventHandler<KeyEvent> handler) {
+    public static Scene build(Subject subjects[],EventHandler<KeyEvent> handler) {
         VBox vb = new VBox();
         
-        TilePane tile = new TilePane();
+        
         Scene scene = new Scene(vb);
+        //MENU AREA
+                MenuBar menuBar = new MenuBar();
+        // --- Menu Action for start and quit
+        Menu menuAction = new Menu("Action");
+                MenuItem start = new MenuItem("Restart");
+                start.setOnAction(GameControls.setEvents());
+                MenuItem quit = new MenuItem("Quit");
+                quit.setOnAction(GameControls.setEvents());
 
-        tile.setPadding((new Insets(4, 4, 4, 4)));
+ 
+        menuAction.getItems().addAll(start,quit);
+ 
+//        // --- Menu Difficulty
+//        Menu menuDiff = new Menu("Difficulty");
+//                MenuItem easy = new MenuItem("Easy");
+//                MenuItem med = new MenuItem("Medium");
+//                MenuItem hard = new MenuItem("Hard");
+//         menuDiff.getItems().addAll(easy,med,hard);
+
+        // --- Menu About section
+        Menu menuAbout = new Menu("About");
+ 
+        menuBar.getMenus().addAll(menuAction, menuAbout);
+        TilePane tile = new TilePane();
+                tile.setPadding((new Insets(4, 4, 4, 4)));
         tile.setBackground(new Background(new BackgroundFill(Color.valueOf("877567"), CornerRadii.EMPTY, Insets.EMPTY)));
         tile.setVgap(4);
         tile.setHgap(4);
         tile.setPrefColumns(5);
 
         for (Subject subject : subjects) {
-            tile.getChildren().add(new CardPane(subject));
+             tile.getChildren().add(new CardPane(subject));
         }
-
-
-                MenuBar menuBar = new MenuBar();
- 
-        // --- Menu Action for start and quit
-        Menu menuAction = new Menu("Action");
-                MenuItem start = new MenuItem("Start");
-                MenuItem quit = new MenuItem("Quit");
-
- 
-        menuAction.getItems().addAll(start,quit);
- 
-        // --- Menu Difficulty
-        Menu menuDiff = new Menu("Difficulty");
-                MenuItem easy = new MenuItem("Easy");
-                MenuItem med = new MenuItem("Medium");
-                MenuItem hard = new MenuItem("Hard");
-         menuDiff.getItems().addAll(easy,med,hard);
-
-        // --- Menu About section
-        Menu menuAbout = new Menu("About");
- 
-        menuBar.getMenus().addAll(menuAction, menuDiff, menuAbout);
- 
         ((VBox) scene.getRoot()).getChildren().addAll(menuBar);
         ((VBox) scene.getRoot()).getChildren().addAll(tile);
+
+        
 
         scene.setOnKeyPressed(handler);
         return scene;

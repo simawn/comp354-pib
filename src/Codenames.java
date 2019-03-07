@@ -8,6 +8,7 @@ import model.board.Card;
 import model.board.CardBuilder;
 import model.util.Verbose;
 import view.GameScene;
+import view.Preview;
 import view.VerboseView;
 import view.ScoreView;
 
@@ -37,7 +38,10 @@ public class Codenames extends Application {
      */
     @Override
     public void start(Stage root) {
-        Card[] cards = CardBuilder.buildAll();
+        Preview.setUp();
+        //Cahnge to show in preview
+                            Card[] cards = CardBuilder.buildAll();
+
         Board board = new Board(cards);
         GameManager game = new GameManager(board);
 
@@ -47,7 +51,7 @@ public class Codenames extends Application {
         game.attach(score);
 
         GameHandler handler = new GameHandler(game, view, score);
-        Scene scene = GameScene.build(cards, handler);
+        Scene scene = GameScene.build(cards,handler);
         root.setScene(scene);
         root.setResizable(false);
         root.setTitle("Codenames - Game");
