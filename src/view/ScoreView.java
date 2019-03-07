@@ -101,6 +101,14 @@ public class ScoreView implements Observer {
             stage.hide();
         }
     }
+    /**
+     * Closes the window for house keeping and restarting the game
+     */
+    public void close(){
+        if (stage.isShowing()){
+            stage.close();
+        }
+    }
 
     /**
      * Get the subjects current string property and log it.

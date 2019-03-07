@@ -18,7 +18,7 @@ public class Difficulty {
 
     private static int difficulty = 0;
 
-    public Difficulty() {
+    public  Difficulty() {
     }
 
     public static EventHandler<ActionEvent> setDifficulty() {

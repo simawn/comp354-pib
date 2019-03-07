@@ -60,7 +60,14 @@ public class VerboseView implements Observer {
         }
         vbox.getChildren().add(t);
     }
-
+    /**
+     * Closes the window for house keeping and restarting the game
+     */
+    public void close(){
+        if (stage.isShowing()) {
+            stage.close();
+        }
+    }
     /**
      * Open the VerboseView window.
      */
