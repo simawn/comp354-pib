@@ -40,9 +40,9 @@ public class GameManager extends Subject {
      */
     public GameManager(Board board) {
         players = new Player[4];
-        players[0] = new Spymaster(CardType.Red, board, new SimpleSpyStrategy(CardType.Red));
+        players[0] = new Spymaster(CardType.Red, board, new SmartSpyStrategy(CardType.Red));
         players[1] = new Operative(CardType.Red, board, new randomOperativeStrategy());
-        players[2] = new Spymaster(CardType.Blue, board, new SimpleSpyStrategy(CardType.Red));
+        players[2] = new Spymaster(CardType.Blue, board, new SmartSpyStrategy(CardType.Red));
         players[3] = new Operative(CardType.Blue, board, new randomOperativeStrategy());
         whosTurn = 0;
         if(board.getNumCardsOfType(CardType.Blue) == 9) {

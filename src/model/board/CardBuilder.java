@@ -51,7 +51,7 @@ abstract class Extractor {
 * @date 02/06/19
 */
 class Word extends Extractor {
-    private static final Path PATH = Paths.get("resources/words100_1550871908_SYN_1550898480.json"); //new file format
+    private static final Path PATH = Paths.get("resources/words25_1551990387_SYN_1551990586.json"); //new file format
 
     String[] parse() throws IOException, ParseException {
         List<String> temp = build(PATH);

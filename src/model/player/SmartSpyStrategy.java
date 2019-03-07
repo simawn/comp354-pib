@@ -53,6 +53,7 @@ public class SmartSpyStrategy implements SpyStrategy{
 		
 		String chosen = toChooseFrom.get(rand.nextInt(toChooseFrom.size())).getStringProperty(); //Choose a word
 		String clue = "";
+		int count = 1;
 		
 		try {
 			JSONParser parser = new JSONParser();
@@ -66,23 +67,41 @@ public class SmartSpyStrategy implements SpyStrategy{
 			HashMap<String, Integer> matches = new HashMap<String, Integer>();
 			
 			//O(n^3): Needs optimization
+			//We might want to have another file that associates clues with the possible words
 			for(Object syn : syns) { //Loop through clues of selected words
-				for(Iterator it = jsonObj.keySet().iterator(); it.hasNext();) { //Loop through words
-		        	String key = (String) it.next();
-		        	if(key == chosen) continue; //If the key is the same as chosen word, ignore it
+				for(Card otherWords : toChooseFrom) { //Loop through words
+		        	String key = otherWords.getStringProperty();
+		        	//if(key == chosen) continue; //If the key is the same as chosen word, ignore it
 		        	JSONArray otherWordSynArray = (JSONArray) ((JSONObject) (jsonObj.get(key))).get("syn"); //Get the array of syn
 		        	for(Object otherSyn : otherWordSynArray) {
 		        		if((String) otherSyn == (String) syn) {
-		        			matches.merge((String) syn, 1, Integer::sum);
+		        			matches.put(key, 1);
 		        		}
 		        	}
 		        }
 			}
 			
+			System.out.println(matches.entrySet());
 			
+			//Checks for highest occurrence
+			int highestCount = 0;
+			String clueWithHighestCount = "";
+			for(String key : matches.keySet()) {
+				int CurCount = matches.get(key);
+				if(CurCount > highestCount) {
+					highestCount = count;
+					clueWithHighestCount = key;
+				}
+			}
 			
-			
-			clue = (String) syns.get(rand.nextInt(syns.size()));
+			//If no clue with highest count is found (No words with similar clue)
+			if(highestCount == 0 && clueWithHighestCount == "") {
+				System.out.println("No words with similar clue");
+				clue = (String) syns.get(rand.nextInt(syns.size()));
+			} else {
+				clue = clueWithHighestCount;
+				count += highestCount;
+			}
 			
 			//DEBUG
 			System.out.println();
@@ -101,6 +120,6 @@ public class SmartSpyStrategy implements SpyStrategy{
 			System.err.println("Error parsing file.");
 			System.exit(1);
 		}
-		return new Clue(clue.toUpperCase(), 1);
+		return new Clue(clue.toUpperCase(), count);
 	}
 }
