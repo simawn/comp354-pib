@@ -1,13 +1,10 @@
 package model.player;
 
-import model.board.Card;
-import model.board.CardType;
-import model.board.Clue;
-
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
@@ -17,27 +14,30 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
+import model.board.Card;
+import model.board.CardType;
+import model.board.Clue;
+
 /**
- * This is a simple spy strategy: it randomly selects a word of their team and gives a random clue of the selected word.
- * It won't try to combine words while giving the clues, so it will always return 1 word per clue.
+ * Allows the spy to choose a clue that includes many words on the board
  * 
  * @author Simon Huang
  *
  */
-public class SimpleSpyStrategy implements SpyStrategy {
+public class SmartSpyStrategy implements SpyStrategy{
 
 	private CardType team;
 	
 	/**
-	 * Constructor for SimpleSpyStrategy.
+	 * Constructor for SmartSpyStrategy.
 	 * @param team The spy's team
 	 */
-	public SimpleSpyStrategy(CardType team) {
+	public SmartSpyStrategy(CardType team) {
 		this.team = team;
 	}
 	
 	/**
-	 * Selects a card from their team at random. Gives out a clue a random from the selected word
+	 * Selects a card from their team at random. Checks each clue for the optimal one
 	 */
 	@Override
 	public Clue giveClue(List<Card> cards) {
@@ -51,7 +51,7 @@ public class SimpleSpyStrategy implements SpyStrategy {
 		
 		Random rand = new Random();
 		
-		String chosen = toChooseFrom.get(rand.nextInt(toChooseFrom.size())).getStringProperty(); //Choese a word
+		String chosen = toChooseFrom.get(rand.nextInt(toChooseFrom.size())).getStringProperty(); //Choose a word
 		String clue = "";
 		
 		try {
@@ -61,6 +61,26 @@ public class SimpleSpyStrategy implements SpyStrategy {
 			JSONObject jsonObj = (JSONObject) obj; //The actual .json
 			JSONObject word = (JSONObject) jsonObj.get(chosen); //Narrow down to chosen word
 			JSONArray syns = (JSONArray) word.get("syn"); //Narrow down to synonyms
+			
+			//Start checking for optimal clue
+			HashMap<String, Integer> matches = new HashMap<String, Integer>();
+			
+			//O(n^3): Needs optimization
+			for(Object syn : syns) { //Loop through clues of selected words
+				for(Iterator it = jsonObj.keySet().iterator(); it.hasNext();) { //Loop through words
+		        	String key = (String) it.next();
+		        	if(key == chosen) continue; //If the key is the same as chosen word, ignore it
+		        	JSONArray otherWordSynArray = (JSONArray) ((JSONObject) (jsonObj.get(key))).get("syn"); //Get the array of syn
+		        	for(Object otherSyn : otherWordSynArray) {
+		        		if((String) otherSyn == (String) syn) {
+		        			matches.merge((String) syn, 1, Integer::sum);
+		        		}
+		        	}
+		        }
+			}
+			
+			
+			
 			
 			clue = (String) syns.get(rand.nextInt(syns.size()));
 			
@@ -83,5 +103,4 @@ public class SimpleSpyStrategy implements SpyStrategy {
 		}
 		return new Clue(clue.toUpperCase(), 1);
 	}
-
 }
