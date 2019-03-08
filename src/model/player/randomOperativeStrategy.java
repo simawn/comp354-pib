@@ -5,6 +5,7 @@
  */
 package model.player;
 
+import control.game.Difficulty;
 import model.board.Card;
 
 import java.util.List;

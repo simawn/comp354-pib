@@ -1,5 +1,8 @@
 package view;
 
+import control.game.Difficulty;
+import java.awt.Font;
+import javafx.application.Platform;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -22,6 +25,7 @@ public class ScoreView implements Observer {
     //private HBox hbox;
     private Stage stage;
     private Subject subject;
+    private Label diff = new Label();
     private Label t = new Label();
     private Label redScore = new Label();
     private Label blueScore = new Label();
@@ -41,7 +45,7 @@ public class ScoreView implements Observer {
         //open();
          
         Group root = new Group();
-        
+        diff.setTranslateY(100);
         redScore.setTranslateY(50);
         blueScore.setTranslateY(65);
         currentClue.setTranslateY(25);
@@ -55,7 +59,7 @@ public class ScoreView implements Observer {
         stage.setY(primaryScreenBounds.getMinY() + primaryScreenBounds.getHeight() - 300);
         stage.setWidth(400);
         stage.setHeight(300);
-        
+        root.getChildren().add(diff);
         root.getChildren().add(t);
         root.getChildren().add(redScore);
         root.getChildren().add(blueScore);
@@ -82,7 +86,8 @@ public class ScoreView implements Observer {
         blueScore.setText("Blue: " + game.getBlueScore()); 
         redScore.setTextFill(Color.RED);
         redScore.setText("Red: " + game.getRedScore());
-        
+        diff.setText(Difficulty.getStringDifficulty());
+        diff.setStyle("-fx-font-weight: bold;");
         if(game.getWinner() != null){
             t.setText(game.getWinner() + " Wins!");
         }
@@ -101,14 +106,7 @@ public class ScoreView implements Observer {
             stage.hide();
         }
     }
-    /**
-     * Closes the window for house keeping and restarting the game
-     */
-    public void close(){
-        if (stage.isShowing()){
-            stage.close();
-        }
-    }
+
 
     /**
      * Get the subjects current string property and log it.

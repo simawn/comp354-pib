@@ -73,8 +73,7 @@ public class GameScene {
      */
     public static Scene build(Subject subjects[],EventHandler<KeyEvent> handler) {
         VBox vb = new VBox();
-        
-        
+             
         Scene scene = new Scene(vb);
         //MENU AREA
                 MenuBar menuBar = new MenuBar();
@@ -87,13 +86,6 @@ public class GameScene {
 
  
         menuAction.getItems().addAll(start,quit);
- 
-//        // --- Menu Difficulty
-//        Menu menuDiff = new Menu("Difficulty");
-//                MenuItem easy = new MenuItem("Easy");
-//                MenuItem med = new MenuItem("Medium");
-//                MenuItem hard = new MenuItem("Hard");
-//         menuDiff.getItems().addAll(easy,med,hard);
 
         // --- Menu About section
         Menu menuAbout = new Menu("About");

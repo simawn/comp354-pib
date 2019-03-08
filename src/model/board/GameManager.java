@@ -1,5 +1,6 @@
 package model.board;
 
+import control.game.Difficulty;
 import model.player.*;
 import model.util.Verbose;
 
@@ -40,10 +41,20 @@ public class GameManager extends Subject {
      */
     public GameManager(Board board) {
         players = new Player[4];
+        if(Difficulty.getDifficulty()==0){
+        Verbose.log("Easy Difficulty");
         players[0] = new Spymaster(CardType.Red, board, new randomSpyStrategy());
         players[1] = new Operative(CardType.Red, board, new randomOperativeStrategy());
         players[2] = new Spymaster(CardType.Blue, board, new randomSpyStrategy());
         players[3] = new Operative(CardType.Blue, board, new randomOperativeStrategy());
+        }
+        else{
+        Verbose.log("Hard difficulty");
+        players[0] = new Spymaster(CardType.Red, board, new randomSpyStrategy());
+        players[1] = new Operative(CardType.Red, board, new randomOperativeStrategy());
+        players[2] = new Spymaster(CardType.Blue, board, new randomSpyStrategy());
+        players[3] = new Operative(CardType.Blue, board, new randomOperativeStrategy());    
+        }
         whosTurn = 0;
         if(board.getNumCardsOfType(CardType.Blue) == 9) {
             Verbose.log("Blue going first");
@@ -67,20 +78,6 @@ public class GameManager extends Subject {
         } else { //Operatives turn
             takeTurn((Operative) players[whosTurn]);
         }
-    }
-    /**
-     * Have a Spymaster make a logical hint based on wordnet
-     * @param p the spymaster making that move
-     */
-    private void takeSmartTurn(Spymaster p){
-        
-    }
-    /**
-     * Have the operative make a smart guess based on the clue
-     * @param p the operative making that move
-     */
-    private void takeSmartTurn(Operative p){
-        
     }
     /**
      * Have a Spymaster take their turn
