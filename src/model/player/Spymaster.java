@@ -39,6 +39,8 @@ public class Spymaster extends Player {
     public Clue makeMove() {
         return spyStrat.giveClue(board.getCards());
     }
+    
+    
 
 }
 

@@ -8,26 +8,12 @@ package control.game;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
+import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.MenuItem;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.CornerRadii;
-import javafx.scene.layout.StackPane;
-import static javafx.scene.layout.StackPane.setAlignment;
-import static javafx.scene.layout.StackPane.setMargin;
-import javafx.scene.layout.TilePane;
-import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Text;
-import model.board.Card;
-import model.board.CardBuilder;
-import model.board.CardType;
-import model.board.Subject;
-import view.Observer;
+import javafx.stage.Window;
+import view.Preview;
+
 
 /**
  *
@@ -41,8 +27,7 @@ public class GameControls {
                 MenuItem m = (MenuItem) event.getSource();
                 String s = m.getText();
                 if (s.equals("Restart")) {
-                    //Card[] cards = CardBuilder.buildAll();
-                    //startGame(cards);
+                    Preview.start_game(Preview.getStage());
                 }
                 if (s.equals("Quit")) {
                     Platform.exit();

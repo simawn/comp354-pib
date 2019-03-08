@@ -33,28 +33,12 @@ public class Codenames extends Application {
     }
 
     /**
-     * start() is where the GUI, game model, and game controls are instantiated.
+     * start() is where the starting GUI, with difficulty selection 
      * @param root 
      */
     @Override
     public void start(Stage root) {
-        Preview.setUp();
-        //Cahnge to show in preview
-                            Card[] cards = CardBuilder.buildAll();
+        Preview.setUp(root);
 
-        Board board = new Board(cards);
-        GameManager game = new GameManager(board);
-
-        VerboseView view = new VerboseView(Verbose.get());
-        Verbose.bind(view);
-        ScoreView score = new ScoreView(game);
-        game.attach(score);
-
-        GameHandler handler = new GameHandler(game, view, score);
-        Scene scene = GameScene.build(cards,handler);
-        root.setScene(scene);
-        root.setResizable(false);
-        root.setTitle("Codenames - Game");
-        root.show(); // Shows the final Stage based on the scene
     }
 }
