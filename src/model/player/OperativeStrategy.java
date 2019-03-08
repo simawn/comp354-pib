@@ -3,6 +3,7 @@ package model.player;
 import model.board.Card;
 
 import java.util.List;
+import model.board.Clue;
 
 
 /**
@@ -12,8 +13,11 @@ import java.util.List;
  * @date 02/07/19
  */
 public interface OperativeStrategy {
+    
     /**
      * Operatives pick a card from a list of cards.
      */
     Card pickCard(List<Card> cards);
+
+
 }

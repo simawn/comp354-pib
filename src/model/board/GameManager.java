@@ -48,12 +48,18 @@ public class GameManager extends Subject {
         players[2] = new Spymaster(CardType.Blue, board, new SmartSpyStrategy(CardType.Red));
         players[3] = new Operative(CardType.Blue, board, new randomOperativeStrategy());
         }
-        else{
-        Verbose.log("Hard difficulty");
-        players[0] = new Spymaster(CardType.Red, board, new randomSpyStrategy());
+        else if(Difficulty.getDifficulty()==1){
+        Verbose.log("Medium difficulty");
+        players[0] = new Spymaster(CardType.Red, board, new SimpleSpyStrategy(CardType.Red));
         players[1] = new Operative(CardType.Red, board, new randomOperativeStrategy());
-        players[2] = new Spymaster(CardType.Blue, board, new randomSpyStrategy());
+        players[2] = new Spymaster(CardType.Blue, board, new SimpleSpyStrategy(CardType.Blue));
         players[3] = new Operative(CardType.Blue, board, new randomOperativeStrategy());    
+        }
+        else{
+        players[0] = new Spymaster(CardType.Red, board, new SimpleSpyStrategy(CardType.Red));
+        players[1] = new Operative(CardType.Red, board, new HardOperativeStrategy(CardType.Red));
+        players[2] = new Spymaster(CardType.Blue, board, new SimpleSpyStrategy(CardType.Blue));
+        players[3] = new Operative(CardType.Blue, board, new HardOperativeStrategy(CardType.Blue));   
         }
         whosTurn = 0;
         if(board.getNumCardsOfType(CardType.Blue) == 9) {

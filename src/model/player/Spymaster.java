@@ -21,6 +21,14 @@ public class Spymaster extends Player {
      * The spymaster's strategy they will use when they play.
      */
     private SpyStrategy spyStrat;
+    /**
+     * Current clue for the spymaster
+     */
+    private Clue currentClue;
+    /**
+     * 
+     * @param team 
+     */
 
     public Spymaster(CardType team) {
         super(team);
