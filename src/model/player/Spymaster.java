@@ -44,7 +44,7 @@ public class Spymaster extends Player {
     }
 
     @Override
-    public Clue makeMove() {
+    public Clue makeMove(Clue clue) {
         return spyStrat.giveClue(board.getCards());
     }
     

@@ -90,7 +90,7 @@ public class GameManager extends Subject {
      * @param p 
      */
     private void takeTurn(Spymaster p) {
-        currentClue = p.makeMove();
+        currentClue = p.makeMove(currentClue);
         Verbose.log(players[whosTurn].getTeam() + " spymaster gave clue "
                 + currentClue.getClueWord() + ": " + currentClue.getClueNum());
         endTurn();
@@ -102,7 +102,7 @@ public class GameManager extends Subject {
      * @param p 
      */
     private void takeTurn(Operative p) {
-        Card guess = p.makeMove();
+        Card guess = p.makeMove(currentClue);  
         Verbose.log(players[whosTurn].getTeam() + " operative guessed " + guess.word);
         board.remove(guess);
         numOpGuesses += 1;

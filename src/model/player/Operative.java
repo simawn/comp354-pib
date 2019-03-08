@@ -3,6 +3,7 @@ package model.player;
 import model.board.Board;
 import model.board.Card;
 import model.board.CardType;
+import model.board.Clue;
 
 
 
@@ -40,7 +41,8 @@ public class Operative extends Player{
     }
 
     @Override
-    public Card makeMove() {
+    public Card makeMove(Clue clue) {
+        opStrat.setClue(clue);
         return opStrat.pickCard(board.getCards());
     }
 

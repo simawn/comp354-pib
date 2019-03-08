@@ -7,6 +7,7 @@ package model.player;
  * @date 02/07/19
  */
 import model.board.CardType;
+import model.board.Clue;
 
 public abstract class Player {
     /**
@@ -28,5 +29,5 @@ public abstract class Player {
      * 
      * @return 
      */
-    public abstract Object makeMove();
+    public abstract Object makeMove(Clue clue);
 }
