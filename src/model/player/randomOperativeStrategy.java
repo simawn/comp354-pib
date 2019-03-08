@@ -10,6 +10,7 @@ import model.board.Card;
 
 import java.util.List;
 import java.util.Random;
+import model.board.Clue;
 
 /**
  * The random strategy for operator that will choose cards by random as they play the game.
@@ -17,6 +18,7 @@ import java.util.Random;
  */
 public class randomOperativeStrategy implements OperativeStrategy {
 
+    private Clue currentClue;
 
      /**
     * Picks a card at random according to the amount of cards available.
@@ -25,6 +27,16 @@ public class randomOperativeStrategy implements OperativeStrategy {
     public Card pickCard(List<Card> cards) {
         Random rand = new Random();
         return cards.get(rand.nextInt(cards.size()));
+    }
+
+    @Override
+    public Clue getClue() {
+return currentClue;   
+    }
+
+    @Override
+    public void setClue(Clue clue) {
+currentClue = clue;
     }
 
 }

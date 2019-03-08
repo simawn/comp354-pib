@@ -18,6 +18,7 @@ public interface OperativeStrategy {
      * Operatives pick a card from a list of cards.
      */
     Card pickCard(List<Card> cards);
-
+    public Clue getClue();
+    public void setClue(Clue clue);
 
 }

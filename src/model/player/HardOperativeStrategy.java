@@ -6,6 +6,7 @@ import model.board.CardType;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import model.board.Clue;
 
 /**
  * Hard mode strategy: The operatives know exactly where their cards are.
@@ -17,6 +18,7 @@ import java.util.Random;
 public class HardOperativeStrategy implements OperativeStrategy{
 	
 	private CardType team;
+        private Clue currentClue;
 	
 	/**
 	 * Constructor for HardOperativeStrategy
@@ -44,5 +46,15 @@ public class HardOperativeStrategy implements OperativeStrategy{
 		Random rand = new Random();
 		return cardsToChoose.get(rand.nextInt(cardsToChoose.size()));
 	}
+
+    @Override
+    public Clue getClue() {
+return currentClue;   
+    }
+
+    @Override
+    public void setClue(Clue clue) {
+currentClue = clue;
+    }
 
 }
