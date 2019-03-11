@@ -9,6 +9,8 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
+import model.board.Constants;
+
 /*
  * The .jar (in /lib folder) will need to be imported:
  * How to import in Eclipse:
@@ -51,7 +53,7 @@ abstract class Extractor {
 * @date 02/06/19
 */
 class Word extends Extractor {
-    private static final Path PATH = Paths.get("resources/words25_1551990387_SYN_1551990586.json"); //new file format
+    private static final Path PATH = Constants.WORDS_PATH; //new file format
 
     String[] parse() throws IOException, ParseException {
         List<String> temp = build(PATH);
@@ -91,7 +93,7 @@ class Word extends Extractor {
 * @date 02/06/19
 */
 class KeyCard extends Extractor {
-    private static final Path PATH = Paths.get("resources/keyCards.txt");
+    private static final Path PATH = Constants.KEYCARDS_PATH;
 
     CardType[] parse() throws IOException, ParseException {
         List<String> list = build(PATH);

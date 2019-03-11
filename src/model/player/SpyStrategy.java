@@ -2,6 +2,7 @@ package model.player;
 
 import model.board.Card;
 import model.board.Clue;
+import model.board.Constants;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -20,5 +21,5 @@ public interface SpyStrategy {
     Clue giveClue(List<Card> cards);
     
     //TODO: Read from an .ini file instead of direct path for both SpyStrategy and CardBuilder?
-    static final Path PATH = Paths.get("resources/words25_1551990387_SYN_1551990586.json");
+    static final Path PATH = Constants.WORDS_PATH;
 }
