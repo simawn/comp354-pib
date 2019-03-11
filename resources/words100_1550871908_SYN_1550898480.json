@@ -1,50 +1,50 @@
 {
     "AGENT":{
        "syn":[
-          "factor",
+          "officer",
           "broker",
-          "waived",
-          "Cody Banks"
+          "representitive",
+          "worker"
        ]
     },
     "AMAZON":{
        "syn":[
           "Wonder Woman",
           "river",
-          "kindle",
-          "rainforest"
+          "warrior",
+          "forest"
        ]
     },
     "ANTARCTICA":{
        "syn":[
-          "South",
-          "snow",
+          "South Pole",
+          "continent",
           "glacier",
-          "meridian"
+          "freezing"
        ]
     },
     "ATLANTIS":{
        "syn":[
-          "fake",
-          "diamante",
-          "wraith",
-          "guerrero"
+          "city",
+          "myth",
+          "Demigod",
+          "legend"
        ]
     },
     "BATTERY":{
        "syn":[
           "assault",
-          "barrage",
-          "charge",
-          "shelling"
+          "electricity",
+          "powersource",
+          "artillery"
        ]
     },
     "BEAR":{
        "syn":[
-          "abide",
-          "stand",
-          "have",
-          "hold"
+          "hybernate",
+          "animal",
+          "grizzly",
+          "support"
        ]
     },
     "BEIJING":{
@@ -65,25 +65,25 @@
     },
     "BRIDGE":{
        "syn":[
-          "span",
-          "nosepiece",
+          "link",
+          "platform",
           "overpass",
-          "arch"
+          "crossing"
        ]
     },
     "BUCK":{
        "syn":[
-          "charge",
+          "animal",
           "horse",
-          "tear",
+          "dollar",
           "shoot"
        ]
     },
     "BUG":{
        "syn":[
-          "tap",
-          "badger",
-          "tease",
+          "wiretap",
+          "virus",
+          "error",
           "glitch"
        ]
     },
@@ -92,15 +92,15 @@
           "America",
           "hat",
           "ceiling",
-          "detonator"
+          "limit"
        ]
     },
     "CAR":{
        "syn":[
           "machine",
-          "auto",
+          "ride",
           "automobile",
-          "motor"
+          "pickup"
        ]
     },
     "CARROT":{
@@ -108,30 +108,30 @@
           "rabbit",
           "vegetable",
           "orange",
-          "radish"
+          "food"
        ]
     },
     "CASINO":{
        "syn":[
           "gamble",
           "royale",
-          "craps",
+          "poker",
           "blackjack"
        ]
     },
     "CENTER":{
        "syn":[
-          "eye",
+          "point",
           "heart",
-          "focus",
-          "core"
+          "place",
+          "middle"
        ]
     },
     "CHARGE":{
        "syn":[
-          "point",
+          "attack",
           "accusation",
-          "level",
+          "demand",
           "battery"
        ]
     },
@@ -140,46 +140,46 @@
           "test",
           "break",
           "mark",
-          "fit"
+          "examine"
        ]
     },
     "CHICK":{
        "syn":[
           "bird",
-          "skirt",
-          "doll",
-          "dame"
+          "sprout",
+          "slang",
+          "girl"
        ]
     },
     "CHURCH":{
        "syn":[
           "christianity",
-          "agnostic",
+          "sanctuary",
           "building",
-          "atheist"
+          "temple"
        ]
     },
     "CLIFF":{
        "syn":[
-          "drop-off",
-          "hanger",
-          "overlooking",
+          "hill",
+          "overhanging",
+          "rockface",
           "mountain"
        ]
     },
     "CLUB":{
        "syn":[
-          "order",
+          "group",
           "society",
-          "lodge",
-          "seal"
+          "union",
+          "ssociation"
        ]
     },
     "CODE":{
        "syn":[
-          "cipher",
-          "inscribe",
-          "cypher",
+          "program",
+          "software",
+          "hardware",
           "encode"
        ]
     },
@@ -187,21 +187,21 @@
        "syn":[
           "complex",
           "combine",
-          "conjugate",
+          "chemistry",
           "alloy"
        ]
     },
     "CONDUCTOR":{
        "syn":[
-          "director",
+          "leader",
           "manager",
           "train",
-          "symphony"
+          "director"
        ]
     },
     "CONTRACT":{
        "syn":[
-          "legal",
+          "deal",
           "pledge",
           "pact",
           "sign"
@@ -212,20 +212,20 @@
           "cycle",
           "time",
           "week",
-          "sun"
+          "morning"
        ]
     },
     "DEATH":{
        "syn":[
           "end",
-          "last",
+          "decease",
           "loss",
-          "reaper"
+          "grave"
        ]
     },
     "DOG":{
        "syn":[
-          "track",
+          "animal",
           "trail",
           "chase",
           "tag"
@@ -233,10 +233,10 @@
     },
     "DRAGON":{
        "syn":[
-          "monster",
-          "dracarys",
-          "quest",
-          "slayer"
+          "creature",
+          "mythical",
+          "fantasy",
+          "wing"
        ]
     },
     "DRILL":{
@@ -249,40 +249,40 @@
     },
     "FALL":{
        "syn":[
-          "light",
-          "strike",
-          "pass",
-          "come"
+          "season",
+          "descend",
+          "drop",
+          "plunge"
        ]
     },
     "FAN":{
        "syn":[
           "windmill",
           "propeller",
-          "lover",
-          "wind"
+          "admirer",
+          "supporter"
        ]
     },
     "FENCE":{
        "syn":[
           "wall",
           "block",
-          "argue",
-          "debate"
+          "barrier",
+          "bar"
        ]
     },
     "FIGHTER":{
        "syn":[
-          "belligerent",
-          "hero",
+          "soldier",
+          "warrior",
           "champion",
-          "paladin"
+          "assailant"
        ]
     },
     "FILM":{
        "syn":[
-          "take",
-          "shoot",
+          "cinema",
+          "show",
           "picture",
           "flick"
        ]
@@ -290,32 +290,32 @@
     "FIRE":{
        "syn":[
           "burn",
-          "terminate",
-          "fly",
-          "raise"
+          "element",
+          "heat",
+          "shoot"
        ]
     },
     "FLUTE":{
        "syn":[
           "instrument",
-          "bassoon",
-          "oboe",
+          "music",
+          "whistle",
           "contrabass"
        ]
     },
     "FLY":{
        "syn":[
-          "flee",
+          "travel",
           "pilot",
-          "alert",
+          "float",
           "wing"
        ]
     },
     "GLASS":{
        "syn":[
-          "glaze",
-          "pint",
-          "see-through",
+          "cup",
+          "mirror",
+          "reflect",
           "transparent"
        ]
     },
@@ -323,110 +323,110 @@
        "syn":[
           "mitt",
           "hand",
-          "slugger",
+          "cover",
           "mitten"
        ]
     },
     "GRASS":{
        "syn":[
-          "shop",
-          "rat",
-          "pot",
-          "weed"
+          "plant",
+          "lawn",
+          "graze",
+          "garden"
        ]
     },
     "GROUND":{
        "syn":[
           "base",
-          "coffee",
+          "landscape",
           "land",
-          "reason"
+          "earth"
        ]
     },
     "HAM":{
        "syn":[
           "burger",
-          "overact",
+          "meat",
           "hot-dog",
           "pig"
        ]
     },
     "HOOK":{
        "syn":[
-          "hand",
-          "draw",
-          "abstract",
-          "lift"
+          "boxing",
+          "grab",
+          "metal-piece",
+          "catch"
        ]
     },
     "HORN":{
        "syn":[
           "trumpet",
-          "cornet",
-          "tusk",
-          "contrabassoon"
+          "nose",
+          "siren",
+          "antler"
        ]
     },
     "IRON":{
        "syn":[
           "chain",
-          "robust",
-          "fe",
+          "metal",
+          "rigid",
           "smelt"
        ]
     },
     "IVORY":{
        "syn":[
-          "bone",
-          "pearl",
+          "substance",
+          "color",
           "tusk",
           "off-white"
        ]
     },
     "JACK":{
        "syn":[
-          "knave",
-          "ass",
-          "fruit",
-          "name"
+          "card",
+          "hoist",
+          "raise",
+          "lift"
        ]
     },
     "KEY":{
        "syn":[
-          "name",
+          "unlock",
           "important",
           "significant",
-          "identify"
+          "fundamental"
        ]
     },
     "KNIGHT":{
        "syn":[
           "horse",
-          "dub",
-          "white",
-          "garter"
+          "chivalry",
+          "chess",
+          "noble
        ]
     },
     "LIMOUSINE":{
        "syn":[
-          "prom",
-          "cabriolet",
+          "automobile",
+          "machine",
           "wedding",
           "chauffeur"
        ]
     },
     "LONDON":{
        "syn":[
-          "borough",
-          "midland",
-          "thames",
-          "philharmonic"
+          "capital",
+          "England",
+          "city",
+          "place"
        ]
     },
     "MAMMOTH":{
        "syn":[
-          "big",
-          "large",
+          "animal",
+          "extinct",
           "gigantic",
           "tusks"
        ]
@@ -435,7 +435,7 @@
        "syn":[
           "eyepiece",
           "magnification",
-          "sem",
+          "instrument",
           "zoom"
        ]
     },
@@ -444,13 +444,13 @@
           "test",
           "pattern",
           "trial",
-          "mold"
+          "MVC"
        ]
     },
     "MOON":{
        "syn":[
-          "daydream",
-          "fake",
+          "night",
+          "crescent",
           "light",
           "lunation"
        ]
@@ -460,53 +460,53 @@
           "talk",
           "speak",
           "utter",
-          "sass"
+          "lip"
        ]
     },
     "NIGHT":{
        "syn":[
           "dark",
           "cycle",
-          "nox",
+          "dark",
           "conan"
        ]
     },
     "NOTE":{
        "syn":[
-          "line",
-          "mark",
+          "notice",
+          "write",
           "bill",
-          "class"
+          "remark"
        ]
     },
     "NURSE":{
        "syn":[
-          "hold",
-          "harbor",
-          "suck",
-          "entertain"
+          "hospital",
+          "assistant",
+          "medic",
+          "caretaker"
        ]
     },
     "OPERA":{
        "syn":[
-          "glyndebourne",
-          "libretto",
+          "music",
+          "chorus",
           "singer",
-          "covent"
+          "composition"
        ]
     },
     "ORGAN":{
        "syn":[
-          "harmonium",
+          "instrument",
           "transplantation",
           "church",
-          "harpsichord"
+          "device"
        ]
     },
     "PANTS":{
        "syn":[
           "trousers",
-          "knickers",
+          "shorts",
           "drawers",
           "bloomers"
        ]
@@ -514,118 +514,118 @@
     "PAPER":{
        "syn":[
           "report",
-          "composition",
-          "theme",
+          "letter",
+          "sheet",
           "newspaper"
        ]
     },
     "PARACHUTE":{
        "syn":[
           "float",
-          "chasseur",
-          "rigger",
+          "device",
+          "cloth",
           "skydiving"
        ]
     },
     "PILOT":{
        "syn":[
-          "test",
+          "aviator",
           "fly",
-          "model",
-          "trial"
+          "aircraft",
+          "captain"
        ]
     },
     "PIPE":{
        "syn":[
           "tube",
           "shrill",
-          "shriek",
-          "screech"
+          "duct",
+          "passage"
        ]
     },
     "PIT":{
        "syn":[
           "mark",
-          "stone",
-          "match",
-          "quarry"
+          "hole",
+          "crater",
+          "trench"
        ]
     },
     "PLATE":{
        "syn":[
-          "home",
-          "scale",
+          "utensil",
+          "bowl",
           "shell",
-          "catcher"
+          "casserole"
        ]
     },
     "POINT":{
        "syn":[
-          "head",
-          "show",
-          "charge",
+          "spot",
+          "location",
+          "position",
           "place"
        ]
     },
     "PRESS":{
        "syn":[
-          "bid",
-          "contract",
+          "strain",
+          "squeeze",
           "pressure",
           "crush"
        ]
     },
     "PUMPKIN":{
        "syn":[
-          "pepo",
-          "latte",
-          "marietta",
-          "eater"
+          "vegetable",
+          "gourd",
+          "halloween",
+          "edible"
        ]
     },
     "RACKET":{
        "syn":[
-          "revel",
+          "commotion",
           "noise",
-          "dissonance",
-          "wassail"
+          "disturb",
+          "tennis"
        ]
     },
     "RING":{
        "syn":[
-          "round",
+          "engagement",
           "call",
-          "band",
-          "pack"
+          "chime",
+          "round"
        ]
     },
     "ROCK":{
        "syn":[
           "stone",
           "shake",
-          "sway",
-          "tilt"
+          "hard",
+          "rubble"
        ]
     },
     "ROUND":{
        "syn":[
-          "beat",
-          "ceiling",
+          "cycle",
+          "oval",
           "ring",
-          "turn"
+          "circular"
        ]
     },
     "SEAL":{
        "syn":[
           "stamp",
-          "cachet",
-          "varnish",
-          "club"
+          "sticker",
+          "authentication",
+          "insignia"
        ]
     },
     "SHOE":{
        "syn":[
-          "horse",
+          "sneaker",
           "laces",
           "footwear",
           "soles"
@@ -634,47 +634,47 @@
     "SKYSCRAPER":{
        "syn":[
           "tallest",
-          "storeys",
-          "midtown",
+          "high-rise",
+          "superstructure",
           "architecture"
        ]
     },
     "SLUG":{
        "syn":[
-          "bullet",
+          "lazy",
           "slime",
-          "swig",
+          "animal",
           "smack"
        ]
     },
     "SNOWMAN":{
        "syn":[
-          "ice",
+          "model",
           "frosty",
           "abominable",
-          "sleigh"
+          "winter"
        ]
     },
     "SOUND":{
        "syn":[
           "wave",
-          "good",
-          "profound",
-          "channel"
+          "vibrationsound",
+          "noise",
+          "audible"
        ]
     },
     "SPACE":{
        "syn":[
-          "place",
-          "blank",
+          "room",
+          "location",
           "distance",
-          "quad"
+          "area"
        ]
     },
     "SPIDER":{
        "syn":[
-          "ateles",
-          "araneus",
+          "insect",
+          "arachnid",
           "webs",
           "legs"
        ]
@@ -684,22 +684,22 @@
           "point",
           "post",
           "place",
-          "bit"
+          "position"
        ]
     },
     "STAFF":{
        "syn":[
           "faculty",
-          "stave",
-          "sergeant",
-          "commanding"
+          "employees",
+          "organization",
+          "personnel"
        ]
     },
     "STICK":{
        "syn":[
-          "bind",
-          "bond",
-          "cling",
+          "wood",
+          "pole",
+          "branch",
           "joint"
        ]
     },
@@ -707,70 +707,70 @@
        "syn":[
           "flow",
           "current",
-          "pour",
-          "swarm"
+          "river",
+          "torrent"
        ]
     },
     "SUB":{
        "syn":[
-          "hero",
-          "wedge",
+          "alternate",
+          "backup",
           "replace",
-          "torpedo"
+          "standby"
        ]
     },
     "TEACHER":{
        "syn":[
           "instructor",
-          "prof",
-          "student",
-          "ratio"
+          "professor",
+          "school",
+          "lecturer"
        ]
     },
     "TIE":{
        "syn":[
           "bind",
-          "draw",
-          "bond",
+          "fasten",
+          "neck",
           "link"
        ]
     },
     "TOOTH":{
        "syn":[
           "paste",
-          "gingival",
-          "cusp",
-          "caries"
+          "floss",
+          "cavity",
+          "dentist"
        ]
     },
     "TORCH":{
        "syn":[
           "flashlight",
-          "Skyrim",
+          "light",
           "blowlamp",
-          "cauldron"
+          "lantern"
        ]
     },
     "UNDERTAKER":{
        "syn":[
           "mortician",
-          "clothesline",
+          "funeral",
           "casket",
-          "unforgiven"
+          "grave"
        ]
     },
     "UNICORN":{
        "syn":[
-          "schmendrick",
-          "manticore",
+          "mythical",
+          "fantasy",
           "decipher",
-          "mantis"
+          "creature"
        ]
     },
     "VACUUM":{
        "syn":[
-          "hoover",
-          "vacuity",
+          "emptiness",
+          "void",
           "space",
           "cleaners"
        ]
@@ -779,22 +779,22 @@
        "syn":[
           "good",
           "fine",
-          "swell",
-          "substantially"
+          "healthy",
+          "happy"
        ]
     },
     "WHALE":{
        "syn":[
           "giant",
-          "hulk",
+          "animal",
           "heavyweight",
           "mammal"
        ]
     },
     "WORM":{
        "syn":[
-          "twist",
-          "louse",
+          "bait",
+          "maggot",
           "insect",
           "squirm"
        ]
