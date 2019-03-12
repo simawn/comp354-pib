@@ -5,7 +5,6 @@ import model.board.Clue;
 import model.board.Constants;
 
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.List;
 
 /**
