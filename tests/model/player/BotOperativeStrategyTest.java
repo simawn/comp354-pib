@@ -15,7 +15,7 @@ import static org.junit.Assert.assertTrue;
  *
  */
 
-public class HardOperativeStrategyTest {
+public class BotOperativeStrategyTest {
     
     ArrayList<Card> cards;
     final int RED_CARDS = 99;
@@ -49,8 +49,8 @@ public class HardOperativeStrategyTest {
      */
     @Test
     public void testPickCard() {
-    	HardOperativeStrategy hardStrategyBlue = new HardOperativeStrategy(CardType.Blue);
-    	HardOperativeStrategy hardStrategyRed = new HardOperativeStrategy(CardType.Red);
+    	BotOperativeStrategy hardStrategyBlue = new BotOperativeStrategy(CardType.Blue);
+    	BotOperativeStrategy hardStrategyRed = new BotOperativeStrategy(CardType.Red);
     	ArrayList<Card> bluePicks = new ArrayList<Card>();
     	ArrayList<Card> redPicks = new ArrayList<Card>();
     	

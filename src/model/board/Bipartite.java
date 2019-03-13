@@ -83,7 +83,7 @@ public class Bipartite {
 			cluesToWords.remove(clue, word);
 		}
 		wordsToClues.removeAll(word);
-		debug();
+		//debug();
 
 	}
 

@@ -62,9 +62,9 @@ public class GameManager extends Subject {
         }
         else{
         players[0] = new Spymaster(CardType.Red, board, new SmartSpyStrategy(CardType.Red));
-        players[1] = new Operative(CardType.Red, board, new HardOperativeStrategy(CardType.Red));
+        players[1] = new Operative(CardType.Red, board, new BotOperativeStrategy(CardType.Red, 0.01));
         players[2] = new Spymaster(CardType.Blue, board, new SmartSpyStrategy(CardType.Blue));
-        players[3] = new Operative(CardType.Blue, board, new HardOperativeStrategy(CardType.Blue));   
+        players[3] = new Operative(CardType.Blue, board, new BotOperativeStrategy(CardType.Blue, 0.95)); //0.95+ is god mode
         }
         whosTurn = 0;
         if(board.getNumCardsOfType(CardType.Blue) == 9) {
