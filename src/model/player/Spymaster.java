@@ -1,5 +1,6 @@
 package model.player;
 
+import model.board.Bipartite;
 import model.board.Board;
 import model.board.CardType;
 import model.board.Clue;
@@ -44,8 +45,8 @@ public class Spymaster extends Player {
     }
 
     @Override
-    public Clue makeMove(Clue clue) {
-        return spyStrat.giveClue(board.getCards());
+    public Clue makeMove(Clue clue, Bipartite bipartite) {
+        return spyStrat.giveClue(board.getCards(), bipartite);
     }
     
     

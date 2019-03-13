@@ -1,5 +1,6 @@
 package model.player;
 
+import model.board.Bipartite;
 import model.board.Board;
 import model.board.Card;
 import model.board.CardType;
@@ -41,9 +42,9 @@ public class Operative extends Player{
     }
 
     @Override
-    public Card makeMove(Clue clue) {
+    public Card makeMove(Clue clue, Bipartite bipartite) {
         opStrat.setClue(clue);
-        return opStrat.pickCard(board.getCards());
+        return opStrat.pickCard(board.getCards(), bipartite);
     }
 
 }

@@ -33,6 +33,11 @@ public class GameManager extends Subject {
      * The instance of the game board.
      */
     private Board board;
+    
+    /**
+     * Shows the relationship between words and clues
+     */
+    private Bipartite bipartite;
             
     /**
      * Constructor.  Creates the players for the game. Initializes turn state depending on the key card.
@@ -56,9 +61,9 @@ public class GameManager extends Subject {
         players[3] = new Operative(CardType.Blue, board, new randomOperativeStrategy());    
         }
         else{
-        players[0] = new Spymaster(CardType.Red, board, new SimpleSpyStrategy(CardType.Red));
+        players[0] = new Spymaster(CardType.Red, board, new SmartSpyStrategy(CardType.Red));
         players[1] = new Operative(CardType.Red, board, new HardOperativeStrategy(CardType.Red));
-        players[2] = new Spymaster(CardType.Blue, board, new SimpleSpyStrategy(CardType.Blue));
+        players[2] = new Spymaster(CardType.Blue, board, new SmartSpyStrategy(CardType.Blue));
         players[3] = new Operative(CardType.Blue, board, new HardOperativeStrategy(CardType.Blue));   
         }
         whosTurn = 0;
@@ -69,6 +74,7 @@ public class GameManager extends Subject {
         this.numOpGuesses = 0;
         this.board = board;
         this.winningTeam = null;
+        this.bipartite = new Bipartite(board);
     }
     
     /**
@@ -90,7 +96,7 @@ public class GameManager extends Subject {
      * @param p 
      */
     private void takeTurn(Spymaster p) {
-        currentClue = p.makeMove(currentClue);
+        currentClue = p.makeMove(currentClue, bipartite);
         Verbose.log(players[whosTurn].getTeam() + " spymaster gave clue "
                 + currentClue.getClueWord() + ": " + currentClue.getClueNum());
         endTurn();
@@ -102,9 +108,10 @@ public class GameManager extends Subject {
      * @param p 
      */
     private void takeTurn(Operative p) {
-        Card guess = p.makeMove(currentClue);  
+        Card guess = p.makeMove(currentClue, bipartite);  
         Verbose.log(players[whosTurn].getTeam() + " operative guessed " + guess.word);
         board.remove(guess);
+        bipartite.removeWord(guess.getStringProperty());
         numOpGuesses += 1;
         if (gameIsOver()) {
             winningTeam = declareWinner(p, guess);

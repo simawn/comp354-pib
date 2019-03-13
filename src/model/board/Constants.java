@@ -11,4 +11,5 @@ import java.nio.file.Paths;
 public class Constants {
 	public static final Path WORDS_PATH = Paths.get("resources/words25_1551990387_SYN_1551990586.json");
 	public static final Path KEYCARDS_PATH = Paths.get("resources/keyCards.txt"); 
+	public static final boolean DEBUG = true;
 }

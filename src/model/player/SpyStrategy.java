@@ -1,5 +1,6 @@
 package model.player;
 
+import model.board.Bipartite;
 import model.board.Card;
 import model.board.Clue;
 import model.board.Constants;
@@ -17,8 +18,6 @@ public interface SpyStrategy {
     /**
      * Spymasters choose a clue based on the cards on the board.
      */
-    Clue giveClue(List<Card> cards);
+    Clue giveClue(List<Card> cards, Bipartite bipartite);
     
-    //TODO: Read from an .ini file instead of direct path for both SpyStrategy and CardBuilder?
-    static final Path PATH = Constants.WORDS_PATH;
 }

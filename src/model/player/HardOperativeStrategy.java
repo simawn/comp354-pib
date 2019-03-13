@@ -1,5 +1,6 @@
 package model.player;
 
+import model.board.Bipartite;
 import model.board.Card;
 import model.board.CardType;
 
@@ -34,7 +35,7 @@ public class HardOperativeStrategy implements OperativeStrategy{
 	 * Then picks a card at random from the ArrayList
 	 */
 	@Override
-	public Card pickCard(List<Card> cards) {
+	public Card pickCard(List<Card> cards, Bipartite bipartite) {
 		List<Card> cardsToChoose = new ArrayList<Card>();
 		
 		for(Card card : cards) {
