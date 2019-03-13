@@ -127,4 +127,5 @@ public class BotOperativeStrategy implements OperativeStrategy {
 		currentClue = clue;
 	}
 
+
 }

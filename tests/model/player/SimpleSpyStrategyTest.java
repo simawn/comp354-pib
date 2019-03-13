@@ -1,10 +1,13 @@
 package model.player;
 
 import java.util.ArrayList;
+import model.board.Bipartite;
+import model.board.Board;
 
 import org.junit.*;
 
 import model.board.Card;
+import model.board.CardBuilder;
 import model.board.CardType;
 import model.board.Clue;
 
@@ -20,7 +23,9 @@ import static org.junit.Assert.assertTrue;
 
 public class SimpleSpyStrategyTest {
 	
-	ArrayList<Card> cards;
+    Card[] cards;
+    Board board;
+    Bipartite bp;
     final int RED_CARDS = 10;
     final int BLUE_CARDS = 10;
     
@@ -29,7 +34,10 @@ public class SimpleSpyStrategyTest {
      */
     @Before
     public void setUp() {
-    	cards = new ArrayList<Card>();
+        cards = CardBuilder.buildAll();
+        board = new Board(cards);
+        bp = new Bipartite(board);
+    	//cards = new ArrayList<Card>();
     	
 //    	//Add assassin
 //    	cards.add(new Card("Assassin", CardType.Assassin));
@@ -55,13 +63,13 @@ public class SimpleSpyStrategyTest {
     {
     	SimpleSpyStrategy blueStrategy = new SimpleSpyStrategy(CardType.Blue);
     	
-    	cards.add(new Card("BELL" , CardType.Blue));
+    	//cards.add(new Card("BELL" , CardType.Blue));
     	
     	//for(int i = 0; i < cards.size(); i++)
     		//System.out.println(cards.get(i).toString());
     	
     	//the following will return one of the clues that is generated for bell
-    	Clue clue = blueStrategy.giveClue(cards);
+    	Clue clue = blueStrategy.giveClue(board.getCards(),bp);
     	//System.out.println(clue.toString());
     	
     	assertTrue(clue.getClueWord().equalsIgnoreCase("chime") || clue.getClueWord().equalsIgnoreCase("gong") ||
@@ -74,13 +82,13 @@ public class SimpleSpyStrategyTest {
     {
     	SimpleSpyStrategy redStrategy = new SimpleSpyStrategy(CardType.Red);
     	
-    	cards.add(new Card("ROBOT" , CardType.Red));
+    	//cards.add(new Card("ROBOT" , CardType.Red));
     	
     	//for(int i = 0; i < cards.size(); i++)
     		//System.out.println(cards.get(i).toString());
     	
     	//the following will return one of the clues that is generated for bell
-    	Clue clue = redStrategy.giveClue(cards);
+    	Clue clue = redStrategy.giveClue(board.getCards(),bp);
     	//System.out.println(clue.toString());
     	
     	assertTrue(clue.getClueWord().equalsIgnoreCase("golem") || clue.getClueWord().equalsIgnoreCase("robo") ||

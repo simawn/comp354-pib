@@ -6,6 +6,9 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import model.board.Bipartite;
+import model.board.Board;
+import model.board.CardBuilder;
 
 import static org.junit.Assert.assertTrue;
 
@@ -15,17 +18,18 @@ import static org.junit.Assert.assertTrue;
  */
 public class randomOperativeStrategyTest {
     
-    ArrayList<Card> cards;
+        Card[] cards;
+    Board board;
+    Bipartite bp;
     
     public randomOperativeStrategyTest() {
     }
     
     @Before
     public void setUp() {
-        cards = new ArrayList<>();
-        for(int i = 0; i < 10; i++) {
-            cards.add(new Card("Card" + i, CardType.Bystander));
-        }
+               cards = CardBuilder.buildAll();
+        board = new Board(cards);
+        bp = new Bipartite(board);
     }
 
     /**
@@ -37,7 +41,8 @@ public class randomOperativeStrategyTest {
         randomOperativeStrategy instance = new randomOperativeStrategy();
         ArrayList<Card> picks = new ArrayList<>();
         for(int i = 0; i < 10; i++) {
-            Card pick = instance.pickCard(cards);
+            
+            Card pick = instance.pickCard(board.getCards(),bp);
             System.out.println("Pick: " + i + ": " + pick);
             picks.add(pick);
         }

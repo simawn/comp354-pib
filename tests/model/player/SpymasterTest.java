@@ -17,15 +17,18 @@ import static org.junit.Assert.assertTrue;
  * @author david
  */
 public class SpymasterTest {    
+        Card[] cards;
     Board board;
+    Bipartite bp;
 
     public SpymasterTest() {
     }
     
     @Before
     public void setUp() {
-        Card[] cards = CardBuilder.buildAll();
+        cards = CardBuilder.buildAll();
         board = new Board(cards);
+        bp = new Bipartite(board);
     }
     
     /**
@@ -36,7 +39,7 @@ public class SpymasterTest {
         System.out.println("clue");
 
         Spymaster instance = new Spymaster(CardType.Blue, board, new randomSpyStrategy());
-        Clue c = instance.makeMove();
+        Clue c = instance.makeMove(null,bp);
         assertNotEquals(c.getClueWord(), null);
         assertTrue(c.getClueNum() < 10 && c.getClueNum() >= 0);
         assertNotEquals(c, null);

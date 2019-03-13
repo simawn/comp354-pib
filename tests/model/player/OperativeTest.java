@@ -8,6 +8,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import model.board.Bipartite;
+import model.board.Clue;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -21,7 +23,10 @@ import static org.junit.Assert.assertTrue;
  * @author Max Page-Slowik, David Gray
  */
 public class OperativeTest {
+    Card[] cards;
     Board board;
+    Bipartite bp;
+
     
     public OperativeTest() {
     }
@@ -30,6 +35,9 @@ public class OperativeTest {
     public void setUp() {
         Card[] cards = CardBuilder.buildAll();
         board = new Board(cards);
+        bp = new Bipartite(board);
+
+        
     }
 
     /**
@@ -39,7 +47,7 @@ public class OperativeTest {
     public void testMakeMove() {
         System.out.println("makeMove");
         Operative randInstance = new Operative(CardType.Blue, board, new randomOperativeStrategy());
-        Card c = randInstance.makeMove();
+        Card c = randInstance.makeMove(new Clue("Pyramid",1),bp);
         assertEquals("Checking that the Operative makes a legal selection", board.getCards().contains(c), true);
     }
     
@@ -52,10 +60,10 @@ public class OperativeTest {
         ArrayList<Card> picks = new ArrayList<>();
         Operative randInstance = new Operative(CardType.Blue, board, new randomOperativeStrategy());
 
-        Card firstPick = randInstance.makeMove();
+        Card firstPick = randInstance.makeMove(new Clue("Pyramid",1),bp);
         System.out.println("firstPick: " + firstPick);
         for(int i = 0; i < 10; i++) {
-            Card pick = randInstance.makeMove();
+            Card pick = randInstance.makeMove(new Clue("Pyramid",1),bp);
             System.out.println("Pick: " + i + ": " + pick);
             picks.add(pick);
         }

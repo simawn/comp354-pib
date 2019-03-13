@@ -23,7 +23,6 @@ public abstract class Player {
     public CardType getTeam() {
         return team;
     }
- 
     /**
      * To be implemented by Operatives and Spymasters. 
      * Operatives return a Card selection and Spymasters return a Clue.

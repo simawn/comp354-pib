@@ -81,7 +81,6 @@ public class Preview {
     public static void start_game(Stage root) {
         
         Card[] cards = CardBuilder.buildAll();
-
         Board board = new Board(cards);
         GameManager game = new GameManager(board);
 

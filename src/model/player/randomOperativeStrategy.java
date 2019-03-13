@@ -25,6 +25,9 @@ public class randomOperativeStrategy implements OperativeStrategy {
 
 	/**
 	 * Picks a card at random according to the amount of cards available.
+     * @param cards
+     * @param bipartite
+     * @return The card
 	 */
 	@Override
 	public Card pickCard(List<Card> cards, Bipartite bipartite) {
@@ -41,5 +44,6 @@ public class randomOperativeStrategy implements OperativeStrategy {
 	public void setClue(Clue clue) {
 		currentClue = clue;
 	}
+
 
 }

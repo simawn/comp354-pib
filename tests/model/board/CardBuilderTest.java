@@ -1,8 +1,11 @@
 package model.board;
 
+import org.junit.After;
+import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import org.junit.BeforeClass;
 
 /**
  * Unit test for CardBuilder class.
@@ -16,7 +19,6 @@ public class CardBuilderTest {
     
     public CardBuilderTest() {
     }
-    
     @Before
     public void setUp() {
         cards = CardBuilder.buildAll();
@@ -46,6 +48,19 @@ public class CardBuilderTest {
                         j  + " " + cards[j].word, !cards[i].word.equals(cards[j].word));
             }
         }
+    }
+
+    /**
+     * Test of buildAll method, of class CardBuilder.
+     */
+    @Test
+    public void testBuildAll() {
+        System.out.println("buildAll");
+        Card[] expResult = null;
+        Card[] result = CardBuilder.buildAll();
+        assertArrayEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
     }
    
 }

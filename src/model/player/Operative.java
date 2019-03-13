@@ -40,7 +40,7 @@ public class Operative extends Player{
         this.opStrat = strategy;
         this.board = board;
     }
-
+    
     @Override
     public Card makeMove(Clue clue, Bipartite bipartite) {
         opStrat.setClue(clue);
