@@ -6,6 +6,7 @@
 package model.player;
 
 import control.game.Difficulty;
+import model.board.Bipartite;
 import model.board.Card;
 
 import java.util.List;
@@ -13,30 +14,32 @@ import java.util.Random;
 import model.board.Clue;
 
 /**
- * The random strategy for operator that will choose cards by random as they play the game.
+ * The random strategy for operator that will choose cards by random as they
+ * play the game.
+ * 
  * @author david
  */
 public class randomOperativeStrategy implements OperativeStrategy {
 
-    private Clue currentClue;
+	private Clue currentClue;
 
-     /**
-    * Picks a card at random according to the amount of cards available.
-    */
-    @Override
-    public Card pickCard(List<Card> cards) {
-        Random rand = new Random();
-        return cards.get(rand.nextInt(cards.size()));
-    }
+	/**
+	 * Picks a card at random according to the amount of cards available.
+	 */
+	@Override
+	public Card pickCard(List<Card> cards, Bipartite bipartite) {
+		Random rand = new Random();
+		return cards.get(rand.nextInt(cards.size()));
+	}
 
-    @Override
-    public Clue getClue() {
-return currentClue;   
-    }
+	@Override
+	public Clue getClue() {
+		return currentClue;
+	}
 
-    @Override
-    public void setClue(Clue clue) {
-currentClue = clue;
-    }
+	@Override
+	public void setClue(Clue clue) {
+		currentClue = clue;
+	}
 
 }

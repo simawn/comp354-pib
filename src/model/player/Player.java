@@ -1,5 +1,6 @@
 package model.player;
 
+import model.board.Bipartite;
 /**
  * The abstract class for all players (Spymaster or Strategy)
  * 
@@ -26,8 +27,8 @@ public abstract class Player {
     /**
      * To be implemented by Operatives and Spymasters. 
      * Operatives return a Card selection and Spymasters return a Clue.
-     * 
+     * A bipartite is passed to show the current relation between words and clues.
      * @return 
      */
-    public abstract Object makeMove(Clue clue);
+    public abstract Object makeMove(Clue clue, Bipartite bipartite);
 }

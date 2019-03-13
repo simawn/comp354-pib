@@ -5,6 +5,7 @@
  */
 package model.player;
 
+import model.board.Bipartite;
 import model.board.Card;
 import model.board.Clue;
 
@@ -25,7 +26,7 @@ public class randomSpyStrategy implements SpyStrategy {
      * Returns a clue at random according to the amount of cards available.
      */
     @Override
-    public Clue giveClue(List<Card> cards) {
+    public Clue giveClue(List<Card> cards, Bipartite bipartite) {
         Random rand = new Random();
         int clueNum = rand.nextInt(4);
 
