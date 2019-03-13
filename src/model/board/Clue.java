@@ -29,6 +29,7 @@ public class Clue {
         return clueNum;
     }
     
+    
     public String toString() {
         return clueWord + ": " + clueNum;
     }

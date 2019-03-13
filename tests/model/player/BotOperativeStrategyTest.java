@@ -57,7 +57,7 @@ public class BotOperativeStrategyTest {
     	BotOperativeStrategy hardStrategyBlue = new BotOperativeStrategy(CardType.Blue,1);
     	//ArrayList<Card> bluePicks = new ArrayList<Card>();
         
-        Clue c = new Clue(blueCard.word,1); //need to make a card and and a clue
+        Clue c = new Clue(bp.getClue(blueCard.word),1); //need to make a card and and a clue
         System.out.println("Current Clue: "+c.getClueWord()+ " for "+blueCard.word);
         hardStrategyBlue.setClue(c);
         Card pickedCard = hardStrategyBlue.pickCard(board.getCards(),bp);
@@ -89,7 +89,7 @@ public class BotOperativeStrategyTest {
 //    	for(int i = 0; i < (this.RED_CARDS); i++) {
 //            redPicks.add(hardStrategyRed.pickCard(board.getCards(),bp));
 //    	}
-    	Clue c = new Clue(redCard.word,1);
+    	Clue c = new Clue(bp.getClue(redCard.word),1);
         hardStrategyRed.setClue(c);
         System.out.println("Current Clue: "+c.getClueWord()+ " for "+redCard.word);
         Card pickedCard = hardStrategyRed.pickCard(board.getCards(),bp);

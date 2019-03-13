@@ -72,7 +72,11 @@ public class Bipartite {
 	public HashMultimap<String, String> getCluesToWords() {
 		return this.cluesToWords;
 	}
-
+        public String getClue(String cardWord){
+            String cl = "";
+            cl =wordsToClues.get(cardWord).iterator().next();
+            return cl;
+        }
 	/**
 	 * Removes a word from the bipartite including it's related clues
 	 * 

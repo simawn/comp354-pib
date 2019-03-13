@@ -23,7 +23,7 @@ import static org.junit.Assert.assertTrue;
 
 public class SimpleSpyStrategyTest {
 	
-    Card[] cards;
+    Card[] cards = new Card[2];
     Board board;
     Bipartite bp;
     final int RED_CARDS = 10;
@@ -34,7 +34,8 @@ public class SimpleSpyStrategyTest {
      */
     @Before
     public void setUp() {
-        cards = CardBuilder.buildAll();
+        cards[0] = new Card("BELL" , CardType.Blue);
+        cards[1] = new Card("TORCH" , CardType.Red);
         board = new Board(cards);
         bp = new Bipartite(board);
     	//cards = new ArrayList<Card>();
@@ -91,8 +92,8 @@ public class SimpleSpyStrategyTest {
     	Clue clue = redStrategy.giveClue(board.getCards(),bp);
     	//System.out.println(clue.toString());
     	
-    	assertTrue(clue.getClueWord().equalsIgnoreCase("golem") || clue.getClueWord().equalsIgnoreCase("robo") ||
-    			clue.getClueWord().equalsIgnoreCase("automaton") || clue.getClueWord().equalsIgnoreCase("robotics"));
+    	assertTrue(clue.getClueWord().equalsIgnoreCase("flashlight") || clue.getClueWord().equalsIgnoreCase("light") ||
+    			clue.getClueWord().equalsIgnoreCase("lantern") || clue.getClueWord().equalsIgnoreCase("blowlamp"));
     	//assertNotEquals(redStrategy, null);
     }
 }
