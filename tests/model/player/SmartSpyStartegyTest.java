@@ -3,13 +3,14 @@ package model.player;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Before;
-import org.junit.jupiter.api.Test;
+
 
 import model.board.Bipartite;
 import model.board.Board;
 import model.board.Card;
 import model.board.CardType;
 import model.board.Clue;
+import org.junit.Test;
 
 public class SmartSpyStartegyTest {
 	
@@ -31,9 +32,10 @@ public class SmartSpyStartegyTest {
         bp = new Bipartite(board);
     }
     
-    @Test
+    
     // testing to see if the giveClue method will return the common clue for the player's words
     // in this specific case, our method should return "city" as the most optimal clue
+    @Test
     public void TestSmartSpyStrategy()
     {
     	SmartSpyStrategy blueStrategy = new SmartSpyStrategy(CardType.Blue);
