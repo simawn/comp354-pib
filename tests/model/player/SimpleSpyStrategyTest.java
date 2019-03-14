@@ -26,11 +26,11 @@ public class SimpleSpyStrategyTest {
     Card[] cards = new Card[2];
     Board board;
     Bipartite bp;
-    final int RED_CARDS = 10;
-    final int BLUE_CARDS = 10;
+    Card blueCard;
+    Card redCard;
     
     /**
-     * Setup board
+     * Setup board and assign cards to the list for testing purposes
      */
     @Before
     public void setUp() {
@@ -38,62 +38,65 @@ public class SimpleSpyStrategyTest {
         cards[1] = new Card("TORCH" , CardType.Red);
         board = new Board(cards);
         bp = new Bipartite(board);
-    	//cards = new ArrayList<Card>();
-    	
-//    	//Add assassin
-//    	cards.add(new Card("Assassin", CardType.Assassin));
-//    	//Add bystanders
-//    	for(int i = 0; i < 2; i++) {
-//    		cards.add(new Card("Bystander", CardType.Bystander));
-//    	}
-    	//Add blue
-//    	for(int i = 0; i < BLUE_CARDS; i++) {
-//    		cards.add(new Card("Blue", CardType.Blue));
-//    	}
-//    	//Add red
-//    	for(int i = 0; i < RED_CARDS; i++) {
-//    		cards.add(new Card("Red", CardType.Red));
-//    	}
     }
     
     @Test
     /**
-     * Test out the giveClue method from the class to see if it generates expected result
+     * Test out the giveClue method from the class to see if it generates expected result for a specific word
      */
     public void SimpleStategyTestForBlue()
     {
     	SimpleSpyStrategy blueStrategy = new SimpleSpyStrategy(CardType.Blue);
     	
-    	//cards.add(new Card("BELL" , CardType.Blue));
+    	//the following will return one of the clues that is generated for bell
+    	Clue clue = blueStrategy.giveClue(board.getCards(),bp);
     	
-    	//for(int i = 0; i < cards.size(); i++)
-    		//System.out.println(cards.get(i).toString());
+    	System.out.println("Current clue: " + clue.getClueWord());
+    	assertTrue(clue.getClueWord().equalsIgnoreCase("chime") || clue.getClueWord().equalsIgnoreCase("gong") || clue.getClueWord().equalsIgnoreCase("buzzer") || clue.getClueWord().equalsIgnoreCase("doorbell"));
+    }
+    
+	
+	  @Test public void SimpleStategyTestForRed()
+	  { 
+		  SimpleSpyStrategy redStrategy = new SimpleSpyStrategy(CardType.Red);
+	  
+		  //the following will return one of the clues that is generated for bell 
+		  Clue clue = redStrategy.giveClue(board.getCards(),bp);
+		  
+		  
+		  assertTrue(clue.getClueWord().equalsIgnoreCase("flashlight") ||
+		  clue.getClueWord().equalsIgnoreCase("light") ||
+		  clue.getClueWord().equalsIgnoreCase("lantern") ||
+		  clue.getClueWord().equalsIgnoreCase("blowlamp")); 
+	  }
+	 
+    
+    @Test
+    public void SimpleStrategy()
+    {
+    	cards = CardBuilder.buildAll();
+        board = new Board(cards);
+        bp = new Bipartite(board);
+                for(int i = 0; i<cards.length;++i){
+            if(cards[i].type == CardType.Blue){
+                blueCard = cards[i];
+                break;
+            }
+        }
+        for(int i = 0; i<cards.length;++i){
+            if(cards[i].type == CardType.Red){
+                redCard = cards[i];
+                break;
+            }
+        }
+        
+        SimpleSpyStrategy blueStrategy = new SimpleSpyStrategy(CardType.Blue);
     	
     	//the following will return one of the clues that is generated for bell
     	Clue clue = blueStrategy.giveClue(board.getCards(),bp);
-    	//System.out.println(clue.toString());
     	
-    	assertTrue(clue.getClueWord().equalsIgnoreCase("chime") || clue.getClueWord().equalsIgnoreCase("gong") ||
-    	clue.getClueWord().equalsIgnoreCase("buzzer") || clue.getClueWord().equalsIgnoreCase("doorbell"));
-    	//assertNotEquals(blueStrategy, null);
-    }
-    
-    @Test
-    public void SimpleStategyTestForRed()
-    {
-    	SimpleSpyStrategy redStrategy = new SimpleSpyStrategy(CardType.Red);
+    	System.out.println("Current clue: " + blueCard.word);
     	
-    	//cards.add(new Card("ROBOT" , CardType.Red));
-    	
-    	//for(int i = 0; i < cards.size(); i++)
-    		//System.out.println(cards.get(i).toString());
-    	
-    	//the following will return one of the clues that is generated for bell
-    	Clue clue = redStrategy.giveClue(board.getCards(),bp);
-    	//System.out.println(clue.toString());
-    	
-    	assertTrue(clue.getClueWord().equalsIgnoreCase("flashlight") || clue.getClueWord().equalsIgnoreCase("light") ||
-    			clue.getClueWord().equalsIgnoreCase("lantern") || clue.getClueWord().equalsIgnoreCase("blowlamp"));
-    	//assertNotEquals(redStrategy, null);
+    	assertTrue("making sure clue has been returned", clue.getClueWord() != null);
     }
 }
