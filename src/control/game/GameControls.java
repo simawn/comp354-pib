@@ -10,6 +10,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
 import javafx.stage.Window;
 import view.Preview;
@@ -38,6 +39,22 @@ public class GameControls {
                 if (s.equals("Quit")) {
                     Platform.exit();
                     System.exit(0);
+                }
+                //if it is the about command it will open a new window giving a brief description
+                if (s.equals("About")) {
+                    Preview.start_about();
+                }
+            }
+        };
+    }
+    public static EventHandler<ActionEvent> setAbout() {
+        return new EventHandler<ActionEvent>() {
+            public void handle(ActionEvent event) {
+                MenuItem m = (MenuItem) event.getSource();
+                String s = m.getText();
+                //If it is the about command it will open a new window giving a brief description
+                if (s.equals("About")) {
+                    Preview.start_about();
                 }
             }
         };

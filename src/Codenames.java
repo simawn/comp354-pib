@@ -1,16 +1,8 @@
-import control.game.GameHandler;
-import model.board.GameManager;
+
 import javafx.application.Application;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
-import model.board.Board;
-import model.board.Card;
-import model.board.CardBuilder;
-import model.util.Verbose;
-import view.GameScene;
 import view.Preview;
-import view.VerboseView;
-import view.ScoreView;
+
 
 /**
  * This application is a prototype GUI program of the popular board game Codenames. 

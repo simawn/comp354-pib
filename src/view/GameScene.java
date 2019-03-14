@@ -76,7 +76,7 @@ public class GameScene {
              
         Scene scene = new Scene(vb);
         //MENU AREA
-                MenuBar menuBar = new MenuBar();
+
         // --- Menu Action for start and quit
         Menu menuAction = new Menu("Action");
                 MenuItem start = new MenuItem("Restart");
@@ -88,9 +88,12 @@ public class GameScene {
         menuAction.getItems().addAll(start,quit);
 
         // --- Menu About section
-        Menu menuAbout = new Menu("About");
- 
-        menuBar.getMenus().addAll(menuAction, menuAbout);
+        Menu menuHelp = new Menu("Help");
+        MenuItem menuAbout = new MenuItem("About");
+        menuAbout.setOnAction(GameControls.setAbout());
+        menuHelp.getItems().add(menuAbout);
+        
+        MenuBar menuBar = new MenuBar(menuAction,menuHelp);        
         TilePane tile = new TilePane();
                 tile.setPadding((new Insets(4, 4, 4, 4)));
         tile.setBackground(new Background(new BackgroundFill(Color.valueOf("877567"), CornerRadii.EMPTY, Insets.EMPTY)));

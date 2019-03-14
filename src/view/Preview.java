@@ -14,6 +14,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
@@ -85,8 +86,47 @@ public class Preview {
         root.show();
      
     }
+    /**
+     * Return the stage for restarting
+     * @return 
+     */
     public static Stage getStage(){
         return stage;
+    }
+    /**
+     * Spawn new about window
+     * @param root 
+     */
+    public static void start_about(){
+        Stage aboutView = new Stage();
+
+        VBox vb = new VBox();
+        vb.setPadding(new Insets(5,5,5,5));
+        vb.setSpacing(5);
+        vb.setBackground(new Background(new BackgroundFill(Color.valueOf("877567"), CornerRadii.EMPTY, Insets.EMPTY)));
+        TextArea ta = new TextArea();
+        
+        String content = "Controls:"
+                + "\nv: Open the verbose view"
+                + "\nEnter: Go to next step of the turn (Giving a clue or choosing)"
+                + "\nRestart under Action starts a new game of the same difficulty"
+                + "\nQuit exits the game"
+                + "\nPick difficulty before clicking the start button"
+                + "\n\nExplanation:"
+                + "\nVerbose view shows every step"
+                + "\nScore view shows the current score";
+        Scene scene = new Scene(vb);
+        ta.setText(content);
+        ta.setWrapText(true);
+        ta.setEditable(false);
+        //ta.setStyle("-fx-text-fill: white ;  -fx-background-color: #877567;") ;
+        ((VBox) scene.getRoot()).getChildren().addAll(ta);
+        aboutView.setTitle("Codenames - About");
+        aboutView.setScene(scene);
+        aboutView.setMinHeight(200);
+        aboutView.setMinWidth(200);
+        //set the visibility to true and show the window
+        aboutView.show();
     }
     /**
      * Game model, and game controls are instantiated.
