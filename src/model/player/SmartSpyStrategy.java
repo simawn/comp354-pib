@@ -13,7 +13,9 @@ import model.board.Clue;
 import model.board.Constants;
 
 /**
- * Allows the spy to choose a clue that includes many words on the board
+ * Allows the spy to choose a clue that includes many words on the board.
+ * The Spymaster will select a clue that is the most common amongst the words given to a particular player
+ * instead of just selecting a clue at random.
  * 
  * @author Simon Huang
  *
@@ -32,13 +34,20 @@ public class SmartSpyStrategy implements SpyStrategy {
 	}
 
 	/**
-	 * Selects a card from their team at random. Checks each clue for the optimal
-	 * one
+	 * Selects a card from their team at random. This method will search for the most optimal
+	 * clue meaning the clue that is shared between the words belonging to the current player and return that
+	 * specific clue
+	 * 
+	 * @param cards		list of codename cards belonging to a player
+	 * @param bipartite   show the current relation between words and clues
+	 * 
+	 * @return 			the most optimal clue among a player's list of cards
 	 */
 	@Override
 	public Clue giveClue(List<Card> cards, Bipartite bipartite) {
 		ArrayList<Card> toChooseFrom = new ArrayList<Card>();
 
+		//stores all cards that belong to the current player into out list
 		for (Card card : cards) {
 			if (card.getTypeProperty() == team) {
 				toChooseFrom.add(card);

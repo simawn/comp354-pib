@@ -22,7 +22,7 @@ import model.board.Constants;
  * Operative strategy used by bots. The difficulty is determined by the accuracy parameter
  * Any accuracy greater than 0.95 is considered hard (almost impossible mode), the bot will always
  * choose the correct card according to the clue and if there are no more words related to the clue,
- * it will still choose a card of their team
+ * it will still choose a card of their team.
  * 
  * @author Simon Huang
  *
@@ -47,14 +47,22 @@ public class BotOperativeStrategy implements OperativeStrategy {
 
 	/**
 	 * Loops through all the cards and add the cards of their team into an ArrayList
+	 * @param cards		list of codename cards belonging to a player
+	 * @param bipartite shows the current relation between words and clues
+	 * 
+	 *  @return 
 	 */
 	@Override
 	public Card pickCard(List<Card> cards, Bipartite bipartite) {
-		Set<String> cardsToChoose = new HashSet<String>(); //Friendly sets of cards
+		//Friendly sets of cards
+		Set<String> cardsToChoose = new HashSet<String>(); 
 		
-		HashMap<String, Card> hashMapCards = new HashMap<String, Card>(); //Used when returning the card
+		//Used when returning the card
+		HashMap<String, Card> hashMapCards = new HashMap<String, Card>(); 
 		
+		//loops through the list and assign a card based on the cardType to the list
 		for (Card card : cards) {
+			
 			if (card.getTypeProperty() == team) { 
 				cardsToChoose.add(card.getStringProperty()); //Add to friendly set
 			}
@@ -77,25 +85,39 @@ public class BotOperativeStrategy implements OperativeStrategy {
 		String chosenWord = "";
 		Random rand = new Random();
 		double rng = rand.nextDouble();
-		if(rng < this.accuracy) { //Choose the correct word depending on accuracy
+		
+		//Choose the correct word depending on accuracy
+		if(rng < this.accuracy) { 
 			if(arr_friendWord.length != 0) {
 				chosenWord = arr_friendWord[rand.nextInt(arr_friendWord.length)];
 			}
-		} else { //If rng from above fails, go to here, then pick from enemy. We might want to change how this works.
+		} 
+		
+		//If rng from above fails, go to here, then pick from enemy. We might want to change how this works.
+		else 
+		{ 
 			if(arr_enemyWord.length != 0) {
 				chosenWord = arr_enemyWord[rand.nextInt(arr_enemyWord.length)];
 			}
 		}
+		
 		//If there are no chosen word, choose at random
-		if(chosenWord == "") {
+		if(chosenWord == "") 
+		{
 			if(Constants.DEBUG) System.out.println("No more words, choosing at random...");
 			
-			if(accuracy < 0.95) { //If accuracy is less than 0.95, the next word is chosen at random
-				Object[] randomKey = hashMapCards.keySet().toArray();
-				chosenWord = (String) randomKey[rand.nextInt(randomKey.length)];
-			} else { //If accuracy is greater than or equal to 0.95, the next word chosen is of the team's color
-				chosenWord = cardsToChoose.iterator().next();
-			}
+			//If accuracy is less than 0.95, the next word is chosen at random
+				if(accuracy < 0.95) 
+				{ 
+					Object[] randomKey = hashMapCards.keySet().toArray();
+					chosenWord = (String) randomKey[rand.nextInt(randomKey.length)];
+				} 
+				
+				//If accuracy is greater than or equal to 0.95, the next word chosen is of the team's color
+				else 
+				{ 
+					chosenWord = cardsToChoose.iterator().next();
+				}
 		}
 		
 		
@@ -118,11 +140,17 @@ public class BotOperativeStrategy implements OperativeStrategy {
 	}
 
 	@Override
+	/**
+	 * returns a string representing the current clue of a word
+	 */
 	public Clue getClue() {
 		return currentClue;
 	}
 
 	@Override
+	/**
+	 * sets a given string as the clue
+	 */
 	public void setClue(Clue clue) {
 		currentClue = clue;
 	}

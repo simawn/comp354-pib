@@ -33,8 +33,13 @@ public class SimpleSpyStrategy implements SpyStrategy {
 	}
 
 	/**
-	 * Selects a card from their team at random. Gives out a clue a random from the
+	 * Selects a card from their team at random. Gives out a clue at random from the
 	 * selected word
+	 * 
+	 * @param cards		list of codename cards belonging to a player
+	 * @param bipartite   show the current relation between words and clues
+	 * 
+	 * @return returns a random clue for a specific word
 	 */
 	@Override
 	public Clue giveClue(List<Card> cards, Bipartite bipartite) {
@@ -47,11 +52,17 @@ public class SimpleSpyStrategy implements SpyStrategy {
 			}
 		}
 
+		//will be used to select a clue at random for our words
 		Random rand = new Random();
 
+		//takes our chosen word and places it into a variable
 		String chosenWord = toChooseFrom.get(rand.nextInt(toChooseFrom.size())).getStringProperty();
+		
+		//all clues pertaining to the chosen word are added to the list
 		String[] availClues = bipartite.getWordsToClues().get(chosenWord)
 				.toArray(new String[bipartite.getWordsToClues().get(chosenWord).size()]);
+		
+		//random clue is taken from the list and place in the variable
 		String chosenClue = availClues[rand.nextInt(availClues.length)];
 
 		// DEBUG
@@ -66,6 +77,7 @@ public class SimpleSpyStrategy implements SpyStrategy {
 			System.out.println();
 		}
 
+		// returns the clue 
 		return new Clue(chosenClue.toUpperCase(), 1);
 	}
 
