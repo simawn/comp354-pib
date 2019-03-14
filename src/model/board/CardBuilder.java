@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
@@ -14,7 +15,7 @@ import model.board.Constants;
  * The .jar (in /lib folder) will need to be imported:
  * How to import in Eclipse:
  * Project > Properties > Java Build Path > Libraries > Add External JARs >
- * Choose “json-simple-1.1.1.jar” in the /lib folder
+ * Choose "json-simple-1.1.1.jar" in the /lib folder
  */
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -85,29 +86,38 @@ class Word extends Extractor {
 }
 
 /**
-* KeyCard parses a random line of the text file containing keycards by 
+* KeyCard randomly generates a key card layout by 
 * mapping them to an array of enum CardType variables.
 * 
 * @author David Gray, Rani Rafid, Simon Huang
 * @date 02/06/19
 */
 class KeyCard extends Extractor {
-    private static final Path PATH = Constants.KEYCARDS_PATH;
-
+	
     CardType[] parse() throws IOException, ParseException {
-        List<String> list = build(PATH);
+        final char A = 'A';
+        final char Y = 'Y';
+        final char B = 'B';
+        final char R = 'R';
         
-        Collections.shuffle(list); //Moved shuffle from build to here
+        Character[] blue = {A, Y, Y, Y, Y, Y, Y, Y, B, B, B, B, B, B, B, B, B, R, R, R, R, R, R, R, R}; //9 BLUE, 8 RED
+        Character[] red = {A, Y, Y, Y, Y, Y, Y, Y, B, B, B, B, B, B, B, B, R, R, R, R, R, R, R, R, R}; //8 BLUE, 9 RED
         
-        String temp = list.remove(0);
+        
+        List<Character> chosenList = new ArrayList<Character>(Arrays.asList(Math.random() > 0.5 ? blue : red));
+        
+        Collections.shuffle(chosenList);
 
-        if (temp.length() != SIZE) {
+        if(Constants.DEBUG) System.out.println("Keycard Generated: " + chosenList.toString());
+        
+
+        if (chosenList.size() != SIZE) {
             throw new IllegalArgumentException();
         }
 
         CardType[] types = new CardType[Extractor.SIZE];
-        for (int i = 0; i < temp.length(); i++) {
-            types[i] = CardType.charOf(temp.charAt(i));
+        for (int i = 0; i < chosenList.size(); i++) {
+            types[i] = CardType.charOf((char) chosenList.toArray()[i]);
         }
         return types;
     }
