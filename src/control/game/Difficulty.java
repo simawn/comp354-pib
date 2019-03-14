@@ -12,7 +12,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.MenuItem;
 
 /**
- *
+ * This class is responsible for setting the difficulty of our game
  * @author Max Page-Slowik
  */
 public class Difficulty {
@@ -21,12 +21,20 @@ public class Difficulty {
 
     public  Difficulty() {
     }
-
+    /**
+     * Event Handler that is responsible for setting the game difficulty based on input provided.
+     * @return
+     */
     public static EventHandler<ActionEvent> setDifficulty() {
         return new EventHandler<ActionEvent>() {
             public void handle(ActionEvent event) {
                 ComboBox cb = (ComboBox) event.getSource();
                 
+                /*retrieve the string that will be used to determine the difficulty of the game
+                 * If easy then difficulty level is set to 0
+                 * If medium is retrieved then level is set to 1
+                 * If Hard then level is set to 2
+                 */
                 String s = (String) cb.getValue();
                 if (s.equals("Easy")) {
                     difficulty = 0;
@@ -38,9 +46,18 @@ public class Difficulty {
             }
         };
     }
+   
+    /**
+     * this method retrieves the difficulty level of out game
+     * @return integer representation for difficulty level
+     */
     public static int getDifficulty(){
         return difficulty;
     }
+    /**
+     * returns a string reprsentation of the level of difficulty of our game
+     * @return difficulty level string
+     */
     public static String getStringDifficulty(){
         if (difficulty == 0){
             return "Easy";
