@@ -79,8 +79,8 @@ class Word extends Extractor {
         }
         
         Collections.shuffle(jsonList); //Shuffle words
-        
-        return jsonList.toArray(new String[SIZE]);
+
+        return jsonList.subList(0, SIZE).toArray(new String[SIZE]);
     }
 
 }

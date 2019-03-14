@@ -107,11 +107,11 @@ public class Bipartite {
 			System.out.println();
 			System.out.println("====== BIPARTITE DEBUG ======");
 			System.out.println("WORDS ---> CLUES");
-			System.out.println(this.wordsToClues.size());
+			System.out.println("Unique key size: " + this.wordsToClues.keySet().size());
 			System.out.println(this.wordsToClues.toString());
 			System.out.println();
 			System.out.println("CLUES ---> WORDS");
-			System.out.println(this.cluesToWords.size());
+			System.out.println("Total clues: " + this.cluesToWords.size());
 			System.out.println(this.cluesToWords.toString());
 			System.out.println();
 		}
