@@ -17,10 +17,11 @@ import static org.junit.Assert.assertTrue;
 /**
  * Unit test for CardTest class.
  * 
- * @author David Gray
- * @date 02/07/2019
+ * original author David Gray
+ * original date 02/07/2019
  *
  * @author Max Page-Slowik, David Gray
+ * @date 03/12/2019
  */
 public class OperativeTest {
     Card[] cards;
