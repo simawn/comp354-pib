@@ -33,7 +33,8 @@ public class JSONProcessor {
 	}
 	
 	/**
-	 * Process .json object
+	 * Process .json object. If the specified file does not exist, the program will terminate and display the error
+	 * 
 	 * @param path Path to a .json file
 	 * @return Processed JSONObject
 	 */
@@ -41,6 +42,8 @@ public class JSONProcessor {
 		
 		JSONObject jsonObj = null;
 		
+		//processes a json file taken from our given path parameter. If it does not 
+		// exist then exception is thrown and caught and error message is displayed showing what type of error it is
 		try {
 			JSONParser parser = new JSONParser();
 			jsonObj = (JSONObject) parser.parse(new FileReader(path.toString()));
