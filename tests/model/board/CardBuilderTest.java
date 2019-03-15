@@ -50,17 +50,5 @@ public class CardBuilderTest {
         }
     }
 
-    /**
-     * Test of buildAll method, of class CardBuilder.
-     */
-    @Test
-    public void testBuildAll() {
-        System.out.println("buildAll");
-        Card[] expResult = null;
-        Card[] result = CardBuilder.buildAll();
-        assertArrayEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
    
 }

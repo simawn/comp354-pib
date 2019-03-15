@@ -58,20 +58,27 @@ public class GameManagerTest {
         System.out.println("Testing GameManager.gameIsOver()");
         cards = new Card[10];
         // Make a "board" that only contains blue cards, and the assassin
-        cards[0] = new Card("Assassin", CardType.Assassin);
-        for(int i = 1; i < cards.length; i++) {
-            cards[i] = new Card("card" + i, CardType.Blue);
-        }
+        cards[0] = new Card("AGENT", CardType.Assassin);
+        cards[1] = new Card("AMAZON", CardType.Blue);
+        cards[2] = new Card("ANTARCTICA", CardType.Blue);
+        cards[3] = new Card("ATLANTIS", CardType.Blue);
+        cards[4] = new Card("BATTERY", CardType.Blue);
+        cards[5] = new Card("BEAR", CardType.Blue);
+        cards[6] = new Card("BEIJING", CardType.Blue);
+        cards[7] = new Card("BELL", CardType.Blue);
+        cards[8] = new Card("BRIDGE", CardType.Blue);
+        cards[9] = new Card("BUCK", CardType.Blue);
+        
         board = new Board(cards);
         instance = new GameManager(board); 
         assertTrue("Game is over because all reds cards are chosen", instance.gameIsOver());
         
-        cards[1] = new Card("Red", CardType.Red);
+        cards[1] = new Card("AGENT", CardType.Red);
         board = new Board(cards);
         instance = new GameManager(board);
         assertFalse("Game not over as board as red, blue, and assassin card", instance.gameIsOver());
         
-        cards[0] = new Card("Red", CardType.Red);
+        cards[0] = new Card("BUG", CardType.Red);
         board = new Board(cards);
         instance = new GameManager(board);
         assertTrue("Game is over because someone chose the assassin", instance.gameIsOver());
