@@ -26,8 +26,8 @@ public class SmartSpyStartegyTest {
     @Before
     public void setUp() 
     {
-        cards[0] = new Card("WASHINGTON" , CardType.Blue);
-        cards[1] = new Card("BUFFALO" , CardType.Blue);
+        cards[0] = new Card("LONDON" , CardType.Blue);
+        cards[1] = new Card("ATLANTIS" , CardType.Blue);
         board = new Board(cards);
         bp = new Bipartite(board);
     }
