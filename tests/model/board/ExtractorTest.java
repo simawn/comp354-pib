@@ -7,6 +7,7 @@ package model.board;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 import org.json.simple.parser.ParseException;
 import org.junit.After;
@@ -47,13 +48,11 @@ public class ExtractorTest {
     @Test
     public void testBuild() throws Exception {
         System.out.println("build");
-        Path Path = null;
+        Path path = Paths.get("resources/words100_1550871908_SYN_1550898480.json");;
         Extractor instance = new ExtractorImpl();
-        List<String> expResult = null;
-        List<String> result = instance.build(Path);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        List<String> result = instance.build(path);
+        assertTrue("", result != null);
+        
     }
 
     /**
@@ -63,11 +62,12 @@ public class ExtractorTest {
     public void testParse() throws Exception {
         System.out.println("parse");
         Extractor instance = new ExtractorImpl();
-        Object[] expResult = null;
-        Object[] result = instance.parse();
-        assertArrayEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+       
+        Object[] result;
+        result = instance.parse();
+        
+        assertTrue("", result == null);
+       
     }
 
     public class ExtractorImpl extends Extractor {
