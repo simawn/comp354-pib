@@ -2,15 +2,16 @@ package model.player;
 
 import static org.junit.Assert.assertTrue;
 
-import org.junit.Before;
+import java.util.Arrays;
 
+import org.junit.Before;
+import org.junit.jupiter.api.Test;
 
 import model.board.Bipartite;
 import model.board.Board;
 import model.board.Card;
 import model.board.CardType;
 import model.board.Clue;
-import org.junit.Test;
 
 public class SmartSpyStartegyTest {
 	
@@ -26,10 +27,9 @@ public class SmartSpyStartegyTest {
     @Before
     public void setUp() 
     {
-        cards[0] = new Card("WASHINGTON" , CardType.Blue);
+    	cards[0] = new Card("WASHINGTON" , CardType.Blue);
         cards[1] = new Card("BUFFALO" , CardType.Blue);
-        board = new Board(cards);
-        bp = new Bipartite(board);
+         
     }
     
     
@@ -38,11 +38,14 @@ public class SmartSpyStartegyTest {
     @Test
     public void TestSmartSpyStrategy()
     {
+board = new Board(cards);
+        bp = new Bipartite(board);
+        
     	SmartSpyStrategy blueStrategy = new SmartSpyStrategy(CardType.Blue);
     	
     	for(int i = 0; i < cards.length; i++)
     	{
-    		System.out.println(cards[i].toString());
+    		System.out.println(Arrays.deepToString(cards));
     	}
     	
     	Clue clue = blueStrategy.giveClue(board.getCards(), bp);
