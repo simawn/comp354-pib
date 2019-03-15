@@ -2,6 +2,8 @@ package model.player;
 
 import static org.junit.Assert.assertTrue;
 
+import java.util.Arrays;
+
 import org.junit.Before;
 
 
@@ -30,6 +32,7 @@ public class SmartSpyStartegyTest {
         cards[1] = new Card("ATLANTIS" , CardType.Blue);
         board = new Board(cards);
         bp = new Bipartite(board);
+
     }
     
     
@@ -38,11 +41,14 @@ public class SmartSpyStartegyTest {
     @Test
     public void TestSmartSpyStrategy()
     {
+board = new Board(cards);
+        bp = new Bipartite(board);
+        
     	SmartSpyStrategy blueStrategy = new SmartSpyStrategy(CardType.Blue);
     	
     	for(int i = 0; i < cards.length; i++)
     	{
-    		System.out.println(cards[i].toString());
+    		System.out.println(Arrays.deepToString(cards));
     	}
     	
     	Clue clue = blueStrategy.giveClue(board.getCards(), bp);
