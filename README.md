@@ -31,7 +31,9 @@ Click Next, and go to the Libraries tab and add JUnit 5 (if you want to run the 
 
 3. Ensure that the working directory is the main project directory, and not a sub-directory of the main project. This avoids path issues relating to the resources folder. 
 
-4. Compile the project and run the entry class "Codenames.java" within the project directory.
+4. Make sure the external libraries are included in the project. They are located in the `/lib` folder. The external libraries are: `guava-27.1-jre.jar` and `json-simple-1.1.1.jar`. They can be added in Eclipse by right clicking on the project > Properties > Java Build Path > Libraries > Add External JARs...
+
+5. Compile the project and run the entry class "Codenames.java" within the project directory.
 
 ### Play Game
 To cycle through the game, simply press *Enter* key. Every invocation of this key allows for either the Operative or the Spymaster to perform an action.
