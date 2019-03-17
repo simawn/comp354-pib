@@ -16,9 +16,9 @@
 ### Running the exported .jar file
 1. Simply double click `Codenames.jar` in the `/Codenames_IT2` folder to run the application
 
-**Note:** Make sure the `/resources` folder and `Codenames.jar` are in the same folder. Avoid modifying or deleteing the contents of `/resources`.
+**Note:** Make sure the `/resources` folder and `Codenames.jar` are in the same folder. Avoid modifying or deleting the contents of `/resources`.
 
-Executing `CodenamesConsole_bat.bat` or `CodenamesConolse_sh.sh` will run the game along with the debug console.
+Executing `CodenamesConsole_bat.bat` or `CodenamesConsole_sh.sh` will run the game along with the debug console.
 
 ### Instructions for running in Eclipse
 
