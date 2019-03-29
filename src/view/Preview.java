@@ -77,22 +77,20 @@ public class Preview {
                 start_game(root);
             }
         });
+        //Change mode
         final ToggleGroup modes = new ToggleGroup();
         RadioButton rb1 = new RadioButton();
         rb1.setText("Viewer");
+        rb1.setUserData("Viewer");
         rb1.setToggleGroup(modes);
         rb1.setSelected(true);
         RadioButton rb2 = new RadioButton();
         rb2.setText("Operative");
+        rb2.setUserData("Operative");
         rb2.setToggleGroup(modes);
-        modes.selectedToggleProperty().addListener((ObservableValue<? extends Toggle> ov, Toggle old_toggle, Toggle new_toggle) -> {
-            if (modes.getSelectedToggle() != null) {
-                System.out.println(new_toggle.getUserData().toString());
-                System.out.println(old_toggle.getUserData().toString());
-                //System.out.println(modes.getSelectedToggle().getUserData().toString());
-            }
-        });
-        //modes.selectedToggleProperty().addListener(GameMode.changeGameMode().changed(modes.getToggles()., rb1, rb2));
+        
+
+        modes.selectedToggleProperty().addListener(GameMode.changeGameMode());
         HBox innerHbRadio = new HBox(rb1,rb2);
         //adjust the settings of our object
         difficultyComboBox.setPadding(new Insets(5,5,5,5));

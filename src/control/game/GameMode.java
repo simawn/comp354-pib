@@ -21,16 +21,18 @@ public class GameMode {
 
     public GameMode(){}
     public static ChangeListener<Toggle> changeGameMode() {
-        return new ChangeListener<Toggle>() {
-            @Override
-            public void changed(ObservableValue<? extends Toggle> observable, Toggle oldValue, Toggle newValue) {
-                if(newValue.getUserData().toString().equals("Viewer")){
-                    gameMode =  0;
-                }
-                else if(newValue.getUserData().toString().equals("Operative")){
-                    gameMode = 1;
-                }
+        return (ObservableValue<? extends Toggle> observable, Toggle oldValue, Toggle newValue) -> {
+            if(newValue.getUserData().toString().equals("Viewer")){
+                gameMode =  0;
+                System.out.println(newValue.getUserData().toString());
+            }
+            else if(newValue.getUserData().toString().equals("Operative")){
+                System.out.println(newValue.getUserData().toString());
+                gameMode = 1;
             }
         };
+    }
+    public static int getGameMode(){
+        return gameMode;
     }
 }
