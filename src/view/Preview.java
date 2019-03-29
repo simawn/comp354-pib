@@ -7,6 +7,9 @@ package view;
 
 import control.game.Difficulty;
 import control.game.GameHandler;
+import control.game.GameMode;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -14,10 +17,14 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.Toggle;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
@@ -70,11 +77,28 @@ public class Preview {
                 start_game(root);
             }
         });
-        
+        final ToggleGroup modes = new ToggleGroup();
+        RadioButton rb1 = new RadioButton();
+        rb1.setText("Viewer");
+        rb1.setToggleGroup(modes);
+        rb1.setSelected(true);
+        RadioButton rb2 = new RadioButton();
+        rb2.setText("Operative");
+        rb2.setToggleGroup(modes);
+        modes.selectedToggleProperty().addListener((ObservableValue<? extends Toggle> ov, Toggle old_toggle, Toggle new_toggle) -> {
+            if (modes.getSelectedToggle() != null) {
+                System.out.println(new_toggle.getUserData().toString());
+                System.out.println(old_toggle.getUserData().toString());
+                //System.out.println(modes.getSelectedToggle().getUserData().toString());
+            }
+        });
+        //modes.selectedToggleProperty().addListener(GameMode.changeGameMode().changed(modes.getToggles()., rb1, rb2));
+        HBox innerHbRadio = new HBox(rb1,rb2);
         //adjust the settings of our object
         difficultyComboBox.setPadding(new Insets(5,5,5,5));
         startB.setPadding(new Insets(5,5,5,5));
         ((VBox) scene.getRoot()).getChildren().addAll(innerVbCombo);
+        ((VBox) scene.getRoot()).getChildren().addAll(innerHbRadio);
         ((VBox) scene.getRoot()).getChildren().addAll(startB);
         
         //set the title of our platform as well as the height and width of screen.
