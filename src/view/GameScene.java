@@ -2,6 +2,7 @@ package view;
 
 import control.game.Difficulty;
 import control.game.GameControls;
+import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -21,46 +22,6 @@ import model.board.CardType;
 import model.board.Subject;
 
 /**
-* CardPane represents the GUI of 1 card. Each card pane observes 1 card, and is updated
-* when that card is "covered" by a colored card (revealing the cards true identity).
-* 
-* @author Rani Rafid
-* @date 02/06/19
-*/
-    class CardPane extends StackPane implements Observer {
-    /**
-     * A card object to be observed.
-     */
-    private Subject subject;
-    /**
-     * The card template image.
-    */
-    private ImageView image;
-
-  
-    CardPane(Subject subject) {
-        this.subject = subject;
-        subject.attach(this);
-        image = new ImageView("file:resources/CardTemplate.png");
-        Text text = new Text(subject.getStringProperty());
-
-        setBackground(null);
-        getChildren().addAll(image, text);
-        setMargin(text, new Insets(15, 15, 15, 15));
-        setAlignment(text, Pos.BOTTOM_CENTER);
-    }
-
-        @Override
-    /**
-     * When the subject of this class calls update, the image changes to reveal the card color.
-     */
-    public void update() {
-        image.setImage(new Image(CardType.pathOf(subject.getTypeProperty())));
-    }
-}
-
-
-/**
  * The GameScene is the GUI window with 25 CardPanes.
  */
 public class GameScene {
@@ -71,7 +32,7 @@ public class GameScene {
      * @param handler
      * @return the GUI Scene.
      */
-    public static Scene build(Subject subjects[],EventHandler<KeyEvent> handler) {
+    public static Scene build(Subject subjects[],EventHandler<Event> handler) {
         VBox vb = new VBox();
              
         Scene scene = new Scene(vb);
@@ -101,8 +62,10 @@ public class GameScene {
         tile.setHgap(4);
         tile.setPrefColumns(5);
 
-        for (Subject subject : subjects) {
-             tile.getChildren().add(new CardPane(subject));
+       for (Subject subject : subjects) {
+    	   CardPane newCard = new CardPane(subject);
+    	   newCard.setOnMouseClicked(handler);
+             tile.getChildren().add(newCard);
         }
         ((VBox) scene.getRoot()).getChildren().addAll(menuBar);
         ((VBox) scene.getRoot()).getChildren().addAll(tile);

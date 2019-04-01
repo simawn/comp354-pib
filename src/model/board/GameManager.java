@@ -240,4 +240,12 @@ public class GameManager extends Subject {
         }
         return players[whosTurn].getTeam();
     }
+    
+    /**
+     * Returns a reference to the game board.
+     * @return board
+     */
+    public Board getBoard() {
+    	return board;
+    }
 }

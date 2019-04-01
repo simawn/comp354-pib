@@ -29,8 +29,8 @@ public class Board {
      * method is called to update the cards observer(s).
     */
     public void remove(Card c) {
-        cards.remove(c);
-        c.push();
+        if (cards.remove(c))
+        	c.push();
     }
 
     /**
