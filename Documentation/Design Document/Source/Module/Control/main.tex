@@ -1,0 +1,12 @@
+\subsection{Subsystem Control}
+The Control subsystem encapsulates the parts of the system which enable users to control the game. It contains the event handler for button presses in on package and the classes used in the Command design pattern in another. When the user presses certain keys, the event handler creates a specific Command, and executes it, resulting in some function in the Model being called, likely changing the games state in the Model.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=10cm]{Source/Module/Control/Control.png}
+\caption{UML Diagram of Module Control}
+\label{Control}
+\end{figure}
+
+\input{Source/Module/Control/Command/main.tex}
+\input{Source/Module/Control/Game/main.tex}

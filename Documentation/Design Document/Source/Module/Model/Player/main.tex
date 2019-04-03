@@ -1,0 +1,23 @@
+\subsubsection{Package Player}
+
+The Player subsystem of the Model contains the classes which represent Players of the Codenames game. The two types of players, Spymaster and Operative are subclasses of the Player class. Spymasters, and Operatives are able to have different play strategies, implemented using the Strategy design pattern. The classes of the Model which model the Players and their play styles are all a part of the Player subsystem.
+
+\paragraph{Detailed Design Diagram}\mbox{}
+\begin{figure}[H]
+\centering
+\includegraphics[width=16cm]{Source/Module/Model/Player/Model_Player.png}
+\caption{UML Diagram of Package Player in Module Model}
+\label{Control.Game}
+\end{figure}
+
+\input{Source/Module/Model/Player/Class/Player.tex}
+\input{Source/Module/Model/Player/Class/Operative.tex}
+\input{Source/Module/Model/Player/Class/OperativeStrategy.tex}
+\input{Source/Module/Model/Player/Class/BotOperativeStrategy.tex}
+%\input{Source/Module/Model/Player/Class/HardOperativeStrategy.tex} Doesn't exist anymore
+\input{Source/Module/Model/Player/Class/randomOperativeStrategy.tex}
+\input{Source/Module/Model/Player/Class/Spymaster.tex}
+\input{Source/Module/Model/Player/Class/SpyStrategy.tex}
+\input{Source/Module/Model/Player/Class/randomSpyStrategy.tex}
+\input{Source/Module/Model/Player/Class/SimpleSpyStrategy.tex}
+\input{Source/Module/Model/Player/Class/SmartSpyStrategy.tex}

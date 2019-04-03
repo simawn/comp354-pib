@@ -1,0 +1,19 @@
+\paragraph{Class SmartSpyStrategy}\mbox{}
+\begin{tabularx}{\textwidth}{|c||l|l|l|X|}
+    \hline
+    \cellcolor{lightgray}Class Name & \multicolumn{4}{X|}{SmartSpyStrategy}\\
+    \hline
+    \cellcolor{lightgray}Inherits From & \multicolumn{4}{p{12cm}|}{implements SpyStrategy}\\
+    \hline
+    \cellcolor{lightgray}Description & \multicolumn{4}{p{12cm}|}{Allows the spy to choose a clue that includes many words on the board. The Spymaster will select a clue that is the most common amongst the words given to a particular player instead of just selecting a clue at random.}\\
+    \hline\hline
+    
+    \cellcolor{lightgray}Attributes & \cellcolor{lightgray}Visibility & \cellcolor{lightgray}Data type & \cellcolor{lightgray}Name & \cellcolor{lightgray}Description\\\cline{2-5}
+    \cellcolor{lightgray} & Private & CardType & team & The spymaster's team.\\
+    \hline\hline
+    
+    \cellcolor{lightgray}Methods & \cellcolor{lightgray}Visibility & \multicolumn{2}{l|}{\cellcolor{lightgray}Method Name} & \cellcolor{lightgray}Description\\\cline{2-5}
+    \cellcolor{lightgray} & Public & \multicolumn{2}{X|}{SimpleSpyStrategy (CardType team)} & Constructor; sets the team.\\\cline{2-5}
+    \cellcolor{lightgray} & Public & \multicolumn{2}{X|}{giveClue (List\textlangle{}Card\textrangle{} cards, Bipartite bipartite)} & Selects a card from their team at random. This method will search for the most optimal clue meaning the clue that is shared between the words belonging to the current player and return that specific clue\\
+    \hline
+\end{tabularx}

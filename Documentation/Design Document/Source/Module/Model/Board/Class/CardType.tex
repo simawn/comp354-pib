@@ -1,0 +1,24 @@
+\paragraph{Class CardType}\mbox{}
+\begin{tabularx}{\textwidth}{|c||l|l|l|X|}
+    \hline
+    \cellcolor{lightgray}Class Name & \multicolumn{4}{X|}{CardType}\\
+    \hline
+    \cellcolor{lightgray}Inherits From & \multicolumn{4}{X|}{None}\\
+    \hline
+    \cellcolor{lightgray}Description & \multicolumn{4}{p{12cm}|}{An enum type which represents the possible colours of a card on a Key Card. Blue, Red, Assassin, or Bystander. Can also be used for team colour.}\\
+
+    \hline\hline
+    \cellcolor{lightgray}Attributes & \cellcolor{lightgray}Visibility & \cellcolor{lightgray}Data type & \cellcolor{lightgray}Name & \cellcolor{lightgray}Description\\\cline{2-5}
+    \cellcolor{lightgray} & Private & String & PATH & The path to the images used by the GUI to represent the colours on the board.\\
+    \hline    
+    \cellcolor{lightgray} & Private & String & EXT & The file extension of the images used by the GUI to represent the colours on the board.\\
+    \hline    
+    \cellcolor{lightgray} & Private & boolean & sex & For the GUI, some cards should be displayed as male spys and some should be female.\\
+    \hline\hline
+    \cellcolor{lightgray}Methods & \cellcolor{lightgray}Visibility & \multicolumn{2}{l|}{\cellcolor{lightgray}Method Name} & \cellcolor{lightgray}Description\\\cline{2-5}
+    \hline
+    \cellcolor{lightgray} & Public & \multicolumn{2}{l|}{charOf(char arg)} & Each CardType is represented in the database as a character in a String. charOf returns the CardType represented by a character. B is Blue, R is Red, Y is Bystander, A is Assassin.\\
+    \hline
+    \cellcolor{lightgray} & Public & \multicolumn{2}{l|}{pathOf(CardType type)} & Returns the path to the image which can be used to display this colour on the board GUI.\\
+    \hline
+\end{tabularx}

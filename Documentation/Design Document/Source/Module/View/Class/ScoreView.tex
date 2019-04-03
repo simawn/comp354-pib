@@ -1,0 +1,29 @@
+\subsubsection{Class ScoreView}
+\begin{tabularx}{\textwidth}{|c||l|l|l|X|}
+    \hline
+    \cellcolor{lightgray}Class Name & \multicolumn{4}{X|}{ScoreView}\\
+    \hline
+    \cellcolor{lightgray}Inherits From & \multicolumn{4}{X|}{Observer}\\
+    \hline
+    \cellcolor{lightgray}Description & \multicolumn{4}{p{12cm}|}{Maintains a graphical representation of the score during the game play}\\
+    \hline\hline
+    
+    \cellcolor{lightgray}Attributes & \cellcolor{lightgray}Visibility & \cellcolor{lightgray}Data type & \cellcolor{lightgray}Name & \cellcolor{lightgray}Description\\\cline{2-5}
+    \cellcolor{lightgray} & Private & Stage & stage & Object container responsible for containing the attributes to display\\\cline{2-5}
+    \cellcolor{lightgray} & Private & Subject & subject & The subject to bind to\\\cline{2-5}
+    \cellcolor{lightgray} & Private & Label & diff & Object representing the difficulty\\\cline{2-5}
+    \cellcolor{lightgray} & Private & Label & t & Object representing the team's turn\\\cline{2-5}
+    \cellcolor{lightgray} & Private & Label & redScore & Object representing red team's score\\\cline{2-5}
+    \cellcolor{lightgray} & Private & Label & blueScore & Object representing blue team's score\\\cline{2-5}
+    \cellcolor{lightgray} & Private & Label & currentClue & Object representing the current clue of the turn\\\cline{2-5}
+    \cellcolor{lightgray} & Private & GameManager & game & Reference of the current game object to receive notifications from\\\cline{2-5}
+    \cellcolor{lightgray} & Private & CardType & winningTeam & Team currently in the lead\\
+    \hline\hline
+    
+    \cellcolor{lightgray}Methods & \cellcolor{lightgray}Visibility & \multicolumn{2}{l|}{\cellcolor{lightgray}Method Name} & \cellcolor{lightgray}Description\\\cline{2-5}
+    \cellcolor{lightgray} & Public & \multicolumn{2}{l|}{ScoreView(GameManager game)} & Constructor\\\cline{2-5}
+    \cellcolor{lightgray} & Public & \multicolumn{2}{l|}{log(String arg)} & Updates the labels to reflect the current state of the game\\\cline{2-5}
+    \cellcolor{lightgray} & Public & \multicolumn{2}{l|}{open()} & Displays the score window\\\cline{2-5}
+    \cellcolor{lightgray} & Public & \multicolumn{2}{l|}{update()} & Calls log method and passes subject message to it\\
+    \hline
+\end{tabularx}

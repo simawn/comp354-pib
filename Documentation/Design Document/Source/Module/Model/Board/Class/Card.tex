@@ -1,0 +1,28 @@
+\paragraph{Class Card}\mbox{}
+\begin{tabularx}{\textwidth}{|c||l|l|l|X|}
+    \hline
+    \cellcolor{lightgray}Class Name & \multicolumn{4}{X|}{Card}\\
+    \hline
+    \cellcolor{lightgray}Inherits From & \multicolumn{4}{X|}{Extends Subject}\\
+    \hline
+    \cellcolor{lightgray}Description & \multicolumn{4}{p{12cm}|}{The Card class represents a single codenames card, and it's true identity (color). It is a subject in the observer pattern, because the view's CardPanes each individually observe a card.}\\
+    \hline\hline
+    \cellcolor{lightgray}Attributes & \cellcolor{lightgray}Visibility & \cellcolor{lightgray}Data type & \cellcolor{lightgray}Name & \cellcolor{lightgray}Description\\\cline{2-5}
+    \cellcolor{lightgray} & Private & String & word & The codename word.\\
+    \hline
+    \cellcolor{lightgray} & Private & CardType & type & The true identity of the card: Blue, Red, Assassin, or Bystander.\\
+    \hline\hline
+    \cellcolor{lightgray}Methods & \cellcolor{lightgray}Visibility & \multicolumn{2}{l|}{\cellcolor{lightgray}Method Name} & \cellcolor{lightgray}Description\\\cline{2-5}
+    \cellcolor{lightgray} & Public & \multicolumn{2}{l|}{Card()} & Default constructor; initializes word and type to null.\\
+    \hline
+    \cellcolor{lightgray} & Public & \multicolumn{2}{X|}{Card (String word, CardType type)} & Constructor.\\
+    \hline
+    \cellcolor{lightgray} & Public & \multicolumn{2}{l|}{setType(String word)} & Sets the codename on this card. \\
+    \hline
+    \cellcolor{lightgray} & Public & \multicolumn{2}{l|}{toString()} & Returns the codename. Could be changed to return color and word. \\
+    \hline
+    \cellcolor{lightgray} & Public & \multicolumn{2}{l|}{getStringProperty()} & Returns the codename. This overrides a method of Subject. \\
+    \hline
+    \cellcolor{lightgray} & Public & \multicolumn{2}{l|}{getTypeProperty()} & Returns the cards true identity (color). This overrides a method of Subject. \\
+    \hline
+\end{tabularx}

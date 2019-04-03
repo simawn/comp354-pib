@@ -1,0 +1,24 @@
+\paragraph{Class Operative}\mbox{}
+\begin{tabularx}{\textwidth}{|c||l|l|l|X|}
+    \hline
+    \cellcolor{lightgray}Class Name & \multicolumn{4}{l|}{Operative}\\
+    \hline
+    \cellcolor{lightgray}Inherits From & \multicolumn{4}{p{12cm}|}{extends Player}\\
+    \hline
+    \cellcolor{lightgray}Description & \multicolumn{4}{p{12cm}|}{The implemented class for operatives. Defines the basic functions and constructor that the operative strategies use.}\\
+    \hline\hline
+    
+    \cellcolor{lightgray}Attributes & \cellcolor{lightgray}Visibility & \cellcolor{lightgray}Data type & \cellcolor{lightgray}Name & \cellcolor{lightgray}Description\\\cline{2-5}
+    \cellcolor{lightgray} & Private & Board & board & The player's board they will play on.\\\cline{2-5}
+    \cellcolor{lightgray} & Private & OperativeStrategy & opStrat & The strategy the player will use.\\
+    \hline\hline
+    
+    \cellcolor{lightgray}Methods & \cellcolor{lightgray}Visibility & \multicolumn{2}{l|}{\cellcolor{lightgray}Method Name} & \cellcolor{lightgray}Description\\\cline{2-5}
+    \hline
+    \cellcolor{lightgray} & Public & \multicolumn{2}{X|}{Operative(CardType team)} & Constructor. Instantiates the operative's team.\\
+    \hline
+    \cellcolor{lightgray} & Public & \multicolumn{2}{X|}{Operative(CardType team, Board board, OperativeStrategy strategy)} & Constructor. Instantiates the operative's team and sets their board and strategy.\\
+    \hline
+    \cellcolor{lightgray} & Public & \multicolumn{2}{X|}{makeMove(Clue clue, Bipartite bipartite)} & Picks a card based on the operative strategy in use.\\
+    \hline
+\end{tabularx}

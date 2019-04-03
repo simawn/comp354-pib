@@ -1,0 +1,22 @@
+\paragraph{Class GameHandler}\mbox{}
+\begin{tabularx}{\textwidth}{|c||l|X|X|X|}
+    \hline
+    \cellcolor{lightgray}Class Name & \multicolumn{4}{X|}{GameHandler}\\
+    \hline
+    \cellcolor{lightgray}Inherits From & \multicolumn{4}{X|}{EventHandler\textlangle{}KeyEvent\textrangle{}}\\
+    \hline
+    \cellcolor{lightgray}Description & \multicolumn{4}{p{12cm}|}{Main entry point of the program. Engine for running the Codenames game.}\\
+    \hline\hline
+    
+    \cellcolor{lightgray}Attributes & \cellcolor{lightgray}Visibility & \cellcolor{lightgray}Data type & \cellcolor{lightgray}Name & \cellcolor{lightgray}Description\\\cline{2-5}
+    \cellcolor{lightgray} & Private & GameManager & game & GameManager object responsible for initializing the game in the constructor.\\\cline{2-5}
+    \cellcolor{lightgray} & Private & VerboseView & view & VerboseView object  responsible for initializing the view in the constructor.\\\cline{2-5}
+    \cellcolor{lightgray} & Private & ScoreView & score & ScoreView object  responsible for initializing the score in the constructor.\\\cline{2-5}
+    \cellcolor{lightgray} & Private & CommandManager & commandManager & CommandManager object  responsible for initializing the commandManager in the constructor as a new object.\\
+    \hline\hline
+    
+    \cellcolor{lightgray}Methods & \cellcolor{lightgray}Visibility & \multicolumn{2}{l|}{\cellcolor{lightgray}Method Name} & \cellcolor{lightgray}Description\\\cline{2-5}
+    \cellcolor{lightgray} & Public & \multicolumn{2}{X|}{GameHandler(GameManager game, VerboseView view, ScoreView score)} & Initializes the game, view, and score. Binds the commandManager to a new commandManager object. Shows the score scene.\\\cline{2-5}
+    \cellcolor{lightgray} & Public & \multicolumn{2}{X|}{handle(KeyEvent keyEvent)} & When the user presses ENTER, the KeyHandler triggers the playerControl to play the next turn.\\
+    \hline
+\end{tabularx}

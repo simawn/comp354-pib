@@ -1,0 +1,21 @@
+\subsubsection{Class CardPane}
+\begin{tabularx}{\textwidth}{|c||l|l|l|X|}
+    \hline
+    \cellcolor{lightgray}Class Name & \multicolumn{4}{X|}{CardPane}\\
+    \hline
+    \cellcolor{lightgray}Inherits From & \multicolumn{4}{X|}{StackPane, Observer}\\
+    \hline
+    \cellcolor{lightgray}Description & \multicolumn{4}{p{12cm}|}{Maintains graphical representation of a card during each game phase}\\
+    \hline\hline
+    
+    \cellcolor{lightgray}Attributes & \cellcolor{lightgray}Visibility & \cellcolor{lightgray}Data type & \cellcolor{lightgray}Name & \cellcolor{lightgray}Description\\\cline{2-5}
+    \cellcolor{lightgray} & Private & ImageView & image & Object responsible for loading character image files \\\cline{2-5}
+    \cellcolor{lightgray} & Private & Subject & subject & The subject to bind to\\
+    \hline\hline
+    
+    \cellcolor{lightgray}Methods & \cellcolor{lightgray}Visibility & \multicolumn{2}{l|}{\cellcolor{lightgray}Method Name} & \cellcolor{lightgray}Description\\\cline{2-5}
+    \cellcolor{lightgray} & Protected & \multicolumn{2}{l|}{CardPane(Subject subject)} & Constructor that binds to the subject\\\cline{2-5}
+    \cellcolor{lightgray} & Public & \multicolumn{2}{l|}{update()} & Updates the ImageView object to display the associated character image file\\
+    \hline
+\end{tabularx}
+

@@ -1,0 +1,59 @@
+\paragraph{Class GameManager}\mbox{}
+\begin{tabularx}{\textwidth}{|c||l|l|l|X|}
+    \hline
+    \cellcolor{lightgray}Class Name & \multicolumn{4}{X|}{GameManager}\\
+    \hline
+    \cellcolor{lightgray}Inherits From & \multicolumn{4}{X|}{None}\\
+    \hline
+    \cellcolor{lightgray}Description & \multicolumn{4}{p{12cm}|}{Keeps track of the games state, including the players, current turn, and current clue. Allows manipulation of game state by initiating the next turn. }\\
+
+    \hline\hline
+    \cellcolor{lightgray}Attributes & \cellcolor{lightgray}Visibility & \cellcolor{lightgray}Data type & \cellcolor{lightgray}Name & \cellcolor{lightgray}Description\\\cline{2-5}
+    \cellcolor{lightgray} & Private & Player[] & players & Array of players participating in the game. Should be 4 players, in order of when they will take their turn. So Red Spy, Red Op, Blue Spy, Blue Op.\\ 
+    \hline
+    \cellcolor{lightgray} & Private & int & whosTurn & Index into players to keep track of whos turn it currently is.\\ 
+    \hline
+    \cellcolor{lightgray} & Private & CardType & winningTeam & Holds the colour of the winning team. Not set if nobody has won yet.\\ 
+    \hline
+    \cellcolor{lightgray} & Private & Clue & currentClue & Reference to the clue given by the team who is currently taking their turn. \\ 
+    \hline
+    \cellcolor{lightgray} & Private & int & numOpGuesses & Keeps track of how many guesses the operative has made so far in their turn, as the game must enforce a limit.\\ 
+    \hline
+    \cellcolor{lightgray} & Private & Board & board & Reference to the Board object the game is being played on. \\ 
+    \hline
+    \cellcolor{lightgray} & Private & Bipartite & bipartite & Shows the relationship between words and clues. \\ 
+    \hline\hline
+    
+    \cellcolor{lightgray}Methods & \cellcolor{lightgray}Visibility & \multicolumn{2}{l|}{\cellcolor{lightgray}Method Name} & \cellcolor{lightgray}Description\\\cline{2-5}
+    \hline
+    \cellcolor{lightgray} & Public & \multicolumn{2}{l|}{GameManager(Board board)} & Constructor. Start a game with the board.\\
+    \hline
+    \cellcolor{lightgray} & Public & \multicolumn{2}{l|}{doNextTurn()} & Make the game run the next turn, changing the state of the game.\\
+    \hline
+    \cellcolor{lightgray} & Private & \multicolumn{2}{l|}{
+    takeTurn(Spymaster p)} & Used by doNextTurn(), if the current player is a Spymaster. Makes the Spymaster take its turn. \\
+    \hline
+    \cellcolor{lightgray} & Private & \multicolumn{2}{l|}{
+    takeTurn(Operative p)} & Used by doNextTurn(), if the current player is an Operative. Makes the Operative take its turn. \\
+    \hline
+    \cellcolor{lightgray} & Public & \multicolumn{2}{X|}{isTurnOver(Player p, Card guess, int clueNum)} & Tells whether or not the current turn should end based on current state information given. \\
+    \hline
+    \cellcolor{lightgray} & Public & \multicolumn{2}{X|}{gameIsOver()} & Returns true if a winning team has been determined. \\
+    \hline
+    \cellcolor{lightgray} & Public & \multicolumn{2}{X|}{declareWinner(Player lastPlayer, Card lastGuess)} & Determines the winner based on the last player's team and what card they last guessed. \\
+    \hline
+    \cellcolor{lightgray} & Public & \multicolumn{2}{X|}{endTurn()} & Ends the turn and resets the number of guesses. \\
+    \hline
+    \cellcolor{lightgray} & Public & \multicolumn{2}{X|}{getBlueScore()} & Returns the blue team's current score. \\
+    \hline
+    \cellcolor{lightgray} & Public & \multicolumn{2}{X|}{getRedScore()} & Returns the red team's current score. \\
+    \hline
+    \cellcolor{lightgray} & Public & \multicolumn{2}{X|}{getWinner()} & Returns the winning team. \\
+    \hline
+    \cellcolor{lightgray} & Public & \multicolumn{2}{X|}{getCurrentClue()} & Returns the current given clue. \\
+    \hline
+    \cellcolor{lightgray} & Public & \multicolumn{2}{X|}{getStringProperty()} & Returns either the current clue or a game over message, depending on current game state. \\
+    \hline
+    \cellcolor{lightgray} & Public & \multicolumn{2}{X|}{getTypeProperty()} & Returns either the team whose turn it is, or the winning team, depending on game state. \\
+    \hline
+\end{tabularx}

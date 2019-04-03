@@ -1,0 +1,33 @@
+\paragraph{Class Bipartite}\mbox{}
+\begin{tabularx}{\textwidth}{|c||l|p{2.75cm}|l|X|}
+    \hline
+    \cellcolor{lightgray}Class Name & \multicolumn{4}{X|}{Bipartite}\\
+    \hline
+    \cellcolor{lightgray}Inherits From & \multicolumn{4}{X|}{None}\\
+    \hline
+    \cellcolor{lightgray}Description & \multicolumn{4}{p{12cm}|}{Creates a bipartite graph showing the relation between words and clues.}\\
+    \hline\hline
+    
+    \cellcolor{lightgray}Attributes & \cellcolor{lightgray}Visibility & \cellcolor{lightgray}Data type & \cellcolor{lightgray}Name & \cellcolor{lightgray}Description\\\cline{2-5}
+    \cellcolor{lightgray} & Private & HashMultiMap \textlangle{}String, String\textrangle{} & wordsToClues & The map from words to clues.\\
+    \hline
+    \cellcolor{lightgray} & Private & HashMultiMap \textlangle{}String, String\textrangle{} & cluesToWords & The map from clues to words. (One clue can be associated with multiple words)\\
+    \hline\hline
+    
+    \cellcolor{lightgray}Methods & \cellcolor{lightgray}Visibility & \multicolumn{2}{l|}{\cellcolor{lightgray}Method Name} & \cellcolor{lightgray}Description\\\cline{2-5}
+    \cellcolor{lightgray} & Public & \multicolumn{2}{l|}{Bipartite(Board board)} & Constructor; creates empty hashMultiMaps and sets them to the board's variables, then processes them.\\
+    \hline
+    \cellcolor{lightgray} & Private & \multicolumn{2}{l|}{processCards(Board board)} & Creates a bipartite graph with only the words on the current board.\\
+    \hline
+    \cellcolor{lightgray} & Public & \multicolumn{2}{l|}{getWordsToClues()} & Returns the hash map that contains the mapping of words to clues.\\
+    \hline
+    \cellcolor{lightgray} & Public & \multicolumn{2}{l|}{getCluesToWords()} & Returns the hash map that contains the mapping of clues to words.\\
+    \hline
+    \cellcolor{lightgray} & Public & \multicolumn{2}{l|}{getClue(String cardWord)} & Returns a string representation of a clue.\\
+    \hline
+    \cellcolor{lightgray} & Public & \multicolumn{2}{l|}{removeWord(String word)} & Removes a word from the bipartite including its related clues.\\
+    \hline
+    \cellcolor{lightgray} & Private & \multicolumn{2}{l|}{debug()} & Prints the current status of the bipartite.\\
+    \hline
+    
+\end{tabularx}

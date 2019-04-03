@@ -1,0 +1,29 @@
+\paragraph{Class BotOperativeStrategy}\mbox{}
+\begin{tabularx}{\textwidth}{|c||l|l|l|X|}
+    \hline
+    \cellcolor{lightgray}Class Name & \multicolumn{4}{X|}{BotOperativeStrategy}\\
+    \hline
+    \cellcolor{lightgray}Inherits From & \multicolumn{4}{p{12cm}|}{implements OperativeStrategy}\\
+    \hline
+    \cellcolor{lightgray}Description & \multicolumn{4}{p{12cm}|}{Operative strategy used by bots. The difficulty is determined by the accuracy parameter. Any accuracy greater than 0.95 is considered hard (almost impossible mode), the bot will always choose the correct card according to the clue and if there are no more words related to the clue, it will still choose a card of their team.}\\
+    \hline\hline
+    
+    \cellcolor{lightgray}Attributes & \cellcolor{lightgray}Visibility & \cellcolor{lightgray}Data type & \cellcolor{lightgray}Name & \cellcolor{lightgray}Description\\\cline{2-5}
+    \cellcolor{lightgray} & Private & CardType & team & The operative's team.\\
+    \hline
+    \cellcolor{lightgray} & Private & Clue & currentClue & The current clue.\\
+    \hline
+    \cellcolor{lightgray} & Private & couble & accuracy & The bot's accuracy.\\
+    \hline\hline
+    
+    \cellcolor{lightgray}Methods & \cellcolor{lightgray}Visibility & \multicolumn{2}{l|}{\cellcolor{lightgray}Method Name} & \cellcolor{lightgray}Description\\\cline{2-5}
+    \hline
+    \cellcolor{lightgray} & Public & \multicolumn{2}{X|}{BotOperativeStrategy (CardType team, double accuracy)} & Constructor. Sets the operative's team and accuracy.\\
+    \hline
+    \cellcolor{lightgray} & Public & \multicolumn{2}{X|}{pickCard (List\textlangle{}Card\textrangle{} cards, Bipartite bipartite)} & Loops through all the cards and add the cards of their team into an ArrayList.\\
+    \hline
+    \cellcolor{lightgray} & Public & \multicolumn{2}{l|}{getClue()} & Returns a string representing the current clue of a word.\\
+    \hline
+    \cellcolor{lightgray} & Public & \multicolumn{2}{l|}{setClue()} & Sets a given string as the clue.\\
+    \hline
+\end{tabularx}

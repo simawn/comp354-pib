@@ -1,0 +1,13 @@
+\subsubsection{Package Game}
+The Control's "Game" subsystem is mainly comprised of the event handler for user actions, such as key presses. The classes in this subsystem turn user interactions into Commands given to the Model, or manipulations of the View. This subsystem is the core of the Control part of the MVC architecture, serving as the method by which a user  interacts with the Codenames game.
+
+\paragraph{Detailed Design Diagram}\mbox{}
+\begin{figure}[H]
+\centering
+\includegraphics[width=10cm]{Source/Module/Control/Game/Control_Game.png}\caption{UML Diagram of Package Game in Module Control}
+\label{Control.Game}
+\end{figure}
+
+\input{Source/Module/Control/Game/Class/GameHandler.tex}
+\input{Source/Module/Control/Game/Class/Difficulty.tex}
+\input{Source/Module/Control/Game/Class/GameControls.tex}

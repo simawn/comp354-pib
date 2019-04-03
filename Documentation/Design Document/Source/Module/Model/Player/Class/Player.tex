@@ -1,0 +1,23 @@
+\paragraph{Class Player}\mbox{}
+\begin{tabularx}{\textwidth}{|c||l|l|l|X|}
+    \hline
+    \cellcolor{lightgray}Class Name & \multicolumn{4}{X|}{Player}\\
+    \hline
+    \cellcolor{lightgray}Inherits From & \multicolumn{4}{X|}{None}\\
+    \hline
+    \cellcolor{lightgray}Description & \multicolumn{4}{p{12cm}|}{The abstract class for all players. (Spymasters and Operatives)}\\
+    \hline\hline
+    
+    \cellcolor{lightgray}Attributes & \cellcolor{lightgray}Visibility & \cellcolor{lightgray}Data type & \cellcolor{lightgray}Name & \cellcolor{lightgray}Description\\\cline{2-5}
+    \cellcolor{lightgray} & Private & CardType & team & The player's team (red or blue).\\ 
+    \hline\hline
+    
+    \cellcolor{lightgray}Methods & \cellcolor{lightgray}Visibility & \multicolumn{2}{l|}{\cellcolor{lightgray}Method Name} & \cellcolor{lightgray}Description\\\cline{2-5}
+    \hline
+    \cellcolor{lightgray} & Public & \multicolumn{2}{l|}{Player(CardType team)} & Constructor. Sets the player's team.\\
+    \hline
+    \cellcolor{lightgray} & Public & \multicolumn{2}{l|}{getTeam()} & Returns the player's team.\\
+    \hline
+    \cellcolor{lightgray} & Public & \multicolumn{2}{l|}{makeMove(Clue clue, Bipartite bipartite)} & Implemented by Operatives and Spymasters. Operatives return a card, Spymasters return a clue.\\
+    \hline
+\end{tabularx}

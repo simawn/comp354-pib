@@ -1,0 +1,14 @@
+\subsubsection{Package Command}
+The command package contains the classes which are a part of the Command design pattern. In our system the Controller and Model parts of the MVC architecture communicate using the Command pattern. The Controller makes function calls to the Model through classes which extend the Command interface. Because the Command pattern serves as an interface between two of the main subsystems, the Command related classes are grouped together in one package. The subsystem is comprised of the Command interface, and any classes extending it, as well as the CommandManager class which maintains a history of the Commands executed.
+
+\paragraph{Detailed Design Diagram}\mbox{}
+\begin{figure}[H]
+\centering
+\includegraphics[width=15cm]{Source/Module/Control/Command/Control_Command.png}
+\caption{UML Diagram of Package Command in Module Control}
+\label{Control.Command}
+\end{figure}
+
+\input{Source/Module/Control/Command/Class/Command.tex}
+\input{Source/Module/Control/Command/Class/CommandManager.tex}
+\input{Source/Module/Control/Command/Class/NextTurnCommand.tex}

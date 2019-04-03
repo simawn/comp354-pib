@@ -1,0 +1,13 @@
+\subsection{Subsystem Model}
+The Model subsystem contains the business logic of the system. The Model contains classes which represents the game data and state. It is organized into a player package, a board package, and a util package. The board package contains the classes representing the Codenames game being played, modeling the 25 codename cards and the keycard. The player package contains classes modeling the simulated players and their different play styles. The util package contains the Models logger.
+
+\subsubsection{Detailed Design Diagram}
+\begin{figure}[H]
+\centering
+\includegraphics[width=8cm]{Source/Module/Model/Model.png}
+\caption{UML Diagram of Subsystem Model}
+\end{figure}
+
+\input{Source/Module/Model/Board/main.tex}
+\input{Source/Module/Model/Player/main.tex}
+\input{Source/Module/Model/Util/main.tex}

@@ -1,0 +1,19 @@
+\section{DETAILED DESIGN}
+
+The Codenames class is the entry point of the program. It instantiates classes from the Model, Control, and View subsystems, and connects them together. Because it starts and links major parts of the system, it exists outside of the other major subsystems.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=10cm]{Source/Module/Codenames.png}
+\caption{UML Diagram of the System Codenames}
+\end{figure}
+
+%================CODENAMES=============
+\input{Source/Module/Codenames.tex}
+%=================MODEL=================
+\input{Source/Module/Model/main.tex}
+%==================CONTROL===============
+\input{Source/Module/Control/main.tex}
+%==================VIEW=================
+\input{Source/Module/View/main.tex}
+\newpage

@@ -1,0 +1,25 @@
+\paragraph{Class Subject}\mbox{}
+\begin{tabularx}{\textwidth}{|c||l|l|l|X|}
+    \hline
+    \cellcolor{lightgray}Class Name & \multicolumn{4}{X|}{Subject}\\
+    \hline
+    \cellcolor{lightgray}Inherits From & \multicolumn{4}{X|}{None}\\
+    \hline
+    \cellcolor{lightgray}Description & \multicolumn{4}{p{12cm}|}{Part of the Observer pattern. Classes which are to be observable (the subjects) extend this class.}\\
+    \hline\hline
+    
+    \cellcolor{lightgray}Attributes & \cellcolor{lightgray}Visibility & \cellcolor{lightgray}Data type & \cellcolor{lightgray}Name & \cellcolor{lightgray}Description\\\cline{2-5}
+    \cellcolor{lightgray} & Private & List of Observers & observers & The set of Observers observing this subject.\\ 
+    \hline\hline
+    
+    \cellcolor{lightgray}Methods & \cellcolor{lightgray}Visibility & \multicolumn{2}{l|}{\cellcolor{lightgray}Method Name} & \cellcolor{lightgray}Description\\\cline{2-5}
+    \hline
+    \cellcolor{lightgray} & Public & \multicolumn{2}{l|}{attach(Observer observer)} & Adds observer to this Subject's list of observers.\\
+    \hline
+    \cellcolor{lightgray} & Public & \multicolumn{2}{l|}{push()} & Notify all observerrs that the state of this Subject has changed. \\
+    \hline
+    \cellcolor{lightgray} & Public & \multicolumn{2}{l|}{getStringProperty()} & Abstract method to be overridden by all Subjects. This is a way for Observers to get state information from the Subject, as a String. \\
+    \hline
+    \cellcolor{lightgray} & Public & \multicolumn{2}{l|}{getTypeProperty()} & Abstract method to be overridden by all Subjects. This is a way for Observers to get state information from the Subject in the form of a CardType (a color).\\
+    \hline
+\end{tabularx}

@@ -1,0 +1,83 @@
+\documentclass[12pt]{article}
+
+\usepackage{multirow}
+\usepackage{tabularx}
+\usepackage[table]{xcolor}
+\usepackage{textcomp}
+\usepackage{booktabs}
+\usepackage{ltablex}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{capt-of}
+
+\pagestyle{plain}
+\setcounter{secnumdepth}{5}
+
+\topmargin=0cm
+\oddsidemargin=0cm
+\textheight=22.0cm
+\textwidth=16cm
+\parindent=0cm
+\parskip=0.15cm
+\topskip=0truecm
+\raggedbottom
+\abovedisplayskip=3mm
+\belowdisplayskip=3mm
+\abovedisplayshortskip=0mm
+\belowdisplayshortskip=2mm
+\normalbaselineskip=12pt
+\normalbaselines
+
+\begin{document}
+
+\thispagestyle{empty}
+\vspace*{0.5in}
+\centerline{\bf\Large Design Document}
+
+\vspace*{0.5in}
+\centerline{\bf\Large Team PI-b}
+
+\vspace*{0.5in}
+\centerline{\bf\Large 17 March 2019}
+
+\vspace*{1.5in}
+\begin{table}[htbp]
+\begin{center}
+\begin{tabular}{|r | c|}
+\hline
+Name & ID Number \\
+\hline\hline
+Simon Huang & 27067380 \\
+\hline
+Jonathan Massabni & 26337430 \\
+\hline
+Alexia Soucy & 40014822 \\
+\hline
+Anthony Funiciello& 40054110\\
+\hline
+David Gray&40055149\\
+\hline
+Mair Elbaz&40004558\\
+\hline
+Rani Rafid&26975852\\
+\hline
+\end{tabular}
+\end{center}
+\end{table}
+
+\clearpage
+%==============TABLE OF CONTENTS===========
+\input{Source/TableOfContents.tex}
+%==============LIST OF FIGURES============
+\input{Source/ListOfFigures.tex}
+%===============INTRODUCTION===============
+\input{Source/Introduction.tex}
+%=================ARCHITECTURAL DESIGN============
+\input{Source/ArchitecturalDesign.tex}
+%===============MODULE=================
+\input{Source/Module/main.tex}
+%==================DYNAMIC DESIGN SCENARIOS=================
+\input{Source/DynamicDesign/main.tex}
+
+
+\end{document}

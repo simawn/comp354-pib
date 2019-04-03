@@ -1,0 +1,19 @@
+\paragraph{Class SimpleSpyStrategy}\mbox{}
+\begin{tabularx}{\textwidth}{|c||l|l|l|X|}
+    \hline
+    \cellcolor{lightgray}Class Name & \multicolumn{4}{X|}{SimpleSpyStrategy}\\
+    \hline
+    \cellcolor{lightgray}Inherits From & \multicolumn{4}{p{12cm}|}{implements SpyStrategy}\\
+    \hline
+    \cellcolor{lightgray}Description & \multicolumn{4}{p{12cm}|}{Simple spy strategy: it randomly selects a word of their team and gives a random clue of the selected word. It won't try to combine words while giving the clues, so it will always return 1 word per clue.}\\
+    \hline\hline
+    
+    \cellcolor{lightgray}Attributes & \cellcolor{lightgray}Visibility & \cellcolor{lightgray}Data type & \cellcolor{lightgray}Name & \cellcolor{lightgray}Description\\\cline{2-5}
+    \cellcolor{lightgray} & Private & CardType & team & The spymaster's team.\\
+    \hline\hline
+    
+    \cellcolor{lightgray}Methods & \cellcolor{lightgray}Visibility & \multicolumn{2}{l|}{\cellcolor{lightgray}Method Name} & \cellcolor{lightgray}Description\\\cline{2-5}
+    \cellcolor{lightgray} & Public & \multicolumn{2}{X|}{SimpleSpyStrategy(CardType team)} & Constructor; sets the team.\\\cline{2-5}
+    \cellcolor{lightgray} & Public & \multicolumn{2}{X|}{giveClue (List\textlangle{}Card\textrangle{} cards, Bipartite bipartite)} & Selects a card from their team at random. Gives out a clue at random from the selected word\\
+    \hline
+\end{tabularx}

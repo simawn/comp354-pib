@@ -1,0 +1,26 @@
+\paragraph{Class Spymaster}\mbox{}
+\begin{tabularx}{\textwidth}{|c||l|l|l|X|}
+    \hline
+    \cellcolor{lightgray}Class Name & \multicolumn{4}{X|}{Spymaster}\\
+    \hline
+    \cellcolor{lightgray}Inherits From & \multicolumn{4}{X|}{extends Player}\\
+    \hline
+    \cellcolor{lightgray}Description & \multicolumn{4}{p{12cm}|}{The implemented class for spymaster. Defines the basic functions and constructor that the spymaster strategies use.}\\
+    \hline\hline
+    
+    \cellcolor{lightgray}Attributes & \cellcolor{lightgray}Visibility & \cellcolor{lightgray}Data type & \cellcolor{lightgray}Name & \cellcolor{lightgray}Description\\\cline{2-5}
+    \cellcolor{lightgray} & Private & Board & board & The player's board they will play on.\\\cline{2-5}
+    \cellcolor{lightgray} & Private & SpyStrategy & spyStrat & The strategy the player will use.\\\cline{2-5}
+    \cellcolor{lightgray} & Private & Clue & currentClue & Current clue for the spymaster.\\
+    \hline\hline
+    \hline\hline
+    
+    \cellcolor{lightgray}Methods & \cellcolor{lightgray}Visibility & \multicolumn{2}{l|}{\cellcolor{lightgray}Method Name} & \cellcolor{lightgray}Description\\\cline{2-5}
+    \hline
+    \cellcolor{lightgray} & Public & \multicolumn{2}{X|}{Spymaster(CardType team)} & Constructor. Instantiates the spymaster's team.\\
+    \hline
+    \cellcolor{lightgray} & Public & \multicolumn{2}{X|}{Spymaster(CardType team, Board board, OperativeStrategy strategy)} & Constructor. Instantiates the spymaster's team and sets their board and strategy.\\
+    \hline
+    \cellcolor{lightgray} & Public & \multicolumn{2}{X|}{makeMove (Clue clue, Bipartite bipartite)} & Gives a clue based on the operative strategy in use.\\
+    \hline
+\end{tabularx}

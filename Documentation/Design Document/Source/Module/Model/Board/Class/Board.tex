@@ -1,0 +1,23 @@
+\paragraph{Class Board}\mbox{}
+ \begin{tabularx}{\textwidth}{|c||l|l|l|X|}
+    \hline
+    \cellcolor{lightgray}Class Name & \multicolumn{4}{X|}{Board}\\
+    \hline
+    \cellcolor{lightgray}Inherits From & \multicolumn{4}{X|}{None}\\
+    \hline
+    \cellcolor{lightgray}Description & \multicolumn{4}{p{12cm}|}{The board stores the set of code name Cards on the board, which have not yet been guessed.}\\
+    \hline\hline
+    \cellcolor{lightgray}Attributes & \cellcolor{lightgray}Visibility & \cellcolor{lightgray}Data type & \cellcolor{lightgray}Name & \cellcolor{lightgray}Description\\\cline{2-5}
+    \cellcolor{lightgray} & Private & List of Cards & cards & Holds the set of Cards that have not yet been guessed by Operatives\\
+    \hline\hline
+    
+    \cellcolor{lightgray}Methods & \cellcolor{lightgray}Visibility & \multicolumn{2}{l|}{\cellcolor{lightgray}Method Name} & \cellcolor{lightgray}Description\\\cline{2-5}
+    \cellcolor{lightgray} & Public & \multicolumn{2}{l|}{Board(Card[] cards)} & Initializes the board with a list of cards.\\
+    \hline
+    \cellcolor{lightgray} & Public & \multicolumn{2}{l|}{remove(Card c)} & Remove the specified card from the set of unchosen cards.\\
+    \hline
+    \cellcolor{lightgray} & Public & \multicolumn{2}{l|}{getCards()} & Return all of the unchosen cards still available, as a List.\\
+    \hline
+    \cellcolor{lightgray} & Public & \multicolumn{2}{X|}{getNumCardsOfType (CardType type)} & Return integer count of the number of unchosen cards left with color specified by variable type.\\
+    \hline
+\end{tabularx}

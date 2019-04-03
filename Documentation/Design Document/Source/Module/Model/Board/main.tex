@@ -1,0 +1,23 @@
+\subsubsection{Package Board}
+The Board subsystem of the Model contains the classes which represent the data and state of the Codenames game. This includes classes for game objects such as Card, Board, KeyCard, Clue, and CardType. The subsystem also contains classes which are used to initialize these game objects. The GameManager class includes references to the game objects being played with, and the Players playing the game. The GameManager also contains methods which modify the game state by making players take turns. The Controller's Commands to the Model contain function calls to the GameManager class.
+
+\paragraph{Detailed Design Diagram}\mbox{}
+\begin{figure}[H]
+\centering
+\includegraphics[width=8cm]{Source/Module/Model/Board/Model_Board.png}
+\caption{UML Diagram of Package Board in Module Model}
+\end{figure}
+
+\input{Source/Module/Model/Board/Class/Bipartite.tex}
+\input{Source/Module/Model/Board/Class/Board.tex}
+\input{Source/Module/Model/Board/Class/Card.tex}
+\input{Source/Module/Model/Board/Class/Extractor.tex}
+\input{Source/Module/Model/Board/Class/Word.tex}
+\input{Source/Module/Model/Board/Class/KeyCard.tex}
+\input{Source/Module/Model/Board/Class/CardBuilder.tex}
+\input{Source/Module/Model/Board/Class/CardType.tex}
+\input{Source/Module/Model/Board/Class/Clue.tex}
+\input{Source/Module/Model/Board/Class/Constants.tex}
+\input{Source/Module/Model/Board/Class/Subject.tex}
+\input{Source/Module/Model/Board/Class/GameManager.tex}
+\input{Source/Module/Model/Board/Class/JSONProcessor.tex}

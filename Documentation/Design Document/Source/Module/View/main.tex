@@ -1,0 +1,18 @@
+\subsection{Subsystem View}
+The View subsystem encapsulates the parts of the system which control the GUI which the user sees. The ScoreView, VerboseView, and GameScene all display different parts of the state of the game Model, by binding themselves to Subject classes in the Model, in accordance with the Observer pattern. The ScoreView displays game state information. The VerboseView optionally shows logs of what is going on inside the Model. The GameScene is made up of 25 CardPanes which each observe Card objects in the model, changing the display when the Cards change state. By following the Observer pattern, the Model is allowed to exist without any View. The View provides a GUI, without effecting the Model subsystems.
+
+\subsubsection{Detailed Design Diagram}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=10cm]{Source/Module/View/View.png}
+\caption{UML Diagram of Module View}
+\label{View}
+\end{figure}
+
+\input{Source/Module/View/Class/Observer.tex}
+\input{Source/Module/View/Class/VerboseView.tex}
+\input{Source/Module/View/Class/CardPane.tex}
+\input{Source/Module/View/Class/GameScene.tex}
+\input{Source/Module/View/Class/ScoreView.tex}
+
