@@ -250,6 +250,15 @@ public class GameManager extends Subject {
         whosTurn = (whosTurn + 1) % 4;
         numOpGuesses = 0;
     }   
+    
+    public boolean endHumanTurn() {
+    	if (whosTurn == Constants.HUMAN) {
+            whosTurn = (whosTurn + 1) % 4;
+            numOpGuesses = 0;
+            return true;
+    	}
+    	return false;
+    }
 
     /**
      * Get the number of blue cards left to guess.

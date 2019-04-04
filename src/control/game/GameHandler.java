@@ -37,6 +37,7 @@ public class GameHandler implements EventHandler<Event> {
     /**
      * Interprets various events by casting them to the appropriate event type.
      * When the user presses ENTER, the KeyHandler triggers the playerControl to play the next turn.
+     * When the user presses ESCAPE in operative mode during their turn, the turn ends.
      * When the user clicks a card, the MouseEvent triggers the board to remove that card. (Only in operative mode)
      *
      * @param event
@@ -49,6 +50,11 @@ public class GameHandler implements EventHandler<Event> {
         	
             if (keyEvent.getCode() == KeyCode.ENTER) {
                 commandManager.storeAndExecute(new NextTurnCommand(game));
+            } else if (keyEvent.getCode() == KeyCode.ESCAPE) {
+        		if (GameMode.getGameMode() == 1) {
+        			if (game.endHumanTurn())
+        				commandManager.storeAndExecute(new NextTurnCommand(game));
+        		}
             } else if (keyEvent.getCode() == KeyCode.V && view != null) {
                 view.open();
             }
