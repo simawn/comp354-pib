@@ -95,6 +95,8 @@ public class Preview {
         //adjust the settings of our object
         difficultyComboBox.setPadding(new Insets(5,5,5,5));
         startB.setPadding(new Insets(5,5,5,5));
+        rb1.setPadding(new Insets(5,5,5,5));
+        rb2.setPadding(new Insets(5,5,5,5));
         ((VBox) scene.getRoot()).getChildren().addAll(innerVbCombo);
         ((VBox) scene.getRoot()).getChildren().addAll(innerHbRadio);
         ((VBox) scene.getRoot()).getChildren().addAll(startB);
