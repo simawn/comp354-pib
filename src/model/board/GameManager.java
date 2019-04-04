@@ -131,11 +131,11 @@ public class GameManager extends Subject {
      */
     private void takeTurn(Spymaster p) {
         currentClue = p.makeMove(currentClue, bipartite);
+        Verbose.log(players[whosTurn].getTeam() + " spymaster gave clue "
+                + currentClue.getClueWord() + ": " + currentClue.getClueNum());
         if(players[whosTurn].getTeam().equals(CardType.Blue)&&((Operative) players[3]).isHuman()){
              playerTurn = "Click Now.";
         }
-        Verbose.log(players[whosTurn].getTeam() + " spymaster gave clue "
-                + currentClue.getClueWord() + ": " + currentClue.getClueNum());
         endTurn();
         this.push();
     }
@@ -160,8 +160,8 @@ public class GameManager extends Subject {
                 return;
             }
             if (isTurnOver(p, guess, currentClue.getClueNum())) {
-                if(((Operative) players[3]).isHuman()){
-                    playerTurn = "Click Now.";
+                if(((Operative) players[Constants.HUMAN]).isHuman()){
+                    //playerTurn = "Click Now.";
                 }
                 Verbose.log(players[whosTurn].getTeam() + " turn ends.");
                 endTurn();
@@ -271,10 +271,16 @@ public class GameManager extends Subject {
         numOpGuesses = 0;
     }
 
+    /**
+     * Ends the current turn if the current player is human.
+     * 
+     * @return whether a human's turn was ended
+     */
     public boolean endHumanTurn() {
         if (whosTurn == Constants.HUMAN) {
             whosTurn = (whosTurn + 1) % 4;
             numOpGuesses = 0;
+            playerTurn = "Hit Enter Until Blue Spymaster gives a clue";
             return true;
         }
         return false;
