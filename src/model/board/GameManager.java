@@ -188,7 +188,6 @@ public class GameManager extends Subject {
 	            endTurn();
 	        }
 	        this.push();
-	        humanClick(c);
     	}
     }
     
