@@ -2,10 +2,12 @@ package model.board;
 
 import control.game.Difficulty;
 import model.player.*;
+import model.board.Constants;
 import model.util.Verbose;
 import view.CardPane;
 import control.game.GameHandler;
 import control.game.GameMode;
+import javafx.event.EventType;
 
 /**
  * PlayerControl keeps track of which players turn it is, and calls them to make their turns.
@@ -21,6 +23,7 @@ public class GameManager extends Subject {
      * whosTurn: index into players to keep track of whose turn it is.
      * winningTeam: null until a team wins, then it is their colour.
      * currentClue
+     * humanTurn: allows the GameManager to verify if a user's click is a valid move in turn order.
      */
     private Player[] players;
     private int whosTurn;
@@ -61,9 +64,9 @@ public class GameManager extends Subject {
         		else if(GameMode.getGameMode() == 1) {
         			Verbose.log("Easy Difficulty");
         	        players[0] = new Spymaster(CardType.Red, board, new randomSpyStrategy());
-        	        players[1] = new HumanOperative(CardType.Red, board);
+        	        players[1] = new Operative(CardType.Red, board, new randomOperativeStrategy());
         	        players[2] = new Spymaster(CardType.Blue, board, new randomSpyStrategy());
-        	        players[3] = new HumanOperative(CardType.Blue, board);
+    		        players[3] = new Operative(CardType.Blue, board, new HumanOperativeStrategy());
         		}
         
         }
@@ -78,9 +81,9 @@ public class GameManager extends Subject {
 	        else if(GameMode.getGameMode() == 1) {
 	        		Verbose.log("Medium difficulty");
 	        		players[0] = new Spymaster(CardType.Red, board, new SimpleSpyStrategy(CardType.Red));
-		        players[1] = new HumanOperative(CardType.Red, board);
+		        players[1] = new Operative(CardType.Red, board, new BotOperativeStrategy(CardType.Red, 0.5));
 		        players[2] = new Spymaster(CardType.Blue, board, new SimpleSpyStrategy(CardType.Blue));
-		        players[3] = new HumanOperative(CardType.Blue, board);
+		        players[3] = new Operative(CardType.Blue, board, new HumanOperativeStrategy());
 	        }    
         }
 	    else if(Difficulty.getDifficulty()==2){
@@ -94,9 +97,9 @@ public class GameManager extends Subject {
 	    		else if(GameMode.getGameMode() == 1) {
 	    			Verbose.log("Hard difficulty");
 	    			players[0] = new Spymaster(CardType.Red, board, new SmartSpyStrategy(CardType.Red));
-		        players[1] = new HumanOperative(CardType.Red, board);
+		        players[1] = new Operative(CardType.Red, board, new BotOperativeStrategy(CardType.Red, 0.75));
 		        players[2] = new Spymaster(CardType.Blue, board, new SmartSpyStrategy(CardType.Blue));
-		        players[3] = new HumanOperative(CardType.Blue, board); //0.95+ is god mode
+		        players[3] = new Operative(CardType.Blue, board, new HumanOperativeStrategy());
 	    		}
 	    	}
         
@@ -138,28 +141,57 @@ public class GameManager extends Subject {
     }
     
     /**
-     * Have an Operative take their turn
+     * Have an Operative take their turn.
+     * Automatic for AI, but will simply wait for a command for humans.
      * @param p 
      */
     private void takeTurn(Operative p) {
-        Card guess = p.makeMove(currentClue, bipartite);  
-        Verbose.log(players[whosTurn].getTeam() + " operative guessed " + guess.word);
-        board.remove(guess);
-        bipartite.removeWord(guess.getStringProperty());
-        numOpGuesses += 1;
-        if (gameIsOver()) {
-            winningTeam = declareWinner(p, guess);
-            Verbose.log(winningTeam + " wins! Game Over.");
-            this.push();
-            return;
-        }
-        if (isTurnOver(p, guess, currentClue.getClueNum())) {
-            Verbose.log(players[whosTurn].getTeam() + " turn ends.");
-            endTurn();
-        }
-        this.push();
+    	if (!p.isHuman()) {
+	        Card guess = p.makeMove(currentClue, bipartite);  
+	        Verbose.log(players[whosTurn].getTeam() + " operative guessed " + guess.word);
+	        board.remove(guess);
+	        bipartite.removeWord(guess.getStringProperty());
+	        numOpGuesses += 1;
+	        if (gameIsOver()) {
+	            winningTeam = declareWinner(p, guess);
+	            Verbose.log(winningTeam + " wins! Game Over.");
+	            this.push();
+	            return;
+	        }
+	        if (isTurnOver(p, guess, currentClue.getClueNum())) {
+	            Verbose.log(players[whosTurn].getTeam() + " turn ends.");
+	            endTurn();
+	        }
+	        this.push();
+    	}
     }
 
+    /**
+     * Receives card selection from a human operative if it is currently their turn.
+     * @param c
+     */
+    public void humanClick(Card c) {
+    	if (whosTurn == Constants.HUMAN) {
+    		Operative p = (Operative) players[Constants.HUMAN];
+	        Verbose.log(players[whosTurn].getTeam() + " operative guessed " + c.word);
+	        board.remove(c);
+	        bipartite.removeWord(c.getStringProperty());
+	        numOpGuesses += 1;
+	        if (gameIsOver()) {
+	            winningTeam = declareWinner(p, c);
+	            Verbose.log(winningTeam + " wins! Game Over.");
+	            this.push();
+	            return;
+	        }
+	        if (isTurnOver(p, c, currentClue.getClueNum())) {
+	            Verbose.log(players[whosTurn].getTeam() + " turn ends.");
+	            endTurn();
+	        }
+	        this.push();
+	        humanClick(c);
+    	}
+    }
+    
     /**
      * Called at the end of an Operatives turn.
      * If they choose a card that isn't their teams, or they are out of guesses, their turn is over.
@@ -273,13 +305,5 @@ public class GameManager extends Subject {
         if(gameIsOver()) { return winningTeam;
         }
         return players[whosTurn].getTeam();
-    }
-    
-    /**
-     * Returns a reference to the game board.
-     * @return board
-     */
-    public Board getBoard() {
-    	return board;
     }
 }

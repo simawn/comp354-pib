@@ -16,7 +16,7 @@ import view.VerboseView;
 /**
  * Handles all Events for when keys are pressed and cards are clicked by the user.
  *
- * @author Rani Rafid
+ * @author Rani Rafid, Alexia Soucy
  * @date 02/06/19
  */
 public class GameHandler implements EventHandler<Event> {
@@ -58,7 +58,7 @@ public class GameHandler implements EventHandler<Event> {
     		
     		if (GameMode.getGameMode() == 1) {
     			CardPane cp = (CardPane) mouseEvent.getSource();
-    			game.getBoard().remove((Card) cp.getSubject());
+    			game.humanClick((Card) cp.getSubject());
     		}
     	}
     }

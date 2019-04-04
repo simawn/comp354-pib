@@ -47,5 +47,14 @@ public class Operative extends Player{
         return opStrat.pickCard(board.getCards(), bipartite);
     }
 
+    /**
+     * Checks if the operative is human.
+     * @return human = true, bot = false
+     */
+    public boolean isHuman() {
+    	if (opStrat instanceof HumanOperativeStrategy)
+    		return true;
+    	return false;
+    }
 }
 

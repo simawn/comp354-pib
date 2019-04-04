@@ -10,8 +10,9 @@ import model.board.Clue;
 
 
 /**
- * The implemented class for all operators.
+ * The implemented class for human operatives.
  * Defines the basic functions and constructor that the operator strategies will use.
+ * Deprecated.
  * 
  * @author Anthony Funiciello, David Gray
  * @date 02/07/19
