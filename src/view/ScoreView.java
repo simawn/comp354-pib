@@ -99,7 +99,7 @@ public class ScoreView implements Observer {
              t.setTextFill(Color.RED);
              t.setText("Red's Turn");
         }
-        
+        gameMode.setText(game.getPlayerTurn());
         currentClue.setText("Clue: " + game.getCurrentClue());
         blueScore.setTextFill(Color.BLUE);
         blueScore.setText("Blue: " + game.getBlueScore()); 
@@ -113,7 +113,8 @@ public class ScoreView implements Observer {
         //If you call this, it will return either "Current Clue: Clue: num" OR "Game Over".
         // game.getStringProperty() but you can also do it the way you had it.
     }
-
+    
+    
     /**
      * Open the VerboseView window.
      */

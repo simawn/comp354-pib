@@ -29,6 +29,7 @@ public class GameManager extends Subject {
     private CardType winningTeam;
     private Clue currentClue;
     private CardPane cp;
+    private String playerTurn = "Hit Enter Until Blue Spymaster gives a clue";
 
     /**
      * Number of guesses the current operative has made so far in their turn.
@@ -74,10 +75,10 @@ public class GameManager extends Subject {
             if (GameMode.getGameMode() == 0) {
                 Verbose.log("Hard difficulty");
                 setStrategies(new BotOperativeStrategy(CardType.Red, 0.75), new BotOperativeStrategy(CardType.Blue, 0.95), new SmartSpyStrategy(CardType.Red), new SmartSpyStrategy(CardType.Blue));
-                 //0.95+ is god mode
+                //0.95+ is god mode
             } else if (GameMode.getGameMode() == 1) {
                 Verbose.log("Hard difficulty");
-                                setStrategies(new BotOperativeStrategy(CardType.Red, 0.75), new HumanOperativeStrategy(), new SmartSpyStrategy(CardType.Red), new SmartSpyStrategy(CardType.Blue));
+                setStrategies(new BotOperativeStrategy(CardType.Red, 0.75), new HumanOperativeStrategy(), new SmartSpyStrategy(CardType.Red), new SmartSpyStrategy(CardType.Blue));
             }
         }
 
@@ -112,6 +113,7 @@ public class GameManager extends Subject {
      */
     public void doNextTurn() {
         if (gameIsOver()) {
+            
             Verbose.log("Game Over");
             return;
         }
@@ -129,6 +131,9 @@ public class GameManager extends Subject {
      */
     private void takeTurn(Spymaster p) {
         currentClue = p.makeMove(currentClue, bipartite);
+        if(players[whosTurn].getTeam().equals(CardType.Blue)&&((Operative) players[3]).isHuman()){
+             playerTurn = "Click Now.";
+        }
         Verbose.log(players[whosTurn].getTeam() + " spymaster gave clue "
                 + currentClue.getClueWord() + ": " + currentClue.getClueNum());
         endTurn();
@@ -155,10 +160,17 @@ public class GameManager extends Subject {
                 return;
             }
             if (isTurnOver(p, guess, currentClue.getClueNum())) {
+                if(((Operative) players[3]).isHuman()){
+                    playerTurn = "Click Now.";
+                }
                 Verbose.log(players[whosTurn].getTeam() + " turn ends.");
                 endTurn();
             }
             this.push();
+        }
+        else{     
+            playerTurn = "Click Now.";
+            Verbose.log(playerTurn);
         }
     }
 
@@ -172,6 +184,8 @@ public class GameManager extends Subject {
         if (whosTurn == Constants.HUMAN) {
             Operative p = (Operative) players[Constants.HUMAN];
             Verbose.log(players[whosTurn].getTeam() + " operative guessed " + c.word);
+            playerTurn = "Click Now.";
+            Verbose.log(playerTurn);
             board.remove(c);
             bipartite.removeWord(c.getStringProperty());
             numOpGuesses += 1;
@@ -183,6 +197,8 @@ public class GameManager extends Subject {
             }
             if (isTurnOver(p, c, currentClue.getClueNum())) {
                 Verbose.log(players[whosTurn].getTeam() + " turn ends.");
+                playerTurn = "Hit Enter Until Blue Spymaster gives a clue";
+                Verbose.log(playerTurn);
                 endTurn();
             }
             this.push();
@@ -329,5 +345,9 @@ public class GameManager extends Subject {
             return winningTeam;
         }
         return players[whosTurn].getTeam();
+    }
+    
+    public String getPlayerTurn(){
+        return playerTurn;
     }
 }
