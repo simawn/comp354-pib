@@ -1,6 +1,7 @@
 package view;
 
 import control.game.Difficulty;
+import control.game.GameMode;
 import java.awt.Font;
 import javafx.application.Platform;
 import javafx.geometry.Rectangle2D;
@@ -30,6 +31,7 @@ public class ScoreView implements Observer {
     private Label redScore = new Label();
     private Label blueScore = new Label();
     private Label currentClue = new Label();
+    private Label gameMode = new Label();
     private GameManager game;
     private CardType winningTeam;
  
@@ -45,13 +47,28 @@ public class ScoreView implements Observer {
         //open();
          
         Group root = new Group();
-        diff.setTranslateY(100);
-        redScore.setTranslateY(50);
-        blueScore.setTranslateY(65);
-        currentClue.setTranslateY(25);
+
         stage = new Stage();
         stage.setTitle("Codenames - Score");
-        
+        if(GameMode.getGameMode()==1){
+            gameMode.setText("Hit Enter Until Blue Spymaster gives a clue");
+            gameMode.setTranslateY(0);
+            root.getChildren().add(gameMode);
+            diff.setTranslateY(125);
+            redScore.setTranslateY(75);
+            blueScore.setTranslateY(90);
+            currentClue.setTranslateY(50);
+            t.setTranslateY(25);
+            gameMode.setStyle("-fx-font-weight: bold;");
+            gameMode.setTextFill(Color.BLUE);
+        }
+        else{
+            diff.setTranslateY(100);
+            redScore.setTranslateY(50);
+            blueScore.setTranslateY(75);
+            currentClue.setTranslateY(25);
+
+        }
         Rectangle2D primaryScreenBounds = Screen.getPrimary().getVisualBounds();
  
         //set Stage boundaries to the lower right corner of the visible bounds of the main screen
@@ -59,6 +76,8 @@ public class ScoreView implements Observer {
         stage.setY(primaryScreenBounds.getMinY() + primaryScreenBounds.getHeight() - 300);
         stage.setWidth(400);
         stage.setHeight(300);
+        diff.setText(Difficulty.getStringDifficulty());
+        diff.setStyle("-fx-font-weight: bold;");
         root.getChildren().add(diff);
         root.getChildren().add(t);
         root.getChildren().add(redScore);
@@ -86,8 +105,7 @@ public class ScoreView implements Observer {
         blueScore.setText("Blue: " + game.getBlueScore()); 
         redScore.setTextFill(Color.RED);
         redScore.setText("Red: " + game.getRedScore());
-        diff.setText(Difficulty.getStringDifficulty());
-        diff.setStyle("-fx-font-weight: bold;");
+
         if(game.getWinner() != null){
             t.setText(game.getWinner() + " Wins!");
         }
