@@ -3,6 +3,9 @@ package model.board;
 import control.game.Difficulty;
 import model.player.*;
 import model.util.Verbose;
+import view.CardPane;
+import control.game.GameHandler;
+import control.game.GameMode;
 
 /**
  * PlayerControl keeps track of which players turn it is, and calls them to make their turns.
@@ -23,6 +26,7 @@ public class GameManager extends Subject {
     private int whosTurn;
     private CardType winningTeam;
     private Clue currentClue;
+    private CardPane cp;
 
     /**
      * Number of guesses the current operative has made so far in their turn.
@@ -47,25 +51,55 @@ public class GameManager extends Subject {
     public GameManager(Board board) {
         players = new Player[4];
         if(Difficulty.getDifficulty()==0){
-        Verbose.log("Easy Difficulty");
-        players[0] = new Spymaster(CardType.Red, board, new randomSpyStrategy());
-        players[1] = new Operative(CardType.Red, board, new randomOperativeStrategy());
-        players[2] = new Spymaster(CardType.Blue, board, new randomSpyStrategy());
-        players[3] = new Operative(CardType.Blue, board, new randomOperativeStrategy());
+        		if (GameMode.getGameMode() == 0){
+        			Verbose.log("Easy Difficulty");
+        	        players[0] = new Spymaster(CardType.Red, board, new randomSpyStrategy());
+        	        players[1] = new Operative(CardType.Red, board, new randomOperativeStrategy());
+        	        players[2] = new Spymaster(CardType.Blue, board, new randomSpyStrategy());
+        	        players[3] = new Operative(CardType.Blue, board, new randomOperativeStrategy());
+        		}
+        		else if(GameMode.getGameMode() == 1) {
+        			Verbose.log("Easy Difficulty");
+        	        players[0] = new Spymaster(CardType.Red, board, new randomSpyStrategy());
+        	        players[1] = new HumanOperative(CardType.Red, board);
+        	        players[2] = new Spymaster(CardType.Blue, board, new randomSpyStrategy());
+        	        players[3] = new HumanOperative(CardType.Blue, board);
+        		}
+        
         }
         else if(Difficulty.getDifficulty()==1){
-        Verbose.log("Medium difficulty");
-        players[0] = new Spymaster(CardType.Red, board, new SimpleSpyStrategy(CardType.Red));
-        players[1] = new Operative(CardType.Red, board, new BotOperativeStrategy(CardType.Red, 0.5));
-        players[2] = new Spymaster(CardType.Blue, board, new SimpleSpyStrategy(CardType.Blue));
-        players[3] = new Operative(CardType.Blue, board, new BotOperativeStrategy(CardType.Blue, 0.5));    
+	        if(GameMode.getGameMode() == 0) {
+	        		Verbose.log("Medium difficulty");
+	        		players[0] = new Spymaster(CardType.Red, board, new SimpleSpyStrategy(CardType.Red));
+	    	        players[1] = new Operative(CardType.Red, board, new BotOperativeStrategy(CardType.Red, 0.5));
+	    	        players[2] = new Spymaster(CardType.Blue, board, new SimpleSpyStrategy(CardType.Blue));
+	    	        players[3] = new Operative(CardType.Blue, board, new BotOperativeStrategy(CardType.Blue, 0.5));
+	        }
+	        else if(GameMode.getGameMode() == 1) {
+	        		Verbose.log("Medium difficulty");
+	        		players[0] = new Spymaster(CardType.Red, board, new SimpleSpyStrategy(CardType.Red));
+		        players[1] = new HumanOperative(CardType.Red, board);
+		        players[2] = new Spymaster(CardType.Blue, board, new SimpleSpyStrategy(CardType.Blue));
+		        players[3] = new HumanOperative(CardType.Blue, board);
+	        }    
         }
-        else{
-        players[0] = new Spymaster(CardType.Red, board, new SmartSpyStrategy(CardType.Red));
-        players[1] = new Operative(CardType.Red, board, new BotOperativeStrategy(CardType.Red, 0.75));
-        players[2] = new Spymaster(CardType.Blue, board, new SmartSpyStrategy(CardType.Blue));
-        players[3] = new Operative(CardType.Blue, board, new BotOperativeStrategy(CardType.Blue, 0.95)); //0.95+ is god mode
-        }
+	    else if(Difficulty.getDifficulty()==2){
+	    		if(GameMode.getGameMode() == 0) {
+	    			Verbose.log("Hard difficulty");
+	    			players[0] = new Spymaster(CardType.Red, board, new SmartSpyStrategy(CardType.Red));
+	    	        players[1] = new Operative(CardType.Red, board, new BotOperativeStrategy(CardType.Red, 0.75));
+	    	        players[2] = new Spymaster(CardType.Blue, board, new SmartSpyStrategy(CardType.Blue));
+	    	        players[3] = new Operative(CardType.Blue, board, new BotOperativeStrategy(CardType.Blue, 0.95)); //0.95+ is god mode
+	    		}
+	    		else if(GameMode.getGameMode() == 1) {
+	    			Verbose.log("Hard difficulty");
+	    			players[0] = new Spymaster(CardType.Red, board, new SmartSpyStrategy(CardType.Red));
+		        players[1] = new HumanOperative(CardType.Red, board);
+		        players[2] = new Spymaster(CardType.Blue, board, new SmartSpyStrategy(CardType.Blue));
+		        players[3] = new HumanOperative(CardType.Blue, board); //0.95+ is god mode
+	    		}
+	    	}
+        
         whosTurn = 0;
         if(board.getNumCardsOfType(CardType.Blue) == 9) {
             Verbose.log("Blue going first");
