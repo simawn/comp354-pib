@@ -10,13 +10,14 @@ import model.board.Clue;
 
 
 /**
- * The implemented class for all operators.
+ * The implemented class for human operatives.
  * Defines the basic functions and constructor that the operator strategies will use.
+ * Deprecated.
  * 
  * @author Anthony Funiciello, David Gray
  * @date 02/07/19
  */
-public class Operative extends Player{
+public class HumanOperative extends Player{
 
 
      /**
@@ -28,16 +29,15 @@ public class Operative extends Player{
      */
     private OperativeStrategy opStrat;
 
-    public Operative(CardType team) {
+    public HumanOperative(CardType team) {
         super(team);
     }
 
      /**
      * Instantiate operative to the team, board and strategy they will use.
      */
-    public Operative(CardType team, Board board, OperativeStrategy strategy) {
+    public HumanOperative(CardType team, Board board) {
         super(team);
-        this.opStrat = strategy;
         this.board = board;
     }
     
@@ -47,14 +47,5 @@ public class Operative extends Player{
         return opStrat.pickCard(board.getCards(), bipartite);
     }
 
-    /**
-     * Checks if the operative is human.
-     * @return human = true, bot = false
-     */
-    public boolean isHuman() {
-    	if (opStrat instanceof HumanOperativeStrategy)
-    		return true;
-    	return false;
-    }
 }
 

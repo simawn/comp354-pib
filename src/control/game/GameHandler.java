@@ -16,7 +16,7 @@ import view.VerboseView;
 /**
  * Handles all Events for when keys are pressed and cards are clicked by the user.
  *
- * @author Rani Rafid
+ * @author Rani Rafid, Alexia Soucy
  * @date 02/06/19
  */
 public class GameHandler implements EventHandler<Event> {
@@ -37,29 +37,36 @@ public class GameHandler implements EventHandler<Event> {
     /**
      * Interprets various events by casting them to the appropriate event type.
      * When the user presses ENTER, the KeyHandler triggers the playerControl to play the next turn.
+     * When the user presses ESCAPE in operative mode during their turn, the turn ends.
      * When the user clicks a card, the MouseEvent triggers the board to remove that card. (Only in operative mode)
      *
      * @param event
      */
     @Override
     public void handle(Event event) {
-    	
-    	if (event instanceof KeyEvent) {
-    		KeyEvent keyEvent = (KeyEvent) event;
-        	
-            if (keyEvent.getCode() == KeyCode.ENTER) {
-                commandManager.storeAndExecute(new NextTurnCommand(game));
-            } else if (keyEvent.getCode() == KeyCode.V && view != null) {
-                view.open();
-            }
-    	}
-    	else if (event instanceof MouseEvent) {
-    		MouseEvent mouseEvent = (MouseEvent) event;
-    		
-    		if (GameMode.getGameMode() == 1) {
-    			CardPane cp = (CardPane) mouseEvent.getSource();
-    			game.getBoard().remove((Card) cp.getSubject());
-    		}
+    	if (!game.gameIsOver()) {
+        	if (event instanceof KeyEvent) {
+        		KeyEvent keyEvent = (KeyEvent) event;
+            	
+                if (keyEvent.getCode() == KeyCode.ENTER) {
+                    commandManager.storeAndExecute(new NextTurnCommand(game));
+                } else if (keyEvent.getCode() == KeyCode.ESCAPE) {
+            		if (GameMode.getGameMode() == 1) {
+            			if (game.endHumanTurn())
+            				commandManager.storeAndExecute(new NextTurnCommand(game));
+            		}
+                } else if (keyEvent.getCode() == KeyCode.V && view != null) {
+                    view.open();
+                }
+        	}
+        	else if (event instanceof MouseEvent) {
+        		MouseEvent mouseEvent = (MouseEvent) event;
+        		
+        		if (GameMode.getGameMode() == 1) {
+        			CardPane cp = (CardPane) mouseEvent.getSource();
+        			game.humanClick((Card) cp.getSubject());
+        		}
+        	}
     	}
     }
 
