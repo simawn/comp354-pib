@@ -44,28 +44,29 @@ public class GameHandler implements EventHandler<Event> {
      */
     @Override
     public void handle(Event event) {
-    	
-    	if (event instanceof KeyEvent) {
-    		KeyEvent keyEvent = (KeyEvent) event;
-        	
-            if (keyEvent.getCode() == KeyCode.ENTER) {
-                commandManager.storeAndExecute(new NextTurnCommand(game));
-            } else if (keyEvent.getCode() == KeyCode.ESCAPE) {
+    	if (!game.gameIsOver()) {
+        	if (event instanceof KeyEvent) {
+        		KeyEvent keyEvent = (KeyEvent) event;
+            	
+                if (keyEvent.getCode() == KeyCode.ENTER) {
+                    commandManager.storeAndExecute(new NextTurnCommand(game));
+                } else if (keyEvent.getCode() == KeyCode.ESCAPE) {
+            		if (GameMode.getGameMode() == 1) {
+            			if (game.endHumanTurn())
+            				commandManager.storeAndExecute(new NextTurnCommand(game));
+            		}
+                } else if (keyEvent.getCode() == KeyCode.V && view != null) {
+                    view.open();
+                }
+        	}
+        	else if (event instanceof MouseEvent) {
+        		MouseEvent mouseEvent = (MouseEvent) event;
+        		
         		if (GameMode.getGameMode() == 1) {
-        			if (game.endHumanTurn())
-        				commandManager.storeAndExecute(new NextTurnCommand(game));
+        			CardPane cp = (CardPane) mouseEvent.getSource();
+        			game.humanClick((Card) cp.getSubject());
         		}
-            } else if (keyEvent.getCode() == KeyCode.V && view != null) {
-                view.open();
-            }
-    	}
-    	else if (event instanceof MouseEvent) {
-    		MouseEvent mouseEvent = (MouseEvent) event;
-    		
-    		if (GameMode.getGameMode() == 1) {
-    			CardPane cp = (CardPane) mouseEvent.getSource();
-    			game.humanClick((Card) cp.getSubject());
-    		}
+        	}
     	}
     }
 

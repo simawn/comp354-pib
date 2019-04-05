@@ -160,9 +160,6 @@ public class GameManager extends Subject {
                 return;
             }
             if (isTurnOver(p, guess, currentClue.getClueNum())) {
-                if(((Operative) players[Constants.HUMAN]).isHuman()){
-                    //playerTurn = "Click Now.";
-                }
                 Verbose.log(players[whosTurn].getTeam() + " turn ends.");
                 endTurn();
             }
@@ -181,7 +178,7 @@ public class GameManager extends Subject {
      * @param c
      */
     public void humanClick(Card c) {
-        if (whosTurn == Constants.HUMAN) {
+        if (whosTurn == Constants.HUMAN && board.getCards().contains(c)) {
             Operative p = (Operative) players[Constants.HUMAN];
             Verbose.log(players[whosTurn].getTeam() + " operative guessed " + c.word);
             playerTurn = "Click Now.";
@@ -191,6 +188,7 @@ public class GameManager extends Subject {
             numOpGuesses += 1;
             if (gameIsOver()) {
                 winningTeam = declareWinner(p, c);
+                playerTurn = "";
                 Verbose.log(winningTeam + " wins! Game Over.");
                 this.push();
                 return;
