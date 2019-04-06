@@ -134,20 +134,6 @@ public class GameManagerTest {
     }
 
     /**
-     * Test of humanClick method, of class GameManager.
-     */
-    @Test
-    public void testHumanClick() {
-        System.out.println("humanClick");
-        CardType cardType = CardType.Red;
-        Card card = new Card("", cardType);
-        board = new Board(cards);
-        GameManager instance = new GameManager(board);
-        instance.humanClick(card);
-        
-    }
-
-    /**
      * Test of endHumanTurn method, of class GameManager.
      */
     @Test
