@@ -9,6 +9,9 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 import org.junit.BeforeClass;
 
+import static org.junit.Assert.assertTrue;
+import static org.hamcrest.CoreMatchers.instanceOf;
+
 /**
  * Test of GameManager class in model.board.
  * @author David Gray
@@ -131,30 +134,17 @@ public class GameManagerTest {
     }
 
     /**
-     * Test of humanClick method, of class GameManager.
-     */
-    @Test
-    public void testHumanClick() {
-        System.out.println("humanClick");
-        Card c = null;
-        GameManager instance = null;
-        instance.humanClick(c);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
      * Test of endHumanTurn method, of class GameManager.
      */
     @Test
     public void testEndHumanTurn() {
         System.out.println("endHumanTurn");
-        GameManager instance = null;
+        cards = CardBuilder.buildAll();
+        board = new Board(cards);
+        GameManager instance = new GameManager(board);
         boolean expResult = false;
         boolean result = instance.endHumanTurn();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -163,12 +153,14 @@ public class GameManagerTest {
     @Test
     public void testGetBlueScore() {
         System.out.println("getBlueScore");
-        GameManager instance = null;
-        int expResult = 0;
+        cards = CardBuilder.buildAll();
+        board = new Board(cards);
+        GameManager instance = new GameManager(board);
+        int expResult = board.getNumCardsOfType(CardType.Blue);
         int result = instance.getBlueScore();
+        System.out.println(result);
+
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -177,12 +169,12 @@ public class GameManagerTest {
     @Test
     public void testGetRedScore() {
         System.out.println("getRedScore");
-        GameManager instance = null;
-        int expResult = 0;
+        cards = CardBuilder.buildAll();
+        board = new Board(cards);
+        GameManager instance = new GameManager(board);
+        int expResult = board.getNumCardsOfType(CardType.Red);
         int result = instance.getRedScore();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -191,12 +183,10 @@ public class GameManagerTest {
     @Test
     public void testGetWinner() {
         System.out.println("getWinner");
-        GameManager instance = null;
-        CardType expResult = null;
-        CardType result = instance.getWinner();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        cards = CardBuilder.buildAll();
+        board = new Board(cards);
+        GameManager instance = new GameManager(board);
+        assertNull(instance.getWinner());
     }
 
     /**
@@ -205,12 +195,11 @@ public class GameManagerTest {
     @Test
     public void testGetCurrentClue() {
         System.out.println("getCurrentClue");
-        GameManager instance = null;
-        Clue expResult = null;
-        Clue result = instance.getCurrentClue();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        cards = CardBuilder.buildAll();
+        board = new Board(cards);
+        GameManager instance = new GameManager(board);
+        Clue clue = new Clue("foo", 8);
+        assertThat(clue.getClueNum(), instanceOf(Integer.class));
     }
 
     /**
@@ -219,12 +208,12 @@ public class GameManagerTest {
     @Test
     public void testGetStringProperty() {
         System.out.println("getStringProperty");
-        GameManager instance = null;
+        cards = CardBuilder.buildAll();
+        board = new Board(cards);
+        GameManager instance = new GameManager(board);
         String expResult = "";
         String result = instance.getStringProperty();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -233,12 +222,10 @@ public class GameManagerTest {
     @Test
     public void testGetTypeProperty() {
         System.out.println("getTypeProperty");
-        GameManager instance = null;
-        CardType expResult = null;
-        CardType result = instance.getTypeProperty();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        cards = CardBuilder.buildAll();
+        board = new Board(cards);
+        GameManager instance = new GameManager(board);
+        assertThat(instance.getTypeProperty(), instanceOf(CardType.class));
     }
 
     /**
@@ -247,12 +234,12 @@ public class GameManagerTest {
     @Test
     public void testGetPlayerTurn() {
         System.out.println("getPlayerTurn");
-        GameManager instance = null;
-        String expResult = "";
+        cards = CardBuilder.buildAll();
+        board = new Board(cards);
+        GameManager instance = new GameManager(board);
+        String expResult = "Hit Enter Until Blue Spymaster gives a clue";
         String result = instance.getPlayerTurn();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
     
 }
