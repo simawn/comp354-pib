@@ -125,11 +125,12 @@ public class GameManagerTest {
         cards = CardBuilder.buildAll();
         board = new Board(cards);
         instance = new GameManager(board);
-        instance.doNextTurn();
+        instance.doNextTurn();//spy turn
+        instance.doNextTurn();//operative turn
         int EXPECTED_SIZE = 24;
         int size = board.getCards().size();
-        assertEquals(EXPECTED_SIZE,size);
-        // TODO review the generated test code and remove the default call to fail.
+        System.out.println("Cards left on board: "+size);
+        assertEquals("Check to make sure card is chosen by operative",EXPECTED_SIZE,size);//should be one less card
     }
 
     /**
