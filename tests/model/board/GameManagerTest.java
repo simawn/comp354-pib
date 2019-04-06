@@ -9,6 +9,9 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 import org.junit.BeforeClass;
 
+import static org.junit.Assert.assertTrue;
+import static org.hamcrest.CoreMatchers.instanceOf;
+
 /**
  * Test of GameManager class in model.board.
  * @author David Gray
@@ -162,12 +165,14 @@ public class GameManagerTest {
     @Test
     public void testGetBlueScore() {
         System.out.println("getBlueScore");
-        GameManager instance = null;
-        int expResult = 0;
+        cards = CardBuilder.buildAll();
+        board = new Board(cards);
+        GameManager instance = new GameManager(board);
+        int expResult = board.getNumCardsOfType(CardType.Blue);
         int result = instance.getBlueScore();
+        System.out.println(result);
+
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -204,12 +209,11 @@ public class GameManagerTest {
     @Test
     public void testGetCurrentClue() {
         System.out.println("getCurrentClue");
-        GameManager instance = null;
-        Clue expResult = null;
-        Clue result = instance.getCurrentClue();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        cards = CardBuilder.buildAll();
+        board = new Board(cards);
+        GameManager instance = new GameManager(board);
+        Clue clue = new Clue("foo", 8);
+        assertThat(clue.getClueNum(), instanceOf(Integer.class));
     }
 
     /**
