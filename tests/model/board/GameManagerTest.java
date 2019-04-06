@@ -7,6 +7,7 @@ import model.player.randomOperativeStrategy;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import org.junit.BeforeClass;
 
 /**
  * Test of GameManager class in model.board.
@@ -19,6 +20,10 @@ public class GameManagerTest {
     GameManager instance;
     
     public GameManagerTest() {
+    }
+
+    @BeforeClass
+    public static void setUpClass() throws Exception {
     }
     
     @Before
@@ -107,6 +112,146 @@ public class GameManagerTest {
         assertEquals("Blue wins after red chooses blue", instance.declareWinner(blue, redCard), CardType.Red);
         assertEquals("Blue wins after red chooses assassin", instance.declareWinner(red, assassinCard), CardType.Blue);
         assertEquals("Red wins after blue chooses assassin", instance.declareWinner(blue, assassinCard), CardType.Red);
+    }
+
+    /**
+     * Test of doNextTurn method, of class GameManager.
+     */
+    @Test
+    public void testDoNextTurn() {
+        cards = CardBuilder.buildAll();
+        board = new Board(cards);
+        instance = new GameManager(board);
+        instance.doNextTurn();
+        int EXPECTED_SIZE = 24;
+        int size = board.getCards().size();
+        assertEquals(EXPECTED_SIZE,size);
+        // TODO review the generated test code and remove the default call to fail.
+    }
+
+    /**
+     * Test of humanClick method, of class GameManager.
+     */
+    @Test
+    public void testHumanClick() {
+        System.out.println("humanClick");
+        Card c = null;
+        GameManager instance = null;
+        instance.humanClick(c);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of endHumanTurn method, of class GameManager.
+     */
+    @Test
+    public void testEndHumanTurn() {
+        System.out.println("endHumanTurn");
+        GameManager instance = null;
+        boolean expResult = false;
+        boolean result = instance.endHumanTurn();
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of getBlueScore method, of class GameManager.
+     */
+    @Test
+    public void testGetBlueScore() {
+        System.out.println("getBlueScore");
+        GameManager instance = null;
+        int expResult = 0;
+        int result = instance.getBlueScore();
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of getRedScore method, of class GameManager.
+     */
+    @Test
+    public void testGetRedScore() {
+        System.out.println("getRedScore");
+        GameManager instance = null;
+        int expResult = 0;
+        int result = instance.getRedScore();
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of getWinner method, of class GameManager.
+     */
+    @Test
+    public void testGetWinner() {
+        System.out.println("getWinner");
+        GameManager instance = null;
+        CardType expResult = null;
+        CardType result = instance.getWinner();
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of getCurrentClue method, of class GameManager.
+     */
+    @Test
+    public void testGetCurrentClue() {
+        System.out.println("getCurrentClue");
+        GameManager instance = null;
+        Clue expResult = null;
+        Clue result = instance.getCurrentClue();
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of getStringProperty method, of class GameManager.
+     */
+    @Test
+    public void testGetStringProperty() {
+        System.out.println("getStringProperty");
+        GameManager instance = null;
+        String expResult = "";
+        String result = instance.getStringProperty();
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of getTypeProperty method, of class GameManager.
+     */
+    @Test
+    public void testGetTypeProperty() {
+        System.out.println("getTypeProperty");
+        GameManager instance = null;
+        CardType expResult = null;
+        CardType result = instance.getTypeProperty();
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of getPlayerTurn method, of class GameManager.
+     */
+    @Test
+    public void testGetPlayerTurn() {
+        System.out.println("getPlayerTurn");
+        GameManager instance = null;
+        String expResult = "";
+        String result = instance.getPlayerTurn();
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
     }
     
 }
