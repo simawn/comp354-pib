@@ -22,32 +22,6 @@ public class CardTypeTest {
     public static void setUpClass() {
     }
 
-    /**
-     * Test of values method, of class CardType.
-     */
-    @Test
-    public void testValues() {
-        System.out.println("values");
-        CardType[] expResult = null;
-        CardType[] result = CardType.values();
-        assertArrayEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of valueOf method, of class CardType.
-     */
-    @Test
-    public void testValueOf() {
-        System.out.println("valueOf");
-        String name = "";
-        CardType expResult = null;
-        CardType result = CardType.valueOf(name);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
 
     /**
      * Test of charOf method, of class CardType.
@@ -55,12 +29,11 @@ public class CardTypeTest {
     @Test
     public void testCharOf() {
         System.out.println("charOf");
-        char arg = ' ';
-        CardType expResult = null;
+        char arg = 'R';
+        CardType expResult = CardType.Red;
         CardType result = CardType.charOf(arg);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+
     }
 
     /**
@@ -69,12 +42,13 @@ public class CardTypeTest {
     @Test
     public void testPathOf() {
         System.out.println("pathOf");
-        CardType type = null;
-        String expResult = "";
+        CardType type = CardType.Red;
+        String expResult = "file:resources/RedFemale.png";
         String result = CardType.pathOf(type);
+        System.out.println(expResult);
+        System.out.println(result);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
     }
     
 }

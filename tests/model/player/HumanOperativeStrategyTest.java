@@ -5,10 +5,17 @@
  */
 package model.player;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import model.board.Bipartite;
+import model.board.Board;
 import model.board.Card;
+import model.board.CardBuilder;
+import model.board.CardType;
 import model.board.Clue;
+
+import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -19,11 +26,17 @@ import static org.junit.Assert.*;
  */
 public class HumanOperativeStrategyTest {
     
+    Card[] cards;
+    Board board;
+    
+    
     public HumanOperativeStrategyTest() {
     }
     
-    @BeforeClass
-    public static void setUpClass() {
+    @Before
+    public void setUp() {
+               cards = CardBuilder.buildAll();
+        board = new Board(cards);
     }
 
     /**
@@ -31,15 +44,23 @@ public class HumanOperativeStrategyTest {
      */
     @Test
     public void testPickCard() {
-        System.out.println("pickCard");
-        List<Card> cards = null;
-        Bipartite bipartite = null;
+    		System.out.println("pickCard");
+    		
+    		cards = new Card[10];
+        // Make a "board" that only contains blue cards, and the assassin
+        cards[0] = new Card("AGENT", CardType.Assassin);
+        cards[1] = new Card("AMAZON", CardType.Blue);
+        cards[2] = new Card("ANTARCTICA", CardType.Blue);
+        cards[3] = new Card("ATLANTIS", CardType.Blue);
+    		    		
+        Bipartite bp = new Bipartite(board);;
+        List<Card> cardslist = Arrays.asList(cards);
+//        
         HumanOperativeStrategy instance = new HumanOperativeStrategy();
-        Card expResult = null;
-        Card result = instance.pickCard(cards, bipartite);
+        Card expResult = cards[0];
+        Card result = instance.pickCard(cardslist, bp);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -49,11 +70,13 @@ public class HumanOperativeStrategyTest {
     public void testGetClue() {
         System.out.println("getClue");
         HumanOperativeStrategy instance = new HumanOperativeStrategy();
-        Clue expResult = null;
+        Clue expResult = new Clue("Foo",1);
+        instance.setClue(expResult);
         Clue result = instance.getClue();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        	
+        
+        System.out.println("sdsdsd " + result + " sdsdsds");
+        assertTrue(result.getClueWord() == expResult.getClueWord() && result.getClueNum() == expResult.getClueNum());
     }
 
     /**
@@ -62,11 +85,13 @@ public class HumanOperativeStrategyTest {
     @Test
     public void testSetClue() {
         System.out.println("setClue");
-        Clue clue = null;
+        Clue clue = new Clue("Foo",2);
+        
         HumanOperativeStrategy instance = new HumanOperativeStrategy();
         instance.setClue(clue);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
+
+        assertTrue(clue.getClueWord() == "Foo");
     }
     
 }
