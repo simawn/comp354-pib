@@ -14,7 +14,7 @@
 ## Usage 
 
 ### Running the exported .jar file
-1. Simply double click `Codenames.jar` in the `/Codenames_IT2` folder to run the application
+1. Simply double click `Codenames.jar` in the `/Codenames_IT3` folder to run the application
 
 **Note:** Make sure the `/resources` folder and `Codenames.jar` are in the same folder. Avoid modifying or deleting the contents of `/resources`.
 
@@ -36,7 +36,11 @@ Click Next, and go to the Libraries tab and add JUnit 5 (if you want to run the 
 5. Compile the project and run the entry class "Codenames.java" within the project directory.
 
 ### Play Game
-To cycle through the game, simply press *Enter* key. Every invocation of this key allows for either the Operative or the Spymaster to perform an action.
+To cycle through the game, simply press *Enter* key. (If Viewer Mode is chosen at the main menu) Every invocation of this key allows for either the Operative or the Spymaster to perform an action.
+
+OR
+
+Cycle through the game until it is the blue operative turn, simply press *Enter* key. (If Operative Mode is chosen at the main menu). Once it is Blue Operative's turn, *Click* the cars until your turn is over and go back into simply pressing *Enter* key.
 
 ### Verbose View
 To have an informative log of the game, press *V* key. This will show a new window with which the logs will be displayed for every phase of the game in the main game window. 
