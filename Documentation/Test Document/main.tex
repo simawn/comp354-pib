@@ -1,0 +1,1436 @@
+\documentclass[12pt]{article}
+
+\pagestyle{empty}
+\setcounter{secnumdepth}{2}
+
+\topmargin=0cm
+\oddsidemargin=0cm
+\textheight=22.0cm
+\textwidth=16cm
+\parindent=0cm
+\parskip=0.15cm
+\topskip=0truecm
+\raggedbottom
+\abovedisplayskip=3mm
+\belowdisplayskip=3mm
+\abovedisplayshortskip=0mm
+\belowdisplayshortskip=2mm
+\normalbaselineskip=12pt
+\normalbaselines
+
+\begin{document}
+
+\vspace*{0.5in}
+\centerline{\bf\Large Test Document}
+
+\vspace*{0.5in}
+\centerline{\bf\Large Team PI-b}
+
+\vspace*{0.5in}
+\centerline{\bf\Large 07 April 2019}
+
+\vspace*{1.5in}
+\begin{table}[htbp]
+\begin{center}
+\begin{tabular}{|r | c|}
+\hline
+Name & ID Number \\
+\hline\hline
+Simon Huang & 27067380 \\
+\hline
+Jonathan Massabni & 26337430 \\
+\hline
+Alexia Soucy & 40014822 \\
+\hline
+Anthony Funiciello& 40054110\\
+\hline
+David Gray&40055149\\
+\hline
+Mair Elbaz&40004558\\
+\hline
+Rani Rafid&26975852\\
+\hline
+\end{tabular}
+\end{center}
+\end{table}
+
+\clearpage
+%TODO: Remove this after we're done.
+%Overall Instructions: 
+%(please add any other important instructions from the course website) \\
+%Document is a short summary of your test plan and test results: basically %tell me how thoroughly you tested and whether there are still outstanding %bugs or issues.
+%Make sure that each test is individually numbered. Regard inputs with %multiple effects/results as multiple tests, and number them individually. %Note that you may have some common situations/scenarios such as sample %file contents, sample documents, sample screen positions, etc used in many %tests. Document and number them in a section for reference in the test %cases. The test plan should indicate which test cases apply to which %requirements, and make it abundantly clear (traceable) that each %requirement is tested.
+
+\section{Introduction}
+
+The purpose of this project is to use software engineering practices to develop a desktop application of the Codenames game using intelligent computer players. The software was designed using MVC architecture and several common design patterns. In this last iteration of the project, we will present how we planned to test and have tested the system so far in the development process.
+\\
+\\
+This document provides a rationale for the testing methods used to verify that the requirements were met. It will include a Test Plan that describes what forms of testing we choose to use to test the system. The Test Results section will provide an overview of the tests and outcomes of the tests that were done including each requirement and the percentage of tests passed for it. The References section will include a list of any input and output files' used as test data.
+
+
+\section{Test Plan}
+
+The system was developed using TDD or "Test Driven Development" meaning that throughout the development process unit tests were written to test pieces of code before they were written. As a result we test most units of the system using JUnit tests. Because the Codenames game is algorithmically simple, most of the units were tested with black box testing to verify output given certain input. Some of the TDD tests also involve multiple units within a subsystem working together, serving as subsystem level integration tests. We plan to test the system as a whole through other more wholistic JUnit tests, as well as function testing, manually playing the game in order to verify that the use cases outlined in the requirements phase were met. \newline
+
+Because the Codenames game system is a desktop application with very little computation involved, we feel it is unnecessary to do any sort of load or performance testing. We also chose not to designate resources toward user interface, installation, or configuration testing because user-friendliness is not one of the requirements of our project. \newline
+
+Testing will be a joint effort among the team. The Unit and Subsystem level testing is to be done throughout the development process by the developers for each iteration. System level function testing will be done by the whole team after each iteration manually verifying that the use cases implemented in that iteration are met. \newline
+
+The use cases which we tested were: 
+\begin{itemize}
+  \item Operative chooses a codename
+  \item Operative continues to guess
+  \item Spymaster give a hint
+  \item System places a card on the board based on operative's choice
+  \item User starts game
+  \item User clicks next to trigger next turn
+  \item Game ends when a team wins
+\end{itemize}
+
+We did not explicitly test the following system requirements, as they are inherently tested in the above system level tests.
+\begin{itemize}
+  \item System set up board
+  \item System chooses keycard
+  \item Stop guessing (operatives turn ends on wrong choice)
+  \item Stop game
+\end{itemize}
+
+\subsection{System Level Test Cases}
+The first 3 system level test cases were tested with JUnit. The remaining 7 test cases were tested manually with function testing.
+
+\subsubsection{Test Case 1: GameManager executes next turn} \label{tc:2}
+
+\noindent
+{\bf Purpose}\\
+The purpose of this test is to verify that the GameManager in the model executes turns commanded to.
+
+\noindent
+{\bf Input Specification}
+\begin{itemize}
+    \item Create a board and a GameManager to manage the board
+    \item Make two calls to doNextTurn, one for spy, one for operative.
+\end{itemize}
+
+\noindent
+{\bf Expected Output}
+\begin{itemize}
+    \item The board should have 24 (1 less than 25) cards left, after the first operatives turn.
+\end{itemize}
+
+\noindent
+{\bf Traces to Use Cases}\\
+This test case is intended to test that the function which will be triggered by the user pressing enter does its job. It also tests the use cases for the spymaster and operatives turns.
+
+%%%%%%%%%%%%%%%%
+\subsubsection{Test Case 2: Game ends when all of a teams cards have been chosen} \label{tc:2}
+
+\noindent
+{\bf Purpose}\\
+The purpose of this test is verify that the game ends when all red cards are chosen.
+
+\noindent
+{\bf Input Specification}
+\begin{itemize}
+    \item A list of Blue cards and 1 assassin is created.
+    \item A Board is created with the list of cards
+    \item A GameManager is created with the Board.
+\end{itemize}
+
+\noindent
+{\bf Expected Output}
+\begin{itemize}
+    \item GameManager.isGameOver() returns true as there are no more Red cards to chose
+\end{itemize}
+
+\noindent
+{\bf Traces to Use Cases}\\
+This test case is intended to test the "game ends when team wins" use case.
+
+\subsubsection{Test Case 3: Game ends when assassin is chosen} \label{tc:2}
+
+\noindent
+{\bf Purpose}\\
+The purpose of this test is verify that the game ends when the assassin card is chosen
+
+\noindent
+{\bf Input Specification}
+\begin{itemize}
+    \item A list of Blue cards and 1 assassin is created.
+    \item A Board is created with the list of cards
+    \item A GameManager is created with the Board.
+    \item A blue card is replaced with a red card
+    \item Assassin is removed
+\end{itemize}
+
+\noindent
+{\bf Expected Output}
+\begin{itemize}
+    \item GameManager.isGameOver() returns true because the assassin was chosen
+\end{itemize}
+
+\noindent
+{\bf Traces to Use Cases}\\
+This test case is intended to test the "game ends when team wins" use case, in particular that when a team choses the assassin the other team wins.
+
+%%%%%%%%%%%%%%%%
+
+\subsubsection{Test Case 4: Operatives chooses a codename} \label{tc:2}
+
+\noindent
+{\bf Purpose}\\
+The purpose of this test is to verify that the simulated operative players choose a codename card from the board on their turn. \\
+
+\noindent
+{\bf Input Specification}
+\begin{itemize}
+    \item Start a game
+    \item Choose a difficulty
+    \item Press enter to have a Spymaster generate a hint.
+    \item Press enter so that an operative takes their turn.
+\end{itemize}
+
+\noindent
+{\bf Expected Output}
+\begin{itemize}
+    \item An operative should choose a card (visible in Verbose mode logs)
+    \item A card on the board should change color
+\end{itemize}
+
+\noindent
+{\bf Traces to Use Cases}\\
+This test case is intended to test the Operative choose card use case, but also tests that the first spymaster gives a hint, and it tests the system scenarios for start game, and pick keycard.\\
+
+\subsubsection{Test Case 5: Operative continues to guess} \label{tc:2}
+
+\noindent
+{\bf Purpose}\\
+This test is to verify that the simulated operative players continue to choose a codename card on their turn if their previous guess was valid. \\
+
+\noindent
+{\bf Input Specification}
+\begin{itemize}
+    \item Start a game
+    \item Choose a difficulty
+    \item Press enter until an operative chooses a card not of the opposite team or assassin
+\end{itemize}
+
+\noindent
+{\bf Expected Output}
+\begin{itemize}
+    \item Operative's turn is still active
+    \item A card on the board should change color
+    \item Pressing enter again results in the operative making another guess
+    
+\end{itemize}
+
+\noindent
+{\bf Traces to Use Cases}\\
+This test case tests that the first spymaster gives a hint, and it tests the system scenarios for start game, and pick keycard. Primarily it tests that the operatives make multiple guesses when they are able to. \\
+
+\subsubsection{Test Case 6: Spymaster gives a hint} \label{tc:2}
+
+\noindent
+{\bf Purpose}\\
+This test will verify that Spymaster players give hints. \\
+
+\noindent
+{\bf Input Specification}
+\begin{itemize}
+    \item Start a game
+    \item Choose a difficulty
+    \item Press enter to have a Spymaster generate a hint.
+\end{itemize}
+
+\noindent
+{\bf Expected Output}
+\begin{itemize}
+    \item The hint is created with a word and number of related words.
+\end{itemize}
+
+\noindent
+{\bf Traces to Use Cases}\\
+Tests the system start up scenarios, and the spymaster give hint use case.
+
+\subsubsection{Test Case 7: System places a card on the board based on operative's choice} \label{tc:2}
+
+\noindent
+{\bf Purpose}\\
+The purpose of this test is to verify that system properly updates the board based on the card the operative chooses. \\
+
+\noindent
+{\bf Input Specification}
+\begin{itemize}
+    \item Start a game
+    \item Choose a difficulty
+    \item Press enter to have a Spymaster generate a hint.
+    \item Press enter so that an operative takes their turn.
+\end{itemize}
+
+\noindent
+{\bf Expected Output}
+\begin{itemize}
+    \item The card on the board with the word the operative choose should change color to either red, blue, black, or bystander beige.
+\end{itemize}
+
+\noindent
+{\bf Traces to Use Cases}\\
+This test case will test if the right card is placed based on the keycard map and operative's choice of the card that was picked. It also tests the use cases for operatives choosing codenames, and spymasters giving a clue.
+
+
+\subsubsection{Test Case 8: User starts game} \label{tc:2}
+
+\noindent
+{\bf Purpose}\\
+The purpose of this test case is to verify the functionality of the system. Given the proper game settings chosen, it should start a new game with a new set of codenames. \\
+
+\noindent
+{\bf Input Specification}
+\begin{itemize}
+    \item Launch software
+    \item Choose a difficulty
+\end{itemize}
+
+\noindent
+{\bf Expected Output}
+\begin{itemize}
+    \item Graphical user interface of game board with generated codenames is displayed
+\end{itemize}
+
+\noindent
+{\bf Traces to Use Cases}\\
+This test case is intended to make sure the core of the game is working. It requires that the software initializes with no errors and that the word lists can be loaded. It also verifies the system picks a keycard.
+
+
+\subsubsection{Test Case 9: User clicks next to trigger next turn} \label{tc:2}
+
+\noindent
+{\bf Purpose}\\
+This test will check the functionality of the core gameplay by advancing the progress of the game.
+
+\noindent
+{\bf Input Specification}
+\begin{itemize}
+    \item Press enter to have a Spymaster generate a hint.
+    \item Press enter so that an operative takes their turn.
+\end{itemize}
+
+\noindent
+{\bf Expected Output}
+\begin{itemize}
+    \item Next turn will be passed to the other team
+\end{itemize}
+
+\noindent
+{\bf Traces to Use Cases}\\
+This test case tests the "user clicks next to trigger next turn." It also tests that operatives "stop guessing" and that "spymaster gives a hint."
+
+\subsubsection{Test Case 10: Game ends when a team wins} \label{tc:2}
+
+\noindent
+{\bf Purpose}\\
+This test will check if our game will end the moment a team has been declared the winner.
+
+\noindent
+{\bf Input Specification}
+\begin{itemize}
+    \item Press enter until a victor has been decided
+\end{itemize}
+
+\noindent
+{\bf Expected Output}
+\begin{itemize}
+    \item Either blue or red team wins and game ends
+\end{itemize}
+
+\noindent
+{\bf Traces to Use Cases}\\
+This test verifies that the requirements of the operatives and spymasters are met. Mainly, it verifies the "stop game" use case.
+
+
+\subsection{Subsystem Level Test Cases}
+Some of the JUnit tests written during TDD tested multiple units within a subsystem working correctly together. Those tests are documented here, organized by subsystem. As we were instructed to test the model thoroughly, but not the view or controller parts of our system, the subsystems represented here are model.player, and model.board.
+
+\subsubsection{Subsystem model.player}
+\begin{itemize}
+    \item \textbf{Test Case 1:} Operative player with random OperativeStrategy makes legal move with function makeMove() 
+        \begin{itemize}
+        \item Input:
+            \begin{itemize}
+                \item The board is initialized
+                \item Blue OperativePlayer is created with the random strategy.
+            \end{itemize}
+        \item Expected Output: The Operative's makeMove() returns a card from boards.getCards().
+    \end{itemize}
+    
+    
+    \item \textbf{Test Case 2:} Spymaster player with random strategy makes a non-null clue with a number part between 0 and 9.
+    \begin{itemize}
+        \item Input:
+        \begin{itemize}
+            \item The board is initialized
+            \item Blue Spymaster instance is created with random strategy.
+        \end{itemize}
+        \item Expected Output:
+        \begin{itemize}
+            \item The Spymasters makeMove() returns a clue that is not null
+            \item The Spymasters makeMove() returns a clue with number between 0 and 9.
+        \end{itemize}
+    \end{itemize}
+    
+    
+\end{itemize}
+
+
+\subsubsection{Subsystem model.board}
+\begin{itemize}
+    \item \textbf{Test Case 1:} CardBuilder.buildAll creates a valid board
+        \begin{itemize}
+        \item Input:
+            \begin{itemize}
+                \item A list of Cards called cards is created with CardBuilder.buildAll()
+            \end{itemize}
+        \item Expected Output:
+            \begin{itemize}
+                \item cards has 25 elements
+                \item no item in cards is null
+                \item no words are duplicated among the 25 Cards.
+            \end{itemize}
+    \end{itemize}
+    
+    \item \textbf{Test Case 2:} A newly created board has 25 cards.
+        \begin{itemize}
+        \item Input:
+            \begin{itemize}
+                \item A list of Cards is created with CardBuilder.buildAll()
+                \item A Board is created with Board(cards)
+            \end{itemize}
+        \item Expected Output: board.getCards() returns a list of 25 Cards.
+    \end{itemize}
+    
+    \item \textbf{Test Case 3:} Game does not end when there are blue, red, and assassin cards still unchosen.
+        \begin{itemize}
+        \item Input:
+            \begin{itemize}
+                \item A list of Blue cards and 1 assassin is created.
+                \item A Board is created with the list of cards
+                \item A GameManager is created with the Board.
+                \item A blue card is replaced with a red card
+            \end{itemize}
+        \item Expected Output: GameManager.isGameOver() returns false as there are still red and blue cards remaining on the board to be guessed.
+    \end{itemize}
+    
+    \item \textbf{Test Case 4:} Red wins after ending game on choice of red card.
+        \begin{itemize}
+        \item Input:
+            \begin{itemize}
+                \item Create a board with cardBuilder.buildAll()
+                \item Create a GameManager to manage the board.
+                \item Create Red Player
+            \end{itemize}
+        \item Expected Output: GameManager.declareWinner() returns CardType.Red when game is over after red player chooses red card.
+        \item Comment: A similar case was tested, for blue players choosing blue cards
+    \end{itemize}
+    
+    \item \textbf{Test Case 5:} Red wins after blue chooses assassin or last red card
+        \begin{itemize}
+        \item Input:
+            \begin{itemize}
+                \item Create a board with cardBuilder.buildAll()
+                \item Create a GameManager to manage the board.
+                \item Create Blue Player
+            \end{itemize}
+        \item Expected Output: GameManager.declareWinner() returns CardType.Red when game is over and blue operative choose a red card or assassin card.
+        \item Comment: A similar case was tested, for blue winning when a red player ends the game after choosing blue or the assassin.
+    \end{itemize}
+
+\end{itemize}
+
+
+\subsection{Unit Test cases}
+
+Our unit tests were written throughout the TDD process. Most of the units are tested using black box testing, verifying certain output given an input. Others include white box testing for functions which are more complicated and prone to bugs. We wrote many unit tests including several for methods like getters and setters. As a result not all unit tests we used for testing are included in this document.
+
+\subsubsection{RandomSpyStrategy: Function giveClue}
+Tests will be conducted on giveClue function of RandomSpyStrategy which is supposed to return a valid clue. Because the random Spymasters's functionality does not depend on the input (random) we use a standard board set up.
+
+\begin{itemize}
+    \item \textbf{Black Box Testing:}
+    \begin{itemize}
+        \item \textbf{Test Case 1:} Spymaster doesn't give a null clue.
+            \begin{itemize}
+                \item Input:                 
+                \begin{itemize}
+                    \item cards=board.getCards()
+                    \item bipartite=Bipartite(Board(cards))
+                \end{itemize}
+                \item Expected Output: Spymaster gives non null Clue object
+            \end{itemize}
+        \item \textbf{Test Case 2:} RandomSpyStrategy returns a clue with a valid number of cards (0-9)
+        \begin{itemize}
+            \item Input:                 
+                \begin{itemize}
+                    \item cards=board.getCards()
+                    \item bipartite=Bipartite(Board(cards))
+                \end{itemize}
+            \item Expected Output: The Spymaster returns a clue number that is within the inclusive range of 0 and 9.
+            \end{itemize}
+    \end{itemize}
+\end{itemize}
+
+\subsubsection{RandomSpyStrategy: Function giveClueRandomly}
+Tests will be conducted on giveClueRandomly function of RandomSpyStrategy which ensures that the returned clue object is selected at random from the list of clues.
+
+\begin{itemize}
+    \item \textbf{Black Box Testing:}
+    \begin{itemize}
+        \item \textbf{Test Case 1:} RandomSpyStrategy doesn't return the same clue 10 times in a row.
+            \begin{itemize}
+            \item Input:
+                \begin{itemize}
+                    \item cards=board.getCards()
+                    \item bipartite=Bipartite(Board(cards))
+                \end{itemize}
+            \item Expected Output: The 10 calls to giveClue don't return all the same Clue.
+        \end{itemize}
+    \end{itemize}
+\end{itemize}
+
+%%%%
+
+\subsubsection{SimpleSpyStrategy: Function giveClue}
+Tests will be conducted on giveClue function of SimpleSpyStrategy which is supposed to return a valid clue object based on the selected word of the Spymaster's team. 
+
+\begin{itemize}
+    \item \textbf{Black Box Testing:}
+    \begin{itemize}
+        \item \textbf{Test Case 1:} Blue Spymaster gives a clue associated with one of their words.
+            \begin{itemize}
+            \item Input: 
+                \begin{itemize}
+                    \item cards=[Card(BELL, CardType.Blue), Card(TORCH, CardType.Red)]
+                    \item bipartite=Bipartite(Board(cards))
+                \end{itemize}
+            \item Expected Output: Blue Spymaster should return one of: CHIME, GONG, BUZZER, DOOR
+        \end{itemize}
+        \item \textbf{Test Case 2:} Red Spymaster gives a clue associated with one of their words.
+        \begin{itemize}
+            \item Input: 
+                \begin{itemize}
+                    \item cards=[Card(BELL, CardType.Blue), Card(TORCH, CardType.Red)]
+                    \item bipartite=Bipartite(Board(cards))
+                \end{itemize}
+            \item Expected Output: Red Spymaster should return one of: FLASHLIGHT, LIGHT, LANTERN, BLOWLAMP
+        \end{itemize}
+        \item \textbf{Test Case 3:} Spymaster's clue is not null
+            \begin{itemize}
+                \item Input:
+                \begin{itemize}
+                    \item cards=board.getCards()
+                    \item bipartite=Bipartite(Board(cards))
+                \end{itemize}
+                \item Expected Output: The returned clue is not null.
+            \end{itemize}
+    \end{itemize}
+\end{itemize}
+
+%%%%
+
+\subsubsection{SmartSpyStrategy: Function giveClue}
+Tests will be conducted on giveClue function of SmartSpyStrategy which is supposed to return the most optimal clue object. The optimal clue should be associated with more than one word if possible and it will return the clue with the most occurrence.
+
+\begin{itemize}
+    \item \textbf{Black Box Testing:}
+    \begin{itemize}
+                \item \textbf{Test Case 1:} SmartSpyStrategy give the clue associated with both of their cards.
+            \begin{itemize}
+            \item Input: 
+                \begin{itemize}
+                    \item cards=[Card(LONDON, CardType.Blue), Card(ATLANTIS, CardType.Blue)]
+                    \item bipartite=Bipartite(Board(cards))
+                \end{itemize}
+            \item Expected Output: Blue Spymaster should return one of: CITY
+        \end{itemize}
+    \end{itemize}
+\end{itemize}
+
+%%%%
+
+\subsubsection{RandomOperativeStrategy: Function pickCard}
+Tests the pickCard function of RandomOperativeStrategy to ensure that the operative picks a card randomly.
+
+\begin{itemize}
+    \item \textbf{Black Box Testing:}
+    \begin{itemize}
+        \item \textbf{Test Case 1:} Random operative does not pick the same card 10 times in a row.
+            \begin{itemize}
+            \item Input: Generate a random board as in a regular game.
+                \begin{itemize}
+                    \item cards=board.getCards()
+                    \item bipartite=Bipartite(Board(cards))
+                \end{itemize}
+            \item Expected Output: The Operative does not pick the same card 10 times in a row.
+        \end{itemize}
+    \end{itemize}
+\end{itemize}
+
+%%%%
+
+\subsubsection{BotOperativeStrategy: Function pickCard}
+Tests will be conducted on pickCard function of BotOperativeStrategy to ensure that when set to perfect accuracy, the operative picks their teams card.
+
+\begin{itemize}
+    \item \textbf{Black Box Testing:}
+    \begin{itemize}
+       \item \textbf{Test Case 1:} Blue bot with accuracy=1 picks blue card.
+            \begin{itemize}
+            \item Input:
+                \begin{itemize}
+                    \item cards=board.getCards()
+                    \item bipartite=Bipartite(Board(cards))
+                \end{itemize}
+            \item Expected Output: Blue operative picks blue card.
+      \end{itemize}
+      \item \textbf{Test Case 2:} Red bot with accuracy=1 picks blue card.
+            \begin{itemize}
+            \item Input:
+                \begin{itemize}
+                    \item cards=board.getCards()
+                    \item bipartite=Bipartite(Board(cards))
+                \end{itemize}
+            \item Expected Output: Red operative picks blue card.
+        \end{itemize}
+    \end{itemize}
+\end{itemize}
+
+%%%%
+
+% Commenting out because I think this is not an important test to document
+%\subsubsection{Operative :: Function makeRandomMove}
+%Tests will be conducted on makeRandomMove function of operative to ensure that the operative %makes a random move.
+%
+%\begin{itemize}
+%    \item \textbf{Black Box Testing:}
+%    \begin{itemize}
+%        \item Test Case 1: The operative should not pick the same card 10 times in a row.
+%    \end{itemize}
+%\end{itemize}
+
+%%%%
+
+\subsubsection{HumanOperativeStrategy: Function pickCard}
+Tests will be conducted on pickCard function of HumanOperativeStrategy to ensure that the human player can pick a card.
+
+\begin{itemize}
+    \item \textbf{Black Box Testing:}
+    \begin{itemize}
+       \item \textbf{Test Case 1:} Human player picks the correct card
+            \begin{itemize}
+            \item Input:
+                \begin{itemize}
+                    \item A game board containing 1 card
+                \end{itemize}
+            \item Expected Output: Human player picks the single card
+      \end{itemize}
+    \end{itemize}
+\end{itemize}
+
+%\subsubsection{HumanOperativeStrategy: Function getClue}
+%\subsubsection{HumanOperativeStrategy: Function setClue}
+
+
+%%%%
+%those are built-in java methods
+%\subsubsection{CardType: Function values}
+%\subsubsection{CardType: Function valueOf}
+
+\subsubsection{CardType: Function charOf}
+Tests will be conducted on charOf function of CardType to ensure that a character corresponds to the correct enum value.
+
+\begin{itemize}
+    \item \textbf{Black Box Testing:}
+    \begin{itemize}
+       \item \textbf{Test Case 1:} The character 'R' returns Red
+            \begin{itemize}
+            \item Input: 
+                \begin{itemize}
+                    \item CardType.charOf('R');
+                \end{itemize}
+            \item Expected Output: returns CardType.Red
+            \end{itemize}
+      \item \textbf{Test Case 2:} The character 'B' returns Blue
+            \begin{itemize}
+            \item Input: 
+                \begin{itemize}
+                    \item CardType.charOf('B');
+                \end{itemize}
+            \item Expected Output: returns CardType.Blue
+            \end{itemize}
+        \item \textbf{Test Case 3:} The character 'A' returns Assassin
+            \begin{itemize}
+            \item Input: 
+                \begin{itemize}
+                    \item CardType.charOf('A');
+                \end{itemize}
+            \item Expected Output: returns CardType.Assassin
+            \end{itemize}
+            
+    \item \textbf{Test Case 4:} The character 'Y' returns Bystander
+            \begin{itemize}
+            \item Input: 
+                \begin{itemize}
+                    \item CardType.charOf('Y');
+                \end{itemize}
+            \item Expected Output: returns CardType.Bystander
+            \end{itemize}
+      
+    \end{itemize}
+\end{itemize}
+
+%\subsubsection{CardType: Function pathOf}
+
+%%% model.board
+%%%%
+
+\subsubsection{Board: Function removeCard}
+The removeCard function will be tested to ensure that a removed card is no longer available on the board.
+\begin{itemize}
+    \item \textbf{Black Box Testing:}
+    \begin{itemize}
+        \item \textbf{Test Case 1:} Removing the first Card results in the card not being available for selection again.
+            \begin{itemize}
+            \item Setup: A board is initialized with cards made from CardBuilder.buildAll().
+            \item Input: Card=board.getCards().get(0);
+            \item Expected Output: The board does not contain the removed card anymore
+        \end{itemize}
+    \end{itemize}
+\end{itemize}
+
+
+
+\subsubsection{Board: Function getNumCardsOfType}
+Tests will be conducted on getNumCardsOfType function of class Board to ensure that the board contains the right number of cards for each player type and each team. For all of these test cases the setup is the same. A board is initialized with cards made from CardBuilder.buildAll().
+
+\begin{itemize}
+    \item \textbf{Black Box Testing:}
+    \begin{itemize}
+        \item \textbf{Test Case 1:} Number of red cards in initialized board
+            \begin{itemize}
+            \item Input: type=CardType.Red
+            \item Expected Output: 9 or 8.
+        \end{itemize}
+        \item \textbf{Test Case 2:} Number of blue cards in initialized board
+            \begin{itemize}
+            \item Input: type=CardType.Blue
+            \item Expected Output: 8 if there are 9 red cards, 9 if there are 8 blue cards.
+        \end{itemize}
+         \item \textbf{Test Case 3:} Number of Assassin cards in initialized board
+            \begin{itemize}
+            \item Input: type=CardType.Assassin
+            \item Expected Output: 1
+        \end{itemize}
+        \item \textbf{Test Case 4:} Number of Bystander cards in initialized board
+            \begin{itemize}
+            \item Input: type=CardType.Bystander
+            \item Expected Output: 7
+        \end{itemize}
+    \end{itemize}
+\end{itemize}
+
+\subsubsection{Board: Function get}
+Tests will be conducted on the boards get(int index) function to verify that an IndexOutOfBoundsException is thrown when the function is called with an invalid index.
+\begin{itemize}
+    \item \textbf{Black Box Testing:}
+    \begin{itemize}
+        \item \textbf{Test Case 1:} Get card at index 25 throws exception
+            \begin{itemize}
+            \item Input: 25
+            \item Expected Output: IndexOutOfBoundsException thrown
+        \end{itemize}
+    \end{itemize}
+\end{itemize}
+
+%%%%%%%%
+
+\subsubsection{Card: Function toString}
+Tests will be conducted on toString function of Card to ensure that the card's text will be able to cast to a string.
+
+\begin{itemize}
+    \item \textbf{Black Box Testing:}
+    \begin{itemize}
+    \item \textbf{Test Case 1:} toString returns the cards codename word
+            \begin{itemize}
+            \item Input: toString called on (new Card("word", cardTypeBystander))
+            \item Expected Output: "word"
+        \end{itemize}
+    \end{itemize}
+\end{itemize}
+
+%%%%%%%%
+
+\subsubsection{Clue: Function getClueWord}
+Tests will be conducted on getClueWord function of Clue to ensure that the word used to create the object is returned.
+erult.s
+\begin{itemize}
+    \item \textbf{Black Box Testing:}
+    \begin{itemize}
+    \item \textbf{Test Case 1:} getClueWord returns word
+            \begin{itemize}
+            \item Input: getClueWord called on (new Clue("Clue", 3))
+            \item Expected Output: "Clue"
+        \end{itemize}
+    \end{itemize}
+\end{itemize}
+
+\subsubsection{Clue: Function getClueNum}
+Tests will be conducted on getClueNum function of Clue to ensure that the returned clue number is correct.
+
+\begin{itemize}
+    \item \textbf{Black Box Testing:}
+    \begin{itemize}
+    \item \textbf{Test Case 1:} getClueNum returns number associated with clue
+            \begin{itemize}
+            \item Input: getClueNum called on (new Clue("Clue", 3))
+            \item Expected Output: 3
+        \end{itemize}
+    \end{itemize}
+\end{itemize}
+
+
+%%%%%%%%
+
+\subsubsection{Extractor: Function build}
+Tests will be conducted on build function of Extractor to ensure that the word bank can be successfully created.
+
+\begin{itemize}
+    \item \textbf{Black Box Testing:}
+    \begin{itemize}
+        \item \textbf{Test Case 1:} Words file read successfully
+            \begin{itemize}
+            \item Input: path="resources/words100\_1550871908\_SYN\_1550898480.json"
+            \item Expected Output: returns list without throwing FileNotFoundException
+        \end{itemize}
+        \item \textbf{Test Case 2:} List of string words created
+            \begin{itemize}
+            \item Input: path="resources/words100\_1550871908\_SYN\_1550898480.json"
+            \item Expected Output: returns non null list
+        \end{itemize}
+    \end{itemize}
+\end{itemize}
+
+%%%%%%%%
+
+\subsubsection{GameManager: Function isTurnOver}
+Tests will be conducted on isTurnOver function of GameManager to check if the turn has ended with the correct conditions.
+
+\begin{itemize}
+    \item \textbf{Black Box Testing:}
+        \begin{itemize}
+        \item \textbf{Test Case 1:} Red chooses a blue card
+            \begin{itemize}
+            \item Input:
+                \begin{itemize}
+                    \item player=Operative(CardType.Red, ...)
+                    \item card=Card("card", CardType.Blue)
+                    \item clueNum=0
+                \end{itemize}
+            \item Expected Output: True
+        \end{itemize}
+        \item \textbf{Test Case 2:} Red chooses a red card
+            \begin{itemize}
+            \item Input:
+                \begin{itemize}
+                    \item player=Operative(CardType.Red, ...)
+                    \item card=Card("card", CardType.Red)
+                    \item clueNum=0
+                \end{itemize}
+            \item Expected Output: False
+        \end{itemize}
+        \item \textbf{Test Case 3:} Red chooses an assassin
+            \begin{itemize}
+            \item Input:
+            \begin{itemize}
+                    \item player=Operative(CardType.Red, ...)
+                    \item card=new Card("card", CardType.Assassin)
+                    \item clueNum=0
+                \end{itemize}
+            \item Expected Output: True
+        \end{itemize}
+        \item \textbf{Test Case 4:} Red chooses a bystander
+            \begin{itemize}
+            \item Input:
+                \begin{itemize}
+                    \item player=Operative(CardType.Red, ...)
+                    \item card=Card("card", CardType.Bystander)
+                    \item clueNum=0
+                \end{itemize}
+            \item Expected Output: True
+        \end{itemize}
+        \item \textbf{Test Case 5:} Blue chooses a red card
+            \begin{itemize}
+            \item Input:
+                \begin{itemize}
+                    \item player=Operative(CardType.Red, ...)
+                    \item card=new Card("card", CardType.Red)
+                    \item clueNum=0
+                \end{itemize}
+            \item Expected Output: True
+        \end{itemize}
+        \item \textbf{Test Case 6:} Blue chooses a blue card
+            \begin{itemize}
+            \item Input:
+                \begin{itemize}
+                    \item player=new Operative(CardType.Blues, ...)
+                    \item card=new Card("card", CardType.Blue)
+                    \item clueNum=0
+                \end{itemize}
+            \item Expected Output: False
+        \end{itemize}
+        \item \textbf{Test Case 7:} Blue chooses a bystander
+            \begin{itemize}
+            \item Input:
+                \begin{itemize}
+                    \item player=Operative(CardType.Blue, ...)
+                    \item card=new Card("card", CardType.ByStander)
+                    \item clueNum=0
+                \end{itemize}
+            \item Expected Output: True
+        \end{itemize}
+        \item \textbf{Test Case 8:} Blue chooses an assassin
+            \begin{itemize}
+            \item Input:
+                \begin{itemize}
+                    \item player=Operative(CardType.Blue, ...)
+                    \item card=new Card("card", CardType.Assassin)
+                    \item clueNum=0
+                \end{itemize}
+            \item Expected Output: True
+        \end{itemize}
+    \end{itemize}
+\end{itemize}
+
+\subsubsection{GameManager: Function gameIsOver}
+Tests will be conducted on gameIsOver function of GameManager to ensure that the function can determine whether the game is over or not.
+
+\begin{itemize}
+    \item \textbf{Black Box Testing:}
+    \begin{itemize}
+       \item \textbf{Test Case 1:} Game is over because all reds cards are chosen
+            \begin{itemize}
+            \item Input:
+                \begin{itemize}
+                    \item A board containing exactly 1 assassin card and 9 blue cards
+                \end{itemize}
+            \item Expected Output: The game is over
+            \end{itemize}
+        \item \textbf{Test Case 2:} Game is not over because the board contains the assassin card, at least one blue card, and at least one red card.
+            \begin{itemize}
+            \item Input:
+                \begin{itemize}
+                    \item A board containing exactly 1 assassin card, 8 blue cards, and 1 red card.
+                \end{itemize}
+            \item Expected Output: The game is not over
+            \end{itemize}
+        \item \textbf{Test Case 3:} Game is over because the assassin card is selected
+            \begin{itemize}
+            \item Input:
+                \begin{itemize}
+                    \item A board containing exactly 2 red cards and 8 blue cards but no assassin card.
+                \end{itemize}
+            \item Expected Output: The game is over
+            \end{itemize}
+    \end{itemize}
+\end{itemize}
+
+\subsubsection{GameManager: Function declareWinner}
+Tests will be conducted on declareWinner function of GameManager to ensure that the function can determine the winner.
+
+\begin{itemize}
+    \item \textbf{Black Box Testing:} 
+    \begin{itemize}
+       \item \textbf{Test Case 1:} red is determined the winner for having selected his last required card
+            \begin{itemize}
+            \item Input: 
+                \begin{itemize}
+                    \item The current player that selected a card
+                    \item Card object that player selected
+                \end{itemize}
+            \item Expected Output: Red player has been declared the winner
+            \end{itemize}
+        \item \textbf{Test Case 2:} Blue is determined the winner for having selected his last required card
+            \begin{itemize}
+            \item Input: 
+                \begin{itemize}
+                    \item The current player that selected a card
+                    \item Card object that player selected
+                \end{itemize}
+            \item Expected Output: Blue player has been declared the winner
+            \end{itemize}
+        \item \textbf{Test Case 3:} red is determined the winner because Blue player selected Red teams last card
+            \begin{itemize}
+            \item Input: 
+                \begin{itemize}
+                    \item Blue player that selected a card
+                    \item Card object that player selected
+                \end{itemize}
+            \item Expected Output: Red player has been declared the winner
+            \end{itemize}
+        \item \textbf{Test Case 4:} Blue is determined the winner because Red player selected Blue teams last card
+            \begin{itemize}
+            \item Input: 
+                \begin{itemize}
+                    \item player that selected a card
+                    \item Card object that player selected
+                \end{itemize}
+            \item Expected Output: Blue player has been declared the winner
+            \end{itemize}
+        \item \textbf{Test Case 5:} red is determined the winner because Blue team selected Assassin Card
+            \begin{itemize}
+            \item Input: 
+                \begin{itemize}
+                    \item The current player that selected a card
+                    \item Assassin card object selected
+                \end{itemize}
+            \item Expected Output: Red player has been declared the winner
+            \end{itemize}
+        \item \textbf{Test Case 6:} blue is determined the winner because Red team selected Assassin Card
+            \begin{itemize}
+            \item Input: 
+                \begin{itemize}
+                    \item The current player that selected a card
+                    \item Assassin card object selected
+                \end{itemize}
+            \item Expected Output: Blue player has been declared the winner
+            \end{itemize}
+    \end{itemize}
+\end{itemize}
+
+\subsubsection{GameManager: Function doNextTurn}
+Tests will be conducted on doNextTurn function of GameManager to ensure that the number of cards on the board updates are a turn is made.
+
+\begin{itemize}
+    \item \textbf{Black Box Testing:}
+    \begin{itemize}
+       \item \textbf{Test Case 1:} There is no next turn due to the game being over
+            \begin{itemize}
+            \item Input:
+                \begin{itemize}
+                    \item 
+                \end{itemize}
+            \item Expected Output: System outputs the Message "Game Over"
+            \end{itemize}
+        \item \textbf{Test Case 2:} It is the spymaster's turn
+            \begin{itemize}
+            
+            \item Expected Output: The Spymaster performs his turn
+            \end{itemize}
+        \item \textbf{Test Case 3:} It is the Operative's turn
+            \begin{itemize}
+            
+            \item Expected Output: The Operative performs his turn
+            \end{itemize}
+    \end{itemize}
+\end{itemize}
+
+\subsubsection{GameManager: Function endHumanTurn}
+Tests will be conducted on endHumanTurn function of GameManager to ensure that the human's turn ends.
+
+\begin{itemize}
+    \item \textbf{Black Box Testing:}
+    \begin{itemize}
+       \item \textbf{Test Case 1:} The return value of endHumanTurn() is false.
+            \begin{itemize}
+            \item Input: 
+                \begin{itemize}
+                    \item Create a board with CardBuilder.buildAll();
+                    \item Create a GameManager to manage the board
+                    \item Call endHumanTurn() method to GameManager
+                \end{itemize}
+            \item Expected Output: endHumanTurn() returns false
+            \end{itemize}
+    \end{itemize}
+\end{itemize}
+
+\subsubsection{GameManager: Function getBlueScore}
+Tests will be conducted on getBlueScore function of GameManager to ensure that the function returns the correct blue score.
+
+\begin{itemize}
+    \item \textbf{Black Box Testing:}
+    \begin{itemize}
+       \item \textbf{Test Case 1:} Returns the score for Blue Team
+            \begin{itemize}
+            
+            \item Expected Output: The score of Blue team
+            \end{itemize}
+    \end{itemize}
+\end{itemize}
+
+\subsubsection{GameManager: Function getRedScore}
+Tests will be conducted on getRedScore function of GameManager to ensure that the function returns the correct red score.
+
+\begin{itemize}
+    \item \textbf{Black Box Testing:}
+    \begin{itemize}
+       \item \textbf{Test Case 1:} Retrieve the score for Red Team
+            \begin{itemize}
+            
+            \item Expected Output: The score for red team
+            \end{itemize}
+    \end{itemize}
+\end{itemize}
+
+\subsubsection{GameManager: Function getWinner}
+Tests will be conducted on getWinner function of GameManager to ensure that the function returns the winner.
+
+\begin{itemize}
+    \item \textbf{Black Box Testing:}
+    \begin{itemize}
+       \item \textbf{Test Case 1:} Red team is the winner
+            \begin{itemize}
+            
+            \item Expected Output: returns Red CardType.
+            \end{itemize}
+        \item \textbf{Test Case 2:} Blue team is the winner
+            \begin{itemize}
+            
+            \item Expected Output: returns Blue CardType.
+            \end{itemize}
+    \end{itemize}
+\end{itemize}
+
+%\subsubsection{GameManager: Function getCurrentClue}
+%\subsubsection{GameManager: Function getStringProperty}
+%\subsubsection{GameManager: Function getTypeProperty}
+%\subsubsection{GameManager: Function getPlayerTurn}
+%%%%%%%%
+
+\subsubsection{KeyCard: Function parse}
+Tests will be conducted on parse function of KeyCard to ensure that the generated keycards are valid for the codenames game rules.
+
+\begin{itemize}
+    \item \textbf{Black Box Testing:}
+    \begin{itemize}
+        \item \textbf{Test Case 1:} KeyCard.parse() returns valid keyCard.
+            \begin{itemize}
+            \item Input: parse() takes no parameters
+            \item Expected Output: 
+            \begin{itemize}
+                \item Test Case 1: List returned is not null
+                \item Test Case 2: List contains 25 keycards
+                \item Test Case 3: Number of assassins is 1
+                \item Test Case 4: Number of bystanders is 7
+                \item Test Case 5: Number of red cards is 8 or 9
+                \item Test Case 6: Number of blue cards is 8 or 9
+            \end{itemize}
+        \end{itemize}
+    \end{itemize}
+\end{itemize}
+
+%%%%%%%%
+
+%\subsubsection{Word: Function parse}
+%Tests will be conducted on parse function of Word to ensure that the word list is %not null.
+
+%\begin{itemize}
+%    \item \textbf{Black Box Testing:}
+%    \begin{itemize}
+%        \item Test Case 1: Size of returned list is greater than 0
+%    \end{itemize}
+%\end{itemize}
+
+%\subsubsection{Word: ListOfWords}
+%Tests will be conducted on ListOfWords function of Word to ensure that the word %list contains 25 words.
+
+%\begin{itemize}
+%    \item \textbf{Black Box Testing:}
+%    \begin{itemize}
+%        \item Test Case 1: Size of list is 25
+%    \end{itemize}
+%\end{itemize}
+
+%%%%%%%%
+
+
+
+
+\section{Test Results}
+
+\subsection{System Level Test Results}
+The percentage of tests passing for the requirements which we tested are:
+\begin{itemize}
+  \item \textbf{100\%}: GameManager executes next turn
+  \item \textbf{100\%}: Game ends when all of a teams cards have been chosen
+  \item \textbf{100\%}: Game ends when assassin is chosen
+  \item \textbf{100\%}: Operative chooses a codename
+  \item \textbf{100\%}: Operative continues to guess
+  \item \textbf{100\%}: Spymaster give a hint
+  \item \textbf{100\%}: System places a card on the board based on operative's choice
+  \item \textbf{100\%}: User starts game
+  \item \textbf{100\%}: User clicks next to trigger next turn
+  \item \textbf{100\%}: Game ends when a team wins
+\end{itemize}
+
+\subsection{Subsystem Level Test Results}
+
+%%%%
+\begin{itemize}
+\item model.player subsystem
+\begin{itemize}
+    \item \textbf{PASS} Test Case 1: Operative player with random OperativeStrategy makes legal move with function makeMove() 
+    
+    \item \textbf{PASS} Test Case 2: Spymaster player with random strategy makes a non-null clue with a number part between 0 and 9.
+\end{itemize}
+
+\item model.board subsystem
+\begin{itemize}
+    \item \textbf{PASS} Test Case 1: CardBuilder.buildAll creates a valid board
+    \item \textbf{PASS} Test Case 2: A newly created board has 25 cards
+    \item \textbf{PASS} Test Case 3: Game does not end when there are blue, red, and assassin cards still unchosen
+    \item \textbf{PASS} Test Case 4: Red wins after ending game on choice of red card.
+    \item \textbf{PASS} Test Case 5: Red wins after blue chooses assassin or last red card
+\end{itemize}
+\end{itemize}
+%%%%
+
+\subsection{Unit Test Results}
+\begin{itemize}
+\item RandomSpyStrategy: Function giveClue
+
+    \begin{itemize}
+        \item \textbf{PASS} Test Case 1: Spymaster doesn’t give a null clue.
+        \item \textbf{PASS} Test Case 2: RandomSpyStrategy returns a clue with a valid number of cards.
+    \end{itemize}
+
+\item RandomSpyStrategy: Function giveClueRandomly
+
+    \begin{itemize}
+        \item \textbf{PASS} Test Case 1: RandomSpyStrategy doesn’t return the same clue 10 times in a row.
+    \end{itemize}
+
+%%%%
+
+\item SimpleSpyStrategy: Function giveClue
+
+    \begin{itemize}
+        \item \textbf{PASS} Test Case 1: Blue Spymaster gives a clue associated with one of their words.
+        \item \textbf{PASS} Test Case 2: Red Spymaster gives a clue associated with one of their words.
+        \item \textbf{PASS} Test Case 3: Spymaster’s clue is not null.
+    \end{itemize}
+
+%%%%
+
+\item SmartSpyStrategy: Function giveClue
+
+    \begin{itemize}
+        \item \textbf{PASS} Test Case 1: SmartSpyStrategy give the clue associated with both of their cards.
+    \end{itemize}
+
+%%%%
+
+\item RandomOperativeStrategy: Function pickCard
+
+    \begin{itemize}
+        \item \textbf{PASS} Test Case 1: Random operative does not pick the same card 10 times in a row.
+    \end{itemize}
+
+%%%%
+
+\item BotOperativeStrategy: Function pickCard
+
+    \begin{itemize}
+        \item \textbf{PASS} Test Case 1: Blue bot with accuracy=1 picks blue card.
+        \item \textbf{PASS} Test Case 2: Red bot with accuracy=1 picks blue card.
+    \end{itemize}
+
+%%%%
+\item HumanOperativeStrategy: Function pickCard
+
+    \begin{itemize}
+        \item \textbf{PASS} Test Case 1: Human player picks the correct card
+    \end{itemize}
+
+%%%%%
+
+\item CardType: Function charOf
+
+    \begin{itemize}
+        \item \textbf{PASS} Test Case 1: The character 'R' returns Red
+         \item \textbf{PASS} Test Case 2: The character 'B' returns Blue
+          \item \textbf{PASS} Test Case 3: The character 'A' returns Assassin
+           \item \textbf{PASS} Test Case 4: The character 'Y' returns Bystander
+    \end{itemize}
+    
+%%% model.board
+%%%%
+
+\item Board: Function removeCard
+
+    \begin{itemize}
+        \item \textbf{PASS} Test Case 1: Removing the first Card results in the card not being available for selection again.
+    \end{itemize}
+
+
+\item Board: Function getNumCardsOfType
+
+    \begin{itemize}
+        \item \textbf{PASS} Test Case 1: Number of red cards in initialized board
+        \item \textbf{PASS} Test Case 2: Number of blue cards in initialized board
+        \item \textbf{PASS} Test Case 3: Number of assassin cards in initialized board
+        \item \textbf{PASS} Test Case 4: Number of bystander cards in initialized board
+    \end{itemize}
+
+\item Board: Function get
+
+    \begin{itemize}
+        \item \textbf{PASS} Test Case 1: Get card at index 25 throws Exception
+    \end{itemize}
+
+%%%%%%%%
+
+\item Card: Function toString
+    \begin{itemize}
+        \item \textbf{PASS} Test Case 1: : toString returns the cards codename word
+	\end{itemize}
+
+%%%%%%%%
+
+\item Clue: Function getClueWord
+
+    \begin{itemize}
+        \item \textbf{PASS} Test Case 1: getClueWord returns word.
+    \end{itemize}
+
+\item Clue: Function getClueNum
+
+    \begin{itemize}
+        \item \textbf{PASS} Test Case 1: getClueNum returns number associated with clue.
+    \end{itemize}
+
+%%%%%%%%
+
+\item Extractor: Function build
+
+    \begin{itemize}
+        \item \textbf{PASS} Test Case 1: Words file read successfully
+        \item \textbf{PASS} Test Case 2: List of string words created
+    \end{itemize}
+
+%%%%%%%%
+
+\item GameManager: Function isTurnOver
+
+    \begin{itemize}
+        \item \textbf{PASS} Test Case 1: Red chooses a blue card
+        \item \textbf{PASS} Test Case 2: Red chooses a red card
+        \item \textbf{PASS} Test Case 3: Red chooses an assassin
+        \item \textbf{PASS} Test Case 4: Red chooses a bystander
+        \item \textbf{PASS} Test Case 5: Blue chooses a red card
+        \item \textbf{PASS} Test Case 6: Blue chooses a blue card
+        \item \textbf{PASS} Test Case 7: Blue chooses a bystander
+        \item \textbf{PASS} Test Case 8: Blue chooses an assassin
+    \end{itemize}
+    
+\item GameManager: Function isGameOver
+
+    \begin{itemize}
+        \item \textbf{PASS} Test Case 1: Game is over because all reds cards are chosen
+        \item \textbf{PASS} Test Case 2: Game is not over because the board contains the assassin card, at least one blue card, and at least one red card.
+        \item \textbf{PASS} Test Case 3: Game is over because the assassin card is selected
+    \end{itemize}
+
+\item GameManager: Function declareWinner
+
+    \begin{itemize}
+        \item \textbf{PASS} Test Case 1: red is determined the winner for having selected his last required card
+        \item \textbf{PASS} Test Case 2: Blue is determined the winner for having selected his last required card
+        \item \textbf{PASS} Test Case 3: red is determined the winner because Blue player selected Red teams last card
+        \item \textbf{PASS} Test Case 4: Blue is determined the winner because Red player selected Blue teams last card
+        \item \textbf{PASS} Test Case 5: red is determined the winner because Blue team selected Assassin Card
+        \item \textbf{PASS} Test Case 6: blue is determined the winner because Red team selected Assassin Card
+    \end{itemize}
+
+\item GameManager: Function doNextTurn
+
+    \begin{itemize}
+        \item \textbf{PASS} Test Case 1: There is no next turn due to the game being over
+        \item \textbf{PASS} Test Case 2: It is the spymaster's turn
+        \item \textbf{PASS} Test Case 3: It is the Operative's turn
+    \end{itemize}
+
+\item GameManager: Function endHumanTurn
+
+    \begin{itemize}
+        \item \textbf{PASS} Test Case 1: The return value of endHumanTurn() is false.
+    \end{itemize}
+
+\item GameManager: Function getBlueScore
+
+    \begin{itemize}
+        \item \textbf{PASS} Test Case 1: Returns the score for Blue Team
+    \end{itemize}
+
+\item GameManager: Function getRedScore
+
+    \begin{itemize}
+        \item \textbf{PASS} Test Case 1: Returns the score for Red Team
+    \end{itemize}
+
+\item GameManager: Function getWinner
+
+    \begin{itemize}
+        \item \textbf{PASS} Test Case 1: Red team is the winner
+        \item \textbf{PASS} Test Case 2: Blue team is the winner
+    \end{itemize}
+%%%%%%%%
+
+\item KeyCard :: Function parse
+
+    \begin{itemize}
+        \item \textbf{PASS} Test Case 1: List returned is not null
+        \item \textbf{PASS} Test Case 2: List contains 25 keycards
+        \item \textbf{PASS} Test Case 3: Number of assassins is 1
+        \item \textbf{PASS} Test Case 4: Number of bystanders is 7
+        \item \textbf{PASS} Test Case 5: Number of red cards is 8 or 9
+        \item \textbf{PASS} Test Case 6: Number of blue cards is 8 or 9
+    \end{itemize}
+
+%%%%%%%%
+
+% \item Word :: Function parse
+
+%     \begin{itemize}
+%         \item \textbf{PASS} Test Case 1: Size of returned list is greater than 0
+%     \end{itemize}
+
+% \item Word :: ListOfWords
+
+%     \begin{itemize}
+%         \item \textbf{PASS} Test Case 1: Size of list is 25
+%     \end{itemize}
+
+\end{itemize}
+
+
+\section{References}
+ 
+%\begin{itemize}
+%
+%\item Dr Greg Butler's course content via %https://users.encs.concordia.ca/~gregb/home/comp354-w2019.html
+%\\
+%\item Craig Larman, Applying UML and Patterns: An Introduction to Object-Oriented Analysis and %Design and Iterative Development, 3rd edition, Prentice-Hall, 2005.
+%\\
+%\item Roger S Pressman, Software Engineering: A Practitioner’s Approach, 7th edition, %McGrawHill
+%\\
+%\end{itemize}
+
+\appendix
+
+\section{Description of Input Files}
+
+No input files used as the user selects the game settings through an initial setup screen.
+
+\section{Description of Output Files}
+
+No output files were used. Logs were examined when needed to verify that tests pass. The system will display information through a game board in a graphical user interface. It will also create a log of all the events and a real-time score board to display to the user.
+
+\end{document}
